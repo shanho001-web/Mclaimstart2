@@ -1,9 +1,6 @@
-/**
- * Design philosophy: Model Workbench — every stage teaches one tool, produces
- * one visible reward, and unlocks a small amount of confidence before theory.
- */
+/** Design philosophy: Model Workbench — first publish a joyful page, then add complexity later. */
 import { useEffect, useMemo, useState } from "react";
-import { ArrowRight, BadgeCheck, Bot, Boxes, Check, CircleHelp, ExternalLink, FolderTree, Github, Globe2, LockKeyhole, Rocket, ShieldCheck, Sparkles, TerminalSquare } from "lucide-react";
+import { ArrowRight, BadgeCheck, Bot, Check, CircleHelp, ExternalLink, Github, Globe2, LockKeyhole, Rocket, Sparkles, TerminalSquare } from "lucide-react";
 import { CodeBlock } from "@/components/CodeBlock";
 import { StepNav } from "@/components/StepNav";
 import { codeTemplates, steps, type CodeKey } from "../data/course";
@@ -12,54 +9,31 @@ const logoUrl = "/manus-storage/modelkit-logo_f86a875b.png";
 const heroUrl = "/manus-storage/modelkit-hero_49f2565d.png";
 const codeMascotUrl = "/manus-storage/modelkit-mascot-code_cf331196.png";
 const uploadMascotUrl = "/manus-storage/modelkit-mascot-upload_dd6157ed.png";
+const fileNames: Record<CodeKey,string> = { macFiles:"macOS Terminal", windowsFiles:"Windows PowerShell", indexHtml:"index.html", styleCss:"style.css", scriptJs:"script.js", gitPush:"VS Code Terminal" };
 
-const fileNames: Record<CodeKey, string> = {
-  macSetup:"macOS Terminal", windowsSetup:"Windows PowerShell", cuteHome:"index.html", githubCommands:"VS Code Terminal", vercelJson:"vercel.json", loginHome:"index.html", dashboard:"dashboard.html", firestoreRules:"Firestore Rules", storageRules:"Storage Rules"
-};
+const toolIcon=(tool:string)=>tool.includes("GitHub")?<Github size={18}/>:tool.includes("Vercel")?<Rocket size={18}/>:tool.includes("VS Code")?<TerminalSquare size={18}/>:<Globe2 size={18}/>;
 
-const toolIcon = (tool: string) => tool.includes("GitHub") ? <Github size={18} /> : tool.includes("Vercel") ? <Rocket size={18} /> : tool.includes("Security") ? <ShieldCheck size={18} /> : tool.includes("Authentication") ? <LockKeyhole size={18} /> : tool.includes("VS Code") ? <TerminalSquare size={18} /> : <Boxes size={18} />;
-
-export default function Home() {
-  const [activeId, setActiveId] = useState("vscode");
-  const [completed, setCompleted] = useState<string[]>(() => JSON.parse(localStorage.getItem("modelkit-journey") || "[]"));
-  const [codeVariant, setCodeVariant] = useState<CodeKey | null>(null);
-  const active = useMemo(() => steps.find((step) => step.id === activeId) || steps[0], [activeId]);
-  const score = completed.length * 125;
-  const progress = Math.round(completed.length / steps.length * 100);
-  const codeKey = codeVariant || active.code;
-
-  useEffect(() => localStorage.setItem("modelkit-journey", JSON.stringify(completed)), [completed]);
-  useEffect(() => setCodeVariant(null), [activeId]);
-  function choose(id: string) { setActiveId(id); document.getElementById("stage")?.scrollIntoView({ behavior: "smooth", block: "start" }); }
-  function complete() { if (!completed.includes(active.id)) setCompleted((all) => [...all, active.id]); const next = steps[steps.findIndex((item) => item.id === active.id) + 1]; if (next) choose(next.id); }
-
-  const mascotHint: Record<string, string> = { vscode:"先砌好工作枱，我陪你。", cute:"看到小可愛動，就是成功。", github:"存好這一版，改錯也不怕。", vercel:"先看 Preview，再交給朋友。", login:"大門只認得真正登入的人。", dashboard:"收據會跟著自己的 UID 回家。", security:"按鈕可以改，Rules 不會被騙。", why:"你已經親手砌出第一版。" };
-  return <div className="app-shell journey-shell">
-    <header className="site-header">
-        <a href="#top" className="brand"><img src={logoUrl} alt="網站模型設計圖圖標" /><span><b>網站模型</b><small>DESIGN KIT · 闖關版</small></span></a>
-      <div className="header-status"><Sparkles size={15} /> {score} 分 · 先做到，再明白</div>
-    </header>
-    <main id="top">
-      <section className="journey-hero">
-        <div className="hero-copy"><div className="cover-serial">MODEL KIT / BUILD 01 · 由零開始</div><div className="eyebrow"><Bot size={15} /> 給朋友的一盒網站模型</div><h1>唔使識 IT，<em>一關一關</em>砌出你的網站。</h1><p>第一關只需開 VS Code，貼一段指令，就會看到自己的小可愛主頁。之後才慢慢認識 GitHub、Vercel、登入、Dashboard 和真正的安全設定。</p><button className="primary-cta" onClick={() => document.getElementById("stage")?.scrollIntoView({behavior:"smooth"})}>由第一關開始 <ArrowRight size={17} /></button></div>
-        <div className="journey-art"><img src={heroUrl} alt="小守護員正在砌網站模型" /><div className="reward-bubble"><b>第一個成果</b><span>會動的小可愛主頁</span></div></div>
-      </section>
-      <section className="tool-road" aria-label="建站旅程"><div><TerminalSquare size={18}/><b>VS Code</b><small>砌骨架</small></div><i/><div><Github size={18}/><b>GitHub</b><small>存版本</small></div><i/><div><Globe2 size={18}/><b>Vercel</b><small>送上網</small></div><i/><div><ShieldCheck size={18}/><b>Firebase</b><small>加身分和保安</small></div></section>
-
-      <section className="journey-layout" id="stage">
-        <aside className="workbench-rail"><div className="journey-score"><span>你的小守護員分數</span><b>{score}</b><small>{completed.length} / {steps.length} 關完成 · {progress}%</small><div className="progress-track"><i style={{width:`${progress}%`}}/></div></div><StepNav activeId={active.id} completed={completed} onChoose={choose}/></aside>
-        <article className="build-stage journey-stage">
-          <div className="stage-ribbon"><span>第 {active.number} 關</span><b>{toolIcon(active.tool)} {active.tool}</b><em>完成獎勵：{active.reward}</em></div>
-          <div className="stage-heading"><div><p className="section-label">今關只學一個工具</p><h2>{active.title}</h2><p>{active.goal}</p></div><div className="mascot-checkpoint">{["vscode","cute","github","login"].includes(active.id) ? <img className="mascot-float" src={codeMascotUrl} alt="小守護員在旁協助"/> : <img className="mascot-float" src={uploadMascotUrl} alt="小守護員在旁協助"/>}<span>{mascotHint[active.id]}</span></div></div>
-          {active.id === "vscode" && <div className="folder-preview"><div className="tree-title"><FolderTree size={18}/> 你完成後會看到這個資料夾</div><pre>newclaim-starter/{'\n'}├── index.html{'\n'}├── dashboard.html{'\n'}├── vercel.json{'\n'}└── firebase/{'\n'}    ├── firestore.rules{'\n'}    └── storage.rules</pre></div>}
-          <div className="action-board"><div className="action-board-title"><span>先做這三件事</span><small>不用跳關；完成一件就看一件成果。</small></div><ol>{active.actions.map((action, index)=><li key={action}><b>{String(index+1).padStart(2,"0")}</b><p>{action}</p></li>)}</ol></div>
-          {active.note && <div className="coach-note"><CircleHelp size={19}/><p><b>小守護員提示</b>{active.note}</p></div>}
-          {codeKey && <>{active.id === "vscode" && <div className="toggle-row"><button className={codeKey === "macSetup" ? "mini-tab active":"mini-tab"} onClick={()=>setCodeVariant("macSetup")}>macOS</button><button className={codeKey === "windowsSetup" ? "mini-tab active":"mini-tab"} onClick={()=>setCodeVariant("windowsSetup")}>Windows</button></div>}{active.id === "security" && <div className="toggle-row"><button className={codeKey === "firestoreRules" ? "mini-tab active":"mini-tab"} onClick={()=>setCodeVariant("firestoreRules")}>Firestore Rules</button><button className={codeKey === "storageRules" ? "mini-tab active":"mini-tab"} onClick={()=>setCodeVariant("storageRules")}>Storage Rules</button></div>}<CodeBlock code={codeTemplates[codeKey]} fileName={fileNames[codeKey]} caption="完整複製 → 貼到指定位置 → 將 YOUR_... 換成自己的資料 → 儲存。" /></>}
-          <div className="verify-card"><div className="verify-title"><BadgeCheck size={20}/><div><b>今關驗收：你應該看到</b><small>三個現象都出現，才算真的完成。</small></div></div><ul>{active.checks.map(check=><li key={check}><span/>{check}</li>)}</ul><button className="finish-step" onClick={complete}>{completed.includes(active.id) ? "已完成，去下一關" : "完成這一關，拿分！"} <ArrowRight size={16}/></button></div>
-        </article>
-      </section>
-      <section className="deep-later"><div><p className="section-label">最後才打開原理盒</p><h2>你先成功，原理才會變得好玩。</h2><p>當你已親手看到主頁、網址、登入與報帳，才回頭看每個工具的職責：VS Code 是工作枱，GitHub 是時間盒，Vercel 是發布線，Firebase Rules 是不會被按鈕騙過的守門員。</p></div><div className="principle-stamps"><span><b>VS</b> 寫和看</span><span><b>GH</b> 記每次改動</span><span><b>VE</b> 先預覽再發布</span><span><b>FB</b> 核對身分和資料</span></div></section>
-    </main>
-    <footer>網站模型闖關版 · 先完成一小關，再多懂一點。 <a href="https://firebase.google.com/docs/firestore/security/get-started" target="_blank" rel="noreferrer">Firebase Rules 文件 <ExternalLink size={13}/></a></footer>
-  </div>;
+export default function Home(){
+ const [activeId,setActiveId]=useState("vscode");
+ const [completed,setCompleted]=useState<string[]>(()=>JSON.parse(localStorage.getItem("first-publish-journey")||"[]"));
+ const [variant,setVariant]=useState<CodeKey|null>(null);
+ const active=useMemo(()=>steps.find(step=>step.id===activeId)||steps[0],[activeId]);
+ const score=completed.length*200,progress=Math.round(completed.length/steps.length*100),codeKey=variant||active.code;
+ useEffect(()=>localStorage.setItem("first-publish-journey",JSON.stringify(completed)),[completed]);
+ useEffect(()=>setVariant(null),[activeId]);
+ function choose(id:string){setActiveId(id);document.getElementById("stage")?.scrollIntoView({behavior:"smooth",block:"start"});}
+ function finish(){if(!completed.includes(active.id))setCompleted(all=>[...all,active.id]);const next=steps[steps.findIndex(step=>step.id===active.id)+1];if(next)choose(next.id);}
+ const mascotHint:Record<string,string>={vscode:"我幫你看住工作枱。",welcome:"有動畫就代表成功！",github:"存好這一版，改錯也不怕。",vercel:"Ready 後，朋友就能看見。",update:"你剛學會真正更新網站。"};
+ return <div className="app-shell journey-shell"><header className="site-header"><a href="#top" className="brand"><img src={logoUrl} alt="網站模型設計圖圖標"/><span><b>網站模型</b><small>FIRST PUBLISH KIT</small></span></a><div className="header-status"><Sparkles size={15}/>{score} 分 · 先成功，再進階</div></header>
+ <main id="top"><section className="journey-hero"><div className="hero-copy"><div className="cover-serial">FIRST PUBLISH / 5 STEPS · 只做一件事</div><div className="eyebrow"><Bot size={15}/> 給零基礎朋友的首次發布模型盒</div><h1>先讓小可愛<br/><em>真的上網歡迎你。</em></h1><p>第一階段不教 claim、不教資料庫。只要照住做：在 VS Code 建三個檔案，放進 GitHub 的 Private repository，再由 Vercel 發出第一條正式網址。</p><button className="primary-cta" onClick={()=>document.getElementById("stage")?.scrollIntoView({behavior:"smooth"})}>由第一步開始 <ArrowRight size={17}/></button></div><div className="journey-art"><img src={heroUrl} alt="小守護員正在砌網站模型"/><div className="reward-bubble"><b>你的第一個目標</b><span>手機也能開的歡迎主頁</span></div></div></section>
+ <section className="tool-road"><div><TerminalSquare size={18}/><b>VS Code</b><small>建立檔案</small></div><i/><div><Github size={18}/><b>GitHub</b><small>存私人版本</small></div><i/><div><Rocket size={18}/><b>Vercel</b><small>發出網址</small></div></section>
+ <section className="success-promise"><div><b>今晚完成後，你會有甚麼？</b><p>一條 <code>https://你的名字.vercel.app</code> 網址；朋友一按就會看到你親手做的歡迎頁。</p></div><span><Check size={18}/> 不需要先學程式理論</span></section>
+ <section className="journey-layout" id="stage"><aside className="workbench-rail"><div className="journey-score"><span>首次發布分數</span><b>{score}</b><small>{completed.length} / {steps.length} 關完成 · {progress}%</small><div className="progress-track"><i style={{width:`${progress}%`}}/></div></div><StepNav activeId={active.id} completed={completed} onChoose={choose}/></aside>
+ <article className="build-stage journey-stage"><div className="stage-ribbon"><span>第 {active.number} 步</span><b>{toolIcon(active.tool)} {active.tool}</b><em>你會得到：{active.reward}</em></div><div className="stage-heading"><div><p className="section-label">現在只做這一件</p><h2>{active.title}</h2><p>{active.goal}</p></div><div className="mascot-checkpoint"><img className="mascot-float" src={active.id==="welcome"||active.id==="update"?uploadMascotUrl:codeMascotUrl} alt="小守護員在旁協助"/><span>{mascotHint[active.id]}</span></div></div>
+ <div className="action-board"><div className="action-board-title"><span>跟住按，不需要跳步</span><small>做完一格，再看下一格。</small></div><ol>{active.actions.map((action,i)=><li key={action}><b>{String(i+1).padStart(2,"0")}</b><p>{action}</p></li>)}</ol></div>
+ {active.note&&<div className="coach-note"><CircleHelp size={19}/><p><b>小守護員提醒</b>{active.note}</p></div>}
+ {codeKey&&<>{active.id==="vscode"&&<div className="toggle-row"><button onClick={()=>setVariant("macFiles")} className={codeKey==="macFiles"?"mini-tab active":"mini-tab"}>macOS</button><button onClick={()=>setVariant("windowsFiles")} className={codeKey==="windowsFiles"?"mini-tab active":"mini-tab"}>Windows</button></div>}{active.id==="welcome"&&<div className="toggle-row"><button onClick={()=>setVariant("indexHtml")} className={codeKey==="indexHtml"?"mini-tab active":"mini-tab"}>index.html</button><button onClick={()=>setVariant("styleCss")} className={codeKey==="styleCss"?"mini-tab active":"mini-tab"}>style.css</button><button onClick={()=>setVariant("scriptJs")} className={codeKey==="scriptJs"?"mini-tab active":"mini-tab"}>script.js</button></div>}<CodeBlock code={codeTemplates[codeKey]} fileName={fileNames[codeKey]} caption="完整複製 → 貼到指定檔案／終端機 → 儲存；不要只複製其中幾行。"/></>}
+ <div className="verify-card"><div className="verify-title"><BadgeCheck size={20}/><div><b>完成後你一定要看到</b><small>三項都做到，就按黃色按鈕前往下一步。</small></div></div><ul>{active.checks.map(check=><li key={check}><span/>{check}</li>)}</ul><button className="finish-step" onClick={finish}>{completed.includes(active.id)?"已完成，前往下一步":"這一步成功了！"}<ArrowRight size={16}/></button></div></article></section>
+ <section className="deep-later"><div><p className="section-label">成功發布後，再慢慢學</p><h2>下一模型盒，才是登入、Dashboard 和安全。</h2><p>第一個網站成功上線後，你已掌握最重要的節奏：改 code、存版本、發布網址。下一階段才會接上 Firebase，讓朋友登入和安全處理資料。</p></div><div className="principle-stamps"><span><b>VS</b> 改三個檔案</span><span><b>GH</b> 私人保存版本</span><span><b>VE</b> 變成正式網址</span><span><b>2</b> 下一階段：登入與安全</span></div></section></main>
+ <footer>首次發布模型盒 · GitHub 私人 repository 與 Vercel 發布步驟以官方文件為準。 <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository" target="_blank" rel="noreferrer">GitHub New repository <ExternalLink size={13}/></a><a href="https://vercel.com/docs/git" target="_blank" rel="noreferrer">Vercel New Project <ExternalLink size={13}/></a></footer></div>;
 }
