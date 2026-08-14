@@ -1,10 +1,9 @@
 /**
- * Design philosophy: Model Workbench. The content is taught as a buildable
- * model: each screen has one clear next move, code is a visible part, and
- * completion is locally remembered so a beginner can return without losing place.
+ * Design philosophy: Model Workbench — every stage teaches one tool, produces
+ * one visible reward, and unlocks a small amount of confidence before theory.
  */
 import { useEffect, useMemo, useState } from "react";
-import { ArrowRight, BadgeCheck, BookOpenCheck, ChevronDown, CircleHelp, ExternalLink, FolderCog, Rocket, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowRight, BadgeCheck, Bot, Boxes, Check, CircleHelp, ExternalLink, FolderTree, Github, Globe2, LockKeyhole, Rocket, ShieldCheck, Sparkles, TerminalSquare } from "lucide-react";
 import { CodeBlock } from "@/components/CodeBlock";
 import { StepNav } from "@/components/StepNav";
 import { codeTemplates, steps, type CodeKey } from "../data/course";
@@ -15,118 +14,52 @@ const codeMascotUrl = "/manus-storage/modelkit-mascot-code_cf331196.png";
 const uploadMascotUrl = "/manus-storage/modelkit-mascot-upload_dd6157ed.png";
 
 const fileNames: Record<CodeKey, string> = {
-  firebaseConfig: "Firebase 設定.js",
-  indexHtml: "index.html",
-  dashboardHtml: "dashboard.html",
-  firestoreRules: "firestore.rules",
-  storageRules: "storage.rules",
-  vercelJson: "vercel.json",
+  macSetup:"macOS Terminal", windowsSetup:"Windows PowerShell", cuteHome:"index.html", githubCommands:"VS Code Terminal", vercelJson:"vercel.json", loginHome:"index.html", dashboard:"dashboard.html", firestoreRules:"Firestore Rules", storageRules:"Storage Rules"
 };
 
+const toolIcon = (tool: string) => tool.includes("GitHub") ? <Github size={18} /> : tool.includes("Vercel") ? <Rocket size={18} /> : tool.includes("Security") ? <ShieldCheck size={18} /> : tool.includes("Authentication") ? <LockKeyhole size={18} /> : tool.includes("VS Code") ? <TerminalSquare size={18} /> : <Boxes size={18} />;
+
 export default function Home() {
-  const [activeId, setActiveId] = useState("start");
-  const [completed, setCompleted] = useState<string[]>(() => {
-    const saved = localStorage.getItem("modelkit-complete");
-    return saved ? JSON.parse(saved) : [];
-  });
-  const [secondaryCode, setSecondaryCode] = useState<CodeKey | null>(null);
-  const [showNotes, setShowNotes] = useState(false);
-  const activeStep = useMemo(() => steps.find((step) => step.id === activeId) ?? steps[0], [activeId]);
-  const progress = Math.round((completed.length / steps.length) * 100);
+  const [activeId, setActiveId] = useState("vscode");
+  const [completed, setCompleted] = useState<string[]>(() => JSON.parse(localStorage.getItem("modelkit-journey") || "[]"));
+  const [codeVariant, setCodeVariant] = useState<CodeKey | null>(null);
+  const active = useMemo(() => steps.find((step) => step.id === activeId) || steps[0], [activeId]);
+  const score = completed.length * 125;
+  const progress = Math.round(completed.length / steps.length * 100);
+  const codeKey = codeVariant || active.code;
 
-  useEffect(() => localStorage.setItem("modelkit-complete", JSON.stringify(completed)), [completed]);
-  useEffect(() => { setSecondaryCode(null); setShowNotes(false); }, [activeId]);
+  useEffect(() => localStorage.setItem("modelkit-journey", JSON.stringify(completed)), [completed]);
+  useEffect(() => setCodeVariant(null), [activeId]);
+  function choose(id: string) { setActiveId(id); document.getElementById("stage")?.scrollIntoView({ behavior: "smooth", block: "start" }); }
+  function complete() { if (!completed.includes(active.id)) setCompleted((all) => [...all, active.id]); const next = steps[steps.findIndex((item) => item.id === active.id) + 1]; if (next) choose(next.id); }
 
-  function markComplete() {
-    if (!completed.includes(activeId)) setCompleted((items) => [...items, activeId]);
-    const currentIndex = steps.findIndex((step) => step.id === activeId);
-    if (currentIndex < steps.length - 1) setActiveId(steps[currentIndex + 1].id);
-  }
+  const mascotHint: Record<string, string> = { vscode:"先砌好工作枱，我陪你。", cute:"看到小可愛動，就是成功。", github:"存好這一版，改錯也不怕。", vercel:"先看 Preview，再交給朋友。", login:"大門只認得真正登入的人。", dashboard:"收據會跟著自己的 UID 回家。", security:"按鈕可以改，Rules 不會被騙。", why:"你已經親手砌出第一版。" };
+  return <div className="app-shell journey-shell">
+    <header className="site-header">
+        <a href="#top" className="brand"><img src={logoUrl} alt="網站模型設計圖圖標" /><span><b>網站模型</b><small>DESIGN KIT · 闖關版</small></span></a>
+      <div className="header-status"><Sparkles size={15} /> {score} 分 · 先做到，再明白</div>
+    </header>
+    <main id="top">
+      <section className="journey-hero">
+        <div className="hero-copy"><div className="cover-serial">MODEL KIT / BUILD 01 · 由零開始</div><div className="eyebrow"><Bot size={15} /> 給朋友的一盒網站模型</div><h1>唔使識 IT，<em>一關一關</em>砌出你的網站。</h1><p>第一關只需開 VS Code，貼一段指令，就會看到自己的小可愛主頁。之後才慢慢認識 GitHub、Vercel、登入、Dashboard 和真正的安全設定。</p><button className="primary-cta" onClick={() => document.getElementById("stage")?.scrollIntoView({behavior:"smooth"})}>由第一關開始 <ArrowRight size={17} /></button></div>
+        <div className="journey-art"><img src={heroUrl} alt="小守護員正在砌網站模型" /><div className="reward-bubble"><b>第一個成果</b><span>會動的小可愛主頁</span></div></div>
+      </section>
+      <section className="tool-road" aria-label="建站旅程"><div><TerminalSquare size={18}/><b>VS Code</b><small>砌骨架</small></div><i/><div><Github size={18}/><b>GitHub</b><small>存版本</small></div><i/><div><Globe2 size={18}/><b>Vercel</b><small>送上網</small></div><i/><div><ShieldCheck size={18}/><b>Firebase</b><small>加身分和保安</small></div></section>
 
-  const codeKey = secondaryCode ?? activeStep.code;
-  const isRuleStep = activeStep.id === "rules";
-
-  return (
-    <div className="app-shell">
-      <header className="site-header">
-        <a href="#top" className="brand" aria-label="網站模型設計圖首頁">
-          <img src={logoUrl} alt="網站模型設計圖圖標" />
-          <span><b>網站模型</b><small>設計圖</small></span>
-        </a>
-        <div className="header-status"><ShieldCheck size={16} /> 先試後出街 <span className="dot" /> 初版模型</div>
-      </header>
-
-      <main id="top">
-        <section className="hero">
-          <div className="hero-copy">
-            <div className="eyebrow"><Sparkles size={15} /> 給零基礎朋友的網站模型盒</div>
-            <h1>跟住砌，<em>真的</em>做出<br />你的第一個安全報帳網站。</h1>
-            <p>這不是理論課。每一關都給你完整 code、要按的位置，以及完成後應該看到的畫面。由登入大門，砌到朋友可用的正式網址。</p>
-            <div className="hero-actions">
-              <button className="primary-cta" onClick={() => document.getElementById("workspace")?.scrollIntoView({ behavior: "smooth" })}>打開模型盒 <ArrowRight size={17} /></button>
-              <span className="tiny-proof"><BadgeCheck size={17} /> 八個可自測零件</span>
-            </div>
-          </div>
-          <div className="hero-art"><img src={heroUrl} alt="網站模型由程式、儲存庫、資料庫和部署方塊組成的插圖" /></div>
-        </section>
-
-        <section className="promise-strip">
-          <div><span className="promise-icon blue"><BookOpenCheck size={18} /></span><p><b>不是叫你猜</b><small>每段 code 都有檔案位置和完成驗收。</small></p></div>
-          <div><span className="promise-icon orange"><FolderCog size={18} /></span><p><b>先砌初版</b><small>登入、報帳、收據、資料隔離已足夠開始。</small></p></div>
-          <div><span className="promise-icon navy"><Rocket size={18} /></span><p><b>先 Preview 後上線</b><small>朋友只會見到測試成功的正式版本。</small></p></div>
-        </section>
-
-        <section id="workspace" className="workbench">
-          <aside className="workbench-rail">
-            <div className="progress-card">
-              <span>你的模型進度</span><b>{progress}%</b>
-              <div className="progress-track"><i style={{ width: `${progress}%` }} /></div>
-              <small>{completed.length} / {steps.length} 件零件已完成</small>
-            </div>
-            <StepNav activeId={activeId} completed={completed} onChoose={setActiveId} />
-          </aside>
-
-          <article className="build-stage">
-            <div className="stage-topline"><span className="part-badge">零件 {activeStep.number}</span><span className="file-path">{activeStep.place}</span></div>
-            <div className="stage-heading">
-              <div><p className="section-label">現在砌這一件</p><h2>{activeStep.title}</h2><p>{activeStep.goal}</p></div>
-              {(activeStep.id === "frontdoor" || activeStep.id === "github") && <img className="mascot-float" src={codeMascotUrl} alt="小守護員正在檢查程式" />}
-              {(activeStep.id === "workroom" || activeStep.id === "rules") && <img className="mascot-float" src={uploadMascotUrl} alt="小守護員正在安全整理收據" />}
-            </div>
-
-            {activeStep.note && <div className="coach-note"><CircleHelp size={19} /><p><b>小守護員建議</b>{activeStep.note}</p></div>}
-
-            {codeKey && <>
-              {isRuleStep && <div className="toggle-row">
-                <button onClick={() => setSecondaryCode("firestoreRules")} className={codeKey === "firestoreRules" ? "mini-tab active" : "mini-tab"}>Firestore Rules</button>
-                <button onClick={() => setSecondaryCode("storageRules")} className={codeKey === "storageRules" ? "mini-tab active" : "mini-tab"}>Storage Rules</button>
-              </div>}
-              <CodeBlock code={codeTemplates[codeKey]} fileName={fileNames[codeKey]} caption="全選複製 → 貼到指定檔案 → 將 YOUR_... 換成自己的資料。" />
-            </>}
-
-            <div className="verify-card">
-              <div className="verify-title"><BadgeCheck size={20} /><div><b>做到這裡，你應該看到</b><small>逐項核對；全部做到才按完成。</small></div></div>
-              <ul>{activeStep.checks.map((check) => <li key={check}><span />{check}</li>)}</ul>
-              <button className="finish-step" onClick={markComplete}>{completed.includes(activeId) ? "已完成，前往下一件" : "這一件砌好了"} <ArrowRight size={16} /></button>
-            </div>
-          </article>
-        </section>
-
-        <section className="safety-map">
-          <div><p className="section-label">砌好後，系統怎樣分工？</p><h2>兩個頁面，三道真正的門。</h2><p>網頁是使用介面；Firebase Authentication 確認身分；Firestore 和 Storage Rules 在伺服器端逐次決定可否讀寫。</p></div>
-          <div className="map-grid">
-            <div className="map-card"><span className="map-index">01</span><b>index.html</b><p>大門：登入、忘記密碼；成功才帶人去 Dashboard。</p></div>
-            <div className="map-card"><span className="map-index">02</span><b>dashboard.html</b><p>工作房：只在登入後讀自己的 claim 和處理自己的收據。</p></div>
-            <div className="map-card wide"><span className="map-index">03</span><b>Firebase Rules</b><p>真正守門員：即使有人自己改了網頁按鈕，Rules 仍會驗證 UID、檔案 path 和管理員權限。</p></div>
-          </div>
-        </section>
-
-        <section className="final-check">
-          <div><span className="final-stamp"><ShieldCheck size={30} /></span><h2>交給朋友之前，做最後三人測試。</h2><p>會員 A 提交；會員 B 嘗試查看；管理員審批。這次測試比任何「看起來安全」都重要。</p></div>
-          <div className="test-list"><p><b>A</b> 能提交自己的 claim 和收據</p><p><b>B</b> 看不到、改不到 A 的資料</p><p><b>管</b> 能審批，A 之後不能刪已審批 claim</p></div>
-        </section>
-      </main>
-      <footer>網站模型設計圖 · 先做到初版，再逐步加強。 <a href="https://firebase.google.com/docs/firestore/security/get-started" target="_blank" rel="noreferrer">查看 Firebase Rules 文件 <ExternalLink size={13} /></a></footer>
-    </div>
-  );
+      <section className="journey-layout" id="stage">
+        <aside className="workbench-rail"><div className="journey-score"><span>你的小守護員分數</span><b>{score}</b><small>{completed.length} / {steps.length} 關完成 · {progress}%</small><div className="progress-track"><i style={{width:`${progress}%`}}/></div></div><StepNav activeId={active.id} completed={completed} onChoose={choose}/></aside>
+        <article className="build-stage journey-stage">
+          <div className="stage-ribbon"><span>第 {active.number} 關</span><b>{toolIcon(active.tool)} {active.tool}</b><em>完成獎勵：{active.reward}</em></div>
+          <div className="stage-heading"><div><p className="section-label">今關只學一個工具</p><h2>{active.title}</h2><p>{active.goal}</p></div><div className="mascot-checkpoint">{["vscode","cute","github","login"].includes(active.id) ? <img className="mascot-float" src={codeMascotUrl} alt="小守護員在旁協助"/> : <img className="mascot-float" src={uploadMascotUrl} alt="小守護員在旁協助"/>}<span>{mascotHint[active.id]}</span></div></div>
+          {active.id === "vscode" && <div className="folder-preview"><div className="tree-title"><FolderTree size={18}/> 你完成後會看到這個資料夾</div><pre>newclaim-starter/{'\n'}├── index.html{'\n'}├── dashboard.html{'\n'}├── vercel.json{'\n'}└── firebase/{'\n'}    ├── firestore.rules{'\n'}    └── storage.rules</pre></div>}
+          <div className="action-board"><div className="action-board-title"><span>先做這三件事</span><small>不用跳關；完成一件就看一件成果。</small></div><ol>{active.actions.map((action, index)=><li key={action}><b>{String(index+1).padStart(2,"0")}</b><p>{action}</p></li>)}</ol></div>
+          {active.note && <div className="coach-note"><CircleHelp size={19}/><p><b>小守護員提示</b>{active.note}</p></div>}
+          {codeKey && <>{active.id === "vscode" && <div className="toggle-row"><button className={codeKey === "macSetup" ? "mini-tab active":"mini-tab"} onClick={()=>setCodeVariant("macSetup")}>macOS</button><button className={codeKey === "windowsSetup" ? "mini-tab active":"mini-tab"} onClick={()=>setCodeVariant("windowsSetup")}>Windows</button></div>}{active.id === "security" && <div className="toggle-row"><button className={codeKey === "firestoreRules" ? "mini-tab active":"mini-tab"} onClick={()=>setCodeVariant("firestoreRules")}>Firestore Rules</button><button className={codeKey === "storageRules" ? "mini-tab active":"mini-tab"} onClick={()=>setCodeVariant("storageRules")}>Storage Rules</button></div>}<CodeBlock code={codeTemplates[codeKey]} fileName={fileNames[codeKey]} caption="完整複製 → 貼到指定位置 → 將 YOUR_... 換成自己的資料 → 儲存。" /></>}
+          <div className="verify-card"><div className="verify-title"><BadgeCheck size={20}/><div><b>今關驗收：你應該看到</b><small>三個現象都出現，才算真的完成。</small></div></div><ul>{active.checks.map(check=><li key={check}><span/>{check}</li>)}</ul><button className="finish-step" onClick={complete}>{completed.includes(active.id) ? "已完成，去下一關" : "完成這一關，拿分！"} <ArrowRight size={16}/></button></div>
+        </article>
+      </section>
+      <section className="deep-later"><div><p className="section-label">最後才打開原理盒</p><h2>你先成功，原理才會變得好玩。</h2><p>當你已親手看到主頁、網址、登入與報帳，才回頭看每個工具的職責：VS Code 是工作枱，GitHub 是時間盒，Vercel 是發布線，Firebase Rules 是不會被按鈕騙過的守門員。</p></div><div className="principle-stamps"><span><b>VS</b> 寫和看</span><span><b>GH</b> 記每次改動</span><span><b>VE</b> 先預覽再發布</span><span><b>FB</b> 核對身分和資料</span></div></section>
+    </main>
+    <footer>網站模型闖關版 · 先完成一小關，再多懂一點。 <a href="https://firebase.google.com/docs/firestore/security/get-started" target="_blank" rel="noreferrer">Firebase Rules 文件 <ExternalLink size={13}/></a></footer>
+  </div>;
 }
