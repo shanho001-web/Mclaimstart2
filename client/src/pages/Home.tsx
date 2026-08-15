@@ -5,6 +5,7 @@ import { codeTemplates, steps, type Guide } from "../data/course";
 
 const logoUrl = "/manus-storage/modelkit-logo_f86a875b.png";
 const heroUrl = "/manus-storage/modelkit-hero_49f2565d.png";
+const mobileHeroUrl = "/manus-storage/modelkit-mobile-hero_cfab313c.png";
 const codeMascotUrl = "/manus-storage/modelkit-mascot-code_cf331196.png";
 const folderMascotUrl = "/manus-storage/mascot-folder-guide_5e3eace4.png";
 const terminalMascotUrl = "/manus-storage/mascot-terminal-guide_3a27255b.png";
@@ -33,9 +34,8 @@ export default function Home() {
     <header className="site-header"><a href="#top" className="brand"><img src={logoUrl} alt="網站模型設計圖圖標"/><span><b>網站模型設計圖</b><small>FIRST PUBLISH KIT</small></span></a><div className="header-course-links"><a className="header-jump" href="#part-01">第一課：發布主頁 ↓</a><a className="header-next-kit" href="/claim-kit">第二課：Claim 網站 →</a></div></header>
     <div className="assembly-progress" aria-label="第一模型盒組裝進度"><span>模型進度</span><b>01</b><i/><b>02</b><i/><b>03</b><i/><b>04</b><i/><b>05</b><small>由 Folder 到網址</small></div>
     <main id="top">
-      <section className="full-hero"><img className="full-hero-art" src={heroUrl} alt="小守護員正在砌網站模型"/>
-        <div className="full-hero-copy"><div className="cover-serial">FIRST PUBLISH / 5 PARTS · 由 0 開始</div><p className="eyebrow"><Bot size={15}/> 給第一次做網站的朋友</p><h1>由第一個 Folder，<em>做到第一條網址。</em></h1><p>不用懂 code。你只要跟著每一格：<b>動作 → 到哪裡 → 做甚麼 → 提示</b>，一路向下滑，就會完成會動的小可愛歡迎主頁。</p><div className="hero-cta-row"><a className="primary-cta" href="#part-01">開始第 01 步 ↓</a><a className="hero-second-cta" href="/claim-kit"><span>已完成第一課？</span>開啟第二課：Claim 網站 <ArrowRight size={16}/></a></div></div>
-        <div className="hero-speech"><b>先讓小可愛</b><span>歡迎你。</span></div><div className="hero-goal"><b>完成目標</b><span>你的第一個 .vercel.app 網址</span></div>
+      <section className="full-hero"><div className="hero-image-stage"><div className="hero-speech"><b>先讓小可愛</b><span>歡迎你。</span></div><picture><source media="(max-width: 700px)" srcSet={mobileHeroUrl}/><img className="full-hero-art" src={heroUrl} alt="小守護員正在砌網站模型"/></picture></div>
+        <div className="full-hero-copy"><div className="cover-serial">FIRST PUBLISH / 5 PARTS · 由 0 開始</div><p className="eyebrow"><Bot size={15}/> 給第一次做網站的朋友</p><h1>由第一個 Folder，<em>做到第一條網址。</em></h1><p className="hero-subtitle">不用懂 code。你只要跟著每一格：<b>動作 → 到哪裡 → 做甚麼 → 提示</b>，一路向下滑，就會完成會動的小可愛歡迎主頁。</p><div className="hero-cta-row"><a className="primary-cta" href="#part-01">開始第 01 步 ↓</a><a className="hero-second-cta" href="/claim-kit"><span>已完成第一課？</span>開啟第二課：Claim 網站 <ArrowRight size={16}/></a></div></div>
       </section>
       <section className="course-intro"><div><b>今次只學三個工具</b><p>VS Code 建檔案；GitHub 保存版本；Vercel 發出網址。登入、Firebase 和安全設定留待下一模型盒。</p></div><div className="mini-tools"><span><TerminalSquare/> VS Code</span><span><Github/> GitHub</span><span><Rocket/> Vercel</span></div></section>
       <div className="course-stream">
@@ -49,7 +49,7 @@ export default function Home() {
           {partIndex < steps.length - 1 && <div className="continue-line"><span>{step.number}</span><i/><b>向下滑，開始下一部分</b><i/><span>{steps[partIndex + 1].number}</span></div>}
         </section>)}
       </div>
-      <section className="next-kit"><div><p>第一個網站成功發布後</p><h2>下一模型盒：登入、會員頁和安全。</h2><span>你已經懂得最重要的節奏：在 VS Code 改 → GitHub 保存 → Vercel 自動上線。</span><a href="/claim-kit" className="next-kit-link">打開第二模型盒 →</a></div><div className="next-kit-stamp">NEXT<br/>KIT<br/><b>02</b></div></section>
+      <a href="/claim-kit" className="next-kit next-kit-simple"><div><p>下一模型盒</p><h2>登入、會員頁<br/>和安全</h2><span>由歡迎主頁，砌成朋友可登入的 Claim 網站。</span></div><div className="next-kit-stamp">NEXT<br/>KIT<br/><b>02</b></div><ArrowRight className="next-kit-arrow"/></a>
     </main>
     <footer>首次發布模型盒 · <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository" target="_blank" rel="noreferrer">GitHub New repository <ExternalLink size={13}/></a><a href="https://vercel.com/docs/git" target="_blank" rel="noreferrer">Vercel New Project <ExternalLink size={13}/></a></footer>
   </div>;
