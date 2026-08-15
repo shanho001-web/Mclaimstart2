@@ -24,12 +24,12 @@ const launchPopUrl = "/manus-storage/mascot-launch-pop-transparent_9bb45e79.png"
 const securityMascotUrl = "/manus-storage/mascot-security-point_f7f20e4c.png";
 const claimHeroUrl = "/manus-storage/modelkit-claim-mobile-hero_681d04f5.png";
 const codeNames = { macFiles:"VS Code 下方的黑色 Terminal（macOS）", windowsFiles:"VS Code 下方的黑色 Terminal（Windows）", indexHtml:"VS Code 左側的 index.html", styleCss:"VS Code 左側的 style.css", scriptJs:"VS Code 左側的 script.js", gitPush:"VS Code 下方的黑色 Terminal", gitUpdate:"VS Code 下方的黑色 Terminal" };
-const actionArt = [modelDownloadUrl, folderGuideUrl, modelFolderOpenUrl, terminalGuideUrl, modelCodeUrl, codeMascotUrl, modelCodeUrl, launchGuideUrl, modelGithubUrl, securityMascotUrl, uploadMascotUrl, modelLaunchUrl, folderMascotUrl, launchPopUrl, codeMascotUrl, terminalPopUrl, modelGithubUrl, modelLaunchUrl];
+const actionArt = [modelDownloadUrl, folderMascotUrl, modelFolderOpenUrl, terminalPopUrl, modelCodeUrl, modelGithubUrl, modelCodeUrl, modelLaunchUrl, modelGithubUrl, folderMascotUrl, modelDownloadUrl, modelLaunchUrl, modelFolderOpenUrl, launchPopUrl, modelGithubUrl, terminalPopUrl, modelDownloadUrl, modelLaunchUrl];
 const partBreaks = [
-  { art: securityMascotUrl, label:"NEXT MODEL PART", title:"把三張網站零件砌進主頁", note:"下一部：HTML、CSS、JavaScript" },
-  { art: folderGuideUrl, label:"SAVE THE BUILD", title:"把完成的作品放進版本庫", note:"下一部：GitHub Private repository" },
-  { art: terminalGuideUrl, label:"SEND THE MODEL", title:"把版本庫變成真正網址", note:"下一部：Vercel Deploy" },
-  { art: launchPopUrl, label:"ONE LAST TEST", title:"改一句字，看見新版自動上線", note:"下一部：第一次自動更新" }
+  { art: modelCodeUrl, label:"NEXT MODEL PART", title:"把三張網站零件砌進主頁", note:"下一部：HTML、CSS、JavaScript" },
+  { art: modelGithubUrl, label:"SAVE THE BUILD", title:"把完成的作品放進版本庫", note:"下一部：GitHub Private repository" },
+  { art: modelLaunchUrl, label:"SEND THE MODEL", title:"把版本庫變成真正網址", note:"下一部：Vercel Deploy" },
+  { art: terminalPopUrl, label:"ONE LAST TEST", title:"改一句字，看見新版自動上線", note:"下一部：第一次自動更新" }
 ];
 
 function Visual({ guide, index }: { guide: Guide; index: number }) {
