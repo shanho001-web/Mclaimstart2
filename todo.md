@@ -19,3 +19,8 @@
 - [x] 為每段 code 顯示明確貼上位置，並為 YOUR_ 欄位加入醒目可編輯提示。
 - [x] 改用全畫面主插畫，將首次發布標題放入插畫安全留白。
 - [x] 驗證順向閱讀流程、程式視覺提示及手機版可讀性。
+- [x] 建立第二模型盒的分頁架構：Claim 網站、Firebase 安全設定、Vercel HTTPS 與成員指南。
+- [x] 撰寫可照做的 index、dashboard、Firestore Rules 與 Storage Rules 程式範例。
+- [x] 加入 Firebase Authentication、Firestore、Storage 與 Vercel Custom Domain／HTTPS 的具體操作位置。
+- [x] 將成員公告改寫為親民、可核實且不作絕對安全承諾的版本。
+- [x] 驗證所有分頁路由、程式碼卡與手機／桌面閱讀體驗。

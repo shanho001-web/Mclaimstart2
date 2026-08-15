@@ -48,7 +48,7 @@ export default function Home() {
           {partIndex < steps.length - 1 && <div className="continue-line"><span>{step.number}</span><i/><b>向下滑，開始下一部分</b><i/><span>{steps[partIndex + 1].number}</span></div>}
         </section>)}
       </div>
-      <section className="next-kit"><div><p>第一個網站成功發布後</p><h2>下一模型盒：登入、會員頁和安全。</h2><span>你已經懂得最重要的節奏：在 VS Code 改 → GitHub 保存 → Vercel 自動上線。</span></div><div className="next-kit-stamp">NEXT<br/>KIT<br/><b>02</b></div></section>
+      <section className="next-kit"><div><p>第一個網站成功發布後</p><h2>下一模型盒：登入、會員頁和安全。</h2><span>你已經懂得最重要的節奏：在 VS Code 改 → GitHub 保存 → Vercel 自動上線。</span><a href="/claim-kit" className="next-kit-link">打開第二模型盒 →</a></div><div className="next-kit-stamp">NEXT<br/>KIT<br/><b>02</b></div></section>
     </main>
     <footer>首次發布模型盒 · <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository" target="_blank" rel="noreferrer">GitHub New repository <ExternalLink size={13}/></a><a href="https://vercel.com/docs/git" target="_blank" rel="noreferrer">Vercel New Project <ExternalLink size={13}/></a></footer>
   </div>;
