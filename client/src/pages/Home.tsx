@@ -6,34 +6,22 @@ import { codeTemplates, steps, type Guide } from "../data/course";
 const logoUrl = "/manus-storage/modelkit-logo_f86a875b.png";
 const heroUrl = "/manus-storage/modelkit-hero_49f2565d.png";
 const mobileHeroUrl = "/manus-storage/modelkit-mobile-hero_cfab313c.png";
-const folderMascotUrl = "/manus-storage/mascot-folder-pop-transparent_557b847f.png";
-const terminalMascotUrl = "/manus-storage/mascot-terminal-pop-transparent_cc414563.png";
-const launchMascotUrl = "/manus-storage/mascot-launch-pop-transparent_9bb45e79.png";
 const modelDownloadUrl = "/manus-storage/guardian-model-download_3c1827bc.png";
 const modelFolderOpenUrl = "/manus-storage/guardian-model-folder-open_fb5db00d.png";
 const modelCodeUrl = "/manus-storage/guardian-model-code-fit_69207a70.png";
 const modelGithubUrl = "/manus-storage/guardian-model-github-lock_c014df84.png";
 const modelLaunchUrl = "/manus-storage/guardian-model-launch_1f0fec45.png";
-const codeMascotUrl = "/manus-storage/modelkit-mascot-code_cf331196.png";
-const uploadMascotUrl = "/manus-storage/modelkit-mascot-upload_dd6157ed.png";
-const folderGuideUrl = "/manus-storage/mascot-folder-guide_5e3eace4.png";
-const terminalGuideUrl = "/manus-storage/mascot-terminal-guide_3a27255b.png";
-const launchGuideUrl = "/manus-storage/mascot-launch-guide_fb1a0d7f.png";
-const terminalPopUrl = "/manus-storage/mascot-terminal-pop-transparent_cc414563.png";
-const launchPopUrl = "/manus-storage/mascot-launch-pop-transparent_9bb45e79.png";
-const securityMascotUrl = "/manus-storage/mascot-security-point_f7f20e4c.png";
-const claimHeroUrl = "/manus-storage/modelkit-claim-mobile-hero_681d04f5.png";
 const codeNames = { macFiles:"VS Code 下方的黑色 Terminal（macOS）", windowsFiles:"VS Code 下方的黑色 Terminal（Windows）", indexHtml:"VS Code 左側的 index.html", styleCss:"VS Code 左側的 style.css", scriptJs:"VS Code 左側的 script.js", gitPush:"VS Code 下方的黑色 Terminal", gitUpdate:"VS Code 下方的黑色 Terminal" };
-const actionArt = [modelDownloadUrl, folderMascotUrl, modelFolderOpenUrl, terminalPopUrl, modelCodeUrl, modelGithubUrl, modelCodeUrl, modelLaunchUrl, modelGithubUrl, folderMascotUrl, modelDownloadUrl, modelLaunchUrl, modelFolderOpenUrl, launchPopUrl, modelGithubUrl, terminalPopUrl, modelDownloadUrl, modelLaunchUrl];
+const actionArt = [modelDownloadUrl, modelFolderOpenUrl, modelFolderOpenUrl, modelCodeUrl, modelCodeUrl, modelGithubUrl, modelCodeUrl, modelLaunchUrl, modelGithubUrl, modelFolderOpenUrl, modelDownloadUrl, modelLaunchUrl, modelFolderOpenUrl, modelLaunchUrl, modelGithubUrl, modelCodeUrl, modelDownloadUrl, modelLaunchUrl];
 const partBreaks = [
   { art: modelCodeUrl, label:"NEXT MODEL PART", title:"把三張網站零件砌進主頁", note:"下一部：HTML、CSS、JavaScript" },
   { art: modelGithubUrl, label:"SAVE THE BUILD", title:"把完成的作品放進版本庫", note:"下一部：GitHub Private repository" },
   { art: modelLaunchUrl, label:"SEND THE MODEL", title:"把版本庫變成真正網址", note:"下一部：Vercel Deploy" },
-  { art: terminalPopUrl, label:"ONE LAST TEST", title:"改一句字，看見新版自動上線", note:"下一部：第一次自動更新" }
+  { art: modelCodeUrl, label:"ONE LAST TEST", title:"改一句字，看見新版自動上線", note:"下一部：第一次自動更新" }
 ];
 
 function Visual({ guide, index }: { guide: Guide; index: number }) {
-  const image = actionArt[index] || folderMascotUrl;
+  const image = actionArt[index] || modelDownloadUrl;
   return <img className="walkthrough-mascot model-action-sticker" src={image} alt={`小守護員正在示範：${guide.title}`} />;
 }
 

@@ -2,7 +2,7 @@
 import { ArrowRight, CheckCircle2, ChevronDown, CirclePlus, Code2, Database, FolderGit2, Github, KeyRound, Lock, Plus, Rocket, ShieldCheck, UploadCloud } from "lucide-react";
 import { KitFooter, KitHeader } from "@/components/KitHeader";
 
-const launchMascotUrl = "/manus-storage/mascot-launch-pop-transparent_9bb45e79.png";
+const launchMascotUrl = "/manus-storage/guardian-model-launch_1f0fec45.png";
 
 type ActionStep = { where: string; action: string };
 type ToolGuide = { id: string; tool: string; title: string; goal: string; view: React.ReactNode; steps: ActionStep[]; result: string };

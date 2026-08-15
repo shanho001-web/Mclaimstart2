@@ -3,7 +3,7 @@ import { CheckCircle2, Clipboard, FileImage, KeyRound, LockKeyhole, ShieldCheck 
 import { KitFooter, KitHeader } from "@/components/KitHeader";
 import { memberAnnouncement } from "../data/claimCode";
 
-const launchMascotUrl = "/manus-storage/mascot-launch-guide_fb1a0d7f.png";
+const launchMascotUrl = "/manus-storage/guardian-model-launch_1f0fec45.png";
 
 export default function MemberGuide() {
   const [copied, setCopied] = useState(false);
