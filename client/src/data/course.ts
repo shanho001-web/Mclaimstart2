@@ -46,8 +46,7 @@ button.addEventListener('click', () => {
   bot.classList.add('celebrate');
   message.textContent = '第一關完成！下一關，我們把這個網站放進 GitHub。';
 });`,
-  gitPush: `# 先把 3 個 YOUR_... 換成自己的資料
-git config --global user.name "YOUR NAME"
+  gitPush: `git config --global user.name "YOUR NAME"
 git config --global user.email "YOUR_EMAIL@example.com"
 
 git init

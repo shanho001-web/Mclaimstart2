@@ -1,13 +1,13 @@
 /**
  * Design philosophy: Model Workbench — code is a clearly labeled component
- * with a single action: copy it, put it in the named place, then test it.
+ * with one clean action: copy the complete code from the named file card.
  */
 import { Check, Clipboard, Code2 } from "lucide-react";
 import { useState } from "react";
 
-type Props = { code: string; fileName: string; caption: string };
+type Props = { code: string; fileName: string };
 
-export function CodeBlock({ code, fileName, caption }: Props) {
+export function CodeBlock({ code, fileName }: Props) {
   const [copied, setCopied] = useState(false);
 
   async function copyCode() {
@@ -25,9 +25,6 @@ export function CodeBlock({ code, fileName, caption }: Props) {
           {copied ? "已複製" : "複製 code"}
         </button>
       </div>
-      <p className="copy-destination"><Clipboard size={14} /><span>把整張 code 複製，再貼到：</span><b>{fileName}</b></p>
-      <p className="code-caption">{caption}</p>
-      <p className="edit-legend"><i>YOUR_...</i> 的橙色文字是示範位置；複製後請改成你自己的資料。</p>
       <pre><code>{code.split(/(YOUR(?:_[A-Z_]+| [A-Z]+))/g).map((part, index) => part.startsWith("YOUR") ? <mark key={index}>{part}</mark> : part)}</code></pre>
     </section>
   );
