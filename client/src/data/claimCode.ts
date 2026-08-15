@@ -98,6 +98,10 @@ service firebase.storage {
 }`,
   vercelJson: `{
   "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/dashboard", "destination": "/dashboard.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",

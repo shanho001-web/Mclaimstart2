@@ -30,7 +30,7 @@ function FourBeat({ guide, tool, serial }: { guide: Guide; tool: string; serial:
 
 export default function Home() {
   return <div className="app-shell scroll-course">
-    <header className="site-header"><a href="#top" className="brand"><img src={logoUrl} alt="網站模型設計圖圖標"/><span><b>網站模型設計圖</b><small>FIRST PUBLISH KIT</small></span></a><a className="header-jump" href="#part-01">由第一步開始 ↓</a></header>
+    <header className="site-header"><a href="#top" className="brand"><img src={logoUrl} alt="網站模型設計圖圖標"/><span><b>網站模型設計圖</b><small>FIRST PUBLISH KIT</small></span></a><div className="header-course-links"><a className="header-jump" href="#part-01">第一課：發布主頁 ↓</a><a className="header-next-kit" href="/claim-kit">第二課：Claim 網站 →</a></div></header>
     <main id="top">
       <section className="full-hero" style={{ backgroundImage: `url(${heroUrl})` }}>
         <div className="full-hero-copy"><div className="cover-serial">FIRST PUBLISH / 5 PARTS · 由 0 開始</div><p className="eyebrow"><Bot size={15}/> 給第一次做網站的朋友</p><h1>由第一個 Folder，<em>做到第一條網址。</em></h1><p>不用懂 code。你只要跟著每一格：<b>動作 → 到哪裡 → 做甚麼 → 提示</b>，一路向下滑，就會完成會動的小可愛歡迎主頁。</p><a className="primary-cta" href="#part-01">開始第 01 步 ↓</a></div>

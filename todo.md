@@ -24,3 +24,8 @@
 - [x] 加入 Firebase Authentication、Firestore、Storage 與 Vercel Custom Domain／HTTPS 的具體操作位置。
 - [x] 將成員公告改寫為親民、可核實且不作絕對安全承諾的版本。
 - [x] 驗證所有分頁路由、程式碼卡與手機／桌面閱讀體驗。
+- [x] 以提供的 index、dashboard 與 vercel.json 為第二課標準檔案，清楚顯示三個檔案的部署順序。
+- [x] 在第一課結尾加入明顯的第二課入口，並提供真正可部署 Claim 系統的檔案清單。
+- [x] 核對邀請碼、管理員角色、UID 收據路徑與資料匯出流程對 Firebase Rules 的要求。
+- [x] 加入 Vercel rewrites 與 cleanUrls 的操作、測試和發布說明。
+- [x] 驗證第二課入口、路由與程式設定教學在桌面和手機版可用。
