@@ -143,3 +143,25 @@ html,body,#root{background:#fff!important;background-image:none!important}
 
 /* Until the source artwork can be precisely re-edited, lift the embedded warm wash on hero art. */
 .full-hero-art,.kit-page .hero-guardian{filter:brightness(1.16) saturate(.68) contrast(.94)!important}
+
+/* Tool-guides reference standard: every tool uses GitHub's title scale, white canvas, thin blue rule, and a distinct task guardian. */
+.tools-page .tool-guide{background:#fff!important;border-radius:0!important;padding:58px 0!important;border-top:1px dashed #a8c7dd!important}
+.tools-page .tool-guide:first-of-type{border-top:0!important}
+.tools-page .tool-title{max-width:820px;gap:15px!important;margin-bottom:25px!important}
+.tools-page .tool-title>span{background:transparent!important;color:#f09b27!important;box-shadow:none!important;border-radius:0!important;width:auto!important;height:auto!important;font-size:30px!important;line-height:1!important;padding-top:2px!important}
+.tools-page .tool-title p{font-size:11px!important;letter-spacing:.13em!important;color:#2e73c8!important}
+.tools-page .tool-title h2{font-size:clamp(29px,3.5vw,45px)!important;line-height:1.18!important;letter-spacing:-.065em!important;margin:5px 0 8px!important;color:#102a43!important}
+.tools-page .tool-title small{font-size:14px!important;line-height:1.7!important;color:#60798e!important;max-width:650px!important}
+.tools-page .tool-showcase{gap:30px!important;align-items:start!important}
+.tools-page .tool-image{padding:14px!important;background:#fff!important;border:1px dashed #9fc2df!important;border-radius:0 16px 0 16px!important}
+.tools-page .mock-window{min-height:350px!important;background:#fff!important;border-radius:0 13px 0 13px!important;box-shadow:6px 7px 0 #2e73c80f!important}
+.tools-page .tool-actions{padding-top:4px!important}
+.tools-page .action-label{background:#f4a340!important;border-radius:0 8px 0 8px!important}
+.tools-page .tool-actions li{padding:13px 0!important}
+.tools-page .tool-actions li b{background:transparent!important;color:#2e73c8!important;border-radius:0!important;width:auto!important;height:auto!important;font-size:18px!important}
+.tools-page .tool-actions li small{font-size:10px!important;color:#7890a3!important;font-weight:900!important}
+.tools-page .tool-actions li p{font-size:13px!important;color:#315876!important;font-weight:800!important}
+.tools-page .tool-result{min-height:88px!important;margin-top:15px!important;padding:14px 94px 14px 14px!important;background:#e7f7ed!important;border-radius:0 12px 0 12px!important}
+.tools-page .tool-result img{width:96px!important;height:96px!important;right:-7px!important;bottom:-19px!important;animation:guardian-proud 3.6s ease-in-out infinite!important}
+.tools-page .tool-next{margin-top:19px!important}
+@media(max-width:700px){.tools-page .tool-guide{padding:48px 0!important}.tools-page .tool-title>span{font-size:25px!important}.tools-page .tool-title h2{font-size:31px!important}.tools-page .tool-title small{font-size:13px!important}.tools-page .tool-image{padding:9px!important}.tools-page .tool-result{min-height:78px!important;padding-right:78px!important}.tools-page .tool-result img{width:78px!important;height:78px!important;right:-4px!important;bottom:-15px!important}}
