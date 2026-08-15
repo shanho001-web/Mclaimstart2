@@ -1,5 +1,5 @@
 /** Design philosophy: Friendly model workbench — a calm four-beat guide that scrolls like a helpful companion. */
-import { Bot, CheckCircle2, CircleHelp, Download, ExternalLink, FolderOpen, FolderPlus, Github, LockKeyhole, MousePointer2, Rocket, TerminalSquare } from "lucide-react";
+import { ArrowRight, Bot, CheckCircle2, CircleHelp, Download, ExternalLink, FolderOpen, FolderPlus, Github, LockKeyhole, MousePointer2, Rocket, TerminalSquare } from "lucide-react";
 import { CodeBlock } from "@/components/CodeBlock";
 import { codeTemplates, steps, type Guide } from "../data/course";
 
@@ -31,9 +31,10 @@ function FourBeat({ guide, tool, serial }: { guide: Guide; tool: string; serial:
 export default function Home() {
   return <div className="app-shell scroll-course">
     <header className="site-header"><a href="#top" className="brand"><img src={logoUrl} alt="網站模型設計圖圖標"/><span><b>網站模型設計圖</b><small>FIRST PUBLISH KIT</small></span></a><div className="header-course-links"><a className="header-jump" href="#part-01">第一課：發布主頁 ↓</a><a className="header-next-kit" href="/claim-kit">第二課：Claim 網站 →</a></div></header>
+    <div className="assembly-progress" aria-label="第一模型盒組裝進度"><span>模型進度</span><b>01</b><i/><b>02</b><i/><b>03</b><i/><b>04</b><i/><b>05</b><small>由 Folder 到網址</small></div>
     <main id="top">
-      <section className="full-hero" style={{ backgroundImage: `url(${heroUrl})` }}>
-        <div className="full-hero-copy"><div className="cover-serial">FIRST PUBLISH / 5 PARTS · 由 0 開始</div><p className="eyebrow"><Bot size={15}/> 給第一次做網站的朋友</p><h1>由第一個 Folder，<em>做到第一條網址。</em></h1><p>不用懂 code。你只要跟著每一格：<b>動作 → 到哪裡 → 做甚麼 → 提示</b>，一路向下滑，就會完成會動的小可愛歡迎主頁。</p><a className="primary-cta" href="#part-01">開始第 01 步 ↓</a></div>
+      <section className="full-hero"><img className="full-hero-art" src={heroUrl} alt="小守護員正在砌網站模型"/>
+        <div className="full-hero-copy"><div className="cover-serial">FIRST PUBLISH / 5 PARTS · 由 0 開始</div><p className="eyebrow"><Bot size={15}/> 給第一次做網站的朋友</p><h1>由第一個 Folder，<em>做到第一條網址。</em></h1><p>不用懂 code。你只要跟著每一格：<b>動作 → 到哪裡 → 做甚麼 → 提示</b>，一路向下滑，就會完成會動的小可愛歡迎主頁。</p><div className="hero-cta-row"><a className="primary-cta" href="#part-01">開始第 01 步 ↓</a><a className="hero-second-cta" href="/claim-kit"><span>已完成第一課？</span>開啟第二課：Claim 網站 <ArrowRight size={16}/></a></div></div>
         <div className="hero-speech"><b>先讓小可愛</b><span>歡迎你。</span></div><div className="hero-goal"><b>完成目標</b><span>你的第一個 .vercel.app 網址</span></div>
       </section>
       <section className="course-intro"><div><b>今次只學三個工具</b><p>VS Code 建檔案；GitHub 保存版本；Vercel 發出網址。登入、Firebase 和安全設定留待下一模型盒。</p></div><div className="mini-tools"><span><TerminalSquare/> VS Code</span><span><Github/> GitHub</span><span><Rocket/> Vercel</span></div></section>

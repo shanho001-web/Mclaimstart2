@@ -8,3 +8,11 @@
 | Vercel + GitHub | 每次 push 可自動部署；非正式 branch 可使用 Preview URL，production branch 可更新正式部署。 | https://vercel.com/docs/git/vercel-for-github |
 
 此課程不把任何系統稱為「絕對安全」。成員指南所述資料隔離及拒絕存取，均以前端程式、Firebase Rules、帳戶設定已完成發布且已用會員 A、會員 B、管理員實測為前提。
+
+## 手機版「照著畫面按」導覽核對
+
+GitHub 官方建立 repository 流程為：右上角 **+** → **New repository** → 輸入名稱 → 選擇 Visibility。若本機已有檔案並準備以 Git push，上述官方指引提醒不要先在網頁新增 README、.gitignore 或 License，以免產生合併衝突。
+
+Firebase 官方 Web setup 流程為：Firebase Console 建立 Project → Project Overview 的 **Web** 圖示註冊 Web app → 取得 Firebase configuration object。Authentication 可再開啟 email/password 登入；`onAuthStateChanged` 可用於受保護頁面檢查登入狀態。
+
+Vercel for GitHub 會在每次 branch push 自動建立部署；Production Branch（通常為 `main`）的 push 可更新正式網址，其他 branch 可作 Preview。只有 GitHub repository Owner 可從個人 repository 建立新的 Vercel Project。
