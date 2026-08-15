@@ -41,7 +41,6 @@ function ActionCard({ guide, sequence }: { guide: Guide; sequence: number }) {
   return <div className="action-card">
     <div className="beat beat-where"><span>{sequence * 2 - 1}</span><div><b>到哪裡</b><p>{guide.instruction}</p></div></div>
     <div className="beat beat-do major"><span>{sequence * 2}</span><div><b>做甚麼</b><p>{guide.title}</p><small>{guide.detail}</small></div></div>
-    <div className="action-hint"><b>小守護員提示</b><p>{guide.tip || "完成這格後，直接向下滑到下一個動作。"}</p></div>
   </div>;
 }
 
@@ -60,6 +59,7 @@ export default function Home() {
           <div className="guide-stack">{step.guides.map((guide, guideIndex) => <article className="guide-unit" key={guide.title}>
             <div className="guide-visual"><Visual guide={guide} index={offset + guideIndex}/></div><div className="guide-content"><ActionCard guide={guide} sequence={offset + guideIndex + 1}/>{guide.link && <a className="official-link" href={guide.link.href} target="_blank" rel="noreferrer">{guide.link.label}<ExternalLink size={15}/></a>}
               {guide.choices ? <div className="code-alternatives">{guide.choices.map((code) => <CodeBlock key={code} code={codeTemplates[code]} fileName={codeNames[code]} />)}</div> : guide.code && <CodeBlock code={codeTemplates[guide.code]} fileName={codeNames[guide.code]} />}
+              <aside className="guardian-tip"><b>小守護員提示</b><p>{guide.tip || "完成這格後，直接向下滑到下一個動作。"}</p></aside>
             </div></article>)}</div>
           </section>{partIndex < steps.length - 1 && <section className={`part-break part-break-${partIndex + 1}`}><img src={partBreaks[partIndex].art} alt={partBreaks[partIndex].title}/><div><p>{partBreaks[partIndex].label}</p><h2>{partBreaks[partIndex].title}</h2><span>{partBreaks[partIndex].note}</span></div></section>}</div>})}
       </div>
