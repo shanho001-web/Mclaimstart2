@@ -1,5 +1,5 @@
 /** Design philosophy: Friendly model workbench — clear route-first action cards with pop-out guardian stickers. */
-import { ArrowRight, Bot, CheckCircle2, CircleHelp, Download, ExternalLink, FolderOpen, FolderPlus, Github, LockKeyhole, MousePointer2, Rocket, TerminalSquare } from "lucide-react";
+import { ArrowRight, Bot, CheckCircle2, ExternalLink, Github, Rocket, TerminalSquare } from "lucide-react";
 import { CodeBlock } from "@/components/CodeBlock";
 import { codeTemplates, steps, type Guide } from "../data/course";
 
@@ -9,13 +9,21 @@ const mobileHeroUrl = "/manus-storage/modelkit-mobile-hero_cfab313c.png";
 const folderMascotUrl = "/manus-storage/mascot-folder-pop-transparent_557b847f.png";
 const terminalMascotUrl = "/manus-storage/mascot-terminal-pop-transparent_cc414563.png";
 const launchMascotUrl = "/manus-storage/mascot-launch-pop-transparent_9bb45e79.png";
+const modelDownloadUrl = "/manus-storage/guardian-model-download_3c1827bc.png";
+const modelFolderOpenUrl = "/manus-storage/guardian-model-folder-open_fb5db00d.png";
+const modelCodeUrl = "/manus-storage/guardian-model-code-fit_69207a70.png";
+const modelGithubUrl = "/manus-storage/guardian-model-github-lock_c014df84.png";
+const modelLaunchUrl = "/manus-storage/guardian-model-launch_1f0fec45.png";
 const codeNames = { macFiles:"VS Code 下方的黑色 Terminal（macOS）", windowsFiles:"VS Code 下方的黑色 Terminal（Windows）", indexHtml:"VS Code 左側的 index.html", styleCss:"VS Code 左側的 style.css", scriptJs:"VS Code 左側的 script.js", gitPush:"VS Code 下方的黑色 Terminal", gitUpdate:"VS Code 下方的黑色 Terminal" };
 
 function Visual({ guide }: { guide: Guide }) {
-  const image = guide.visual === "folder" ? folderMascotUrl : guide.visual === "terminal" ? terminalMascotUrl : guide.visual === "launch" ? launchMascotUrl : null;
-  if (image) return <img className="walkthrough-mascot" src={image} alt="小守護員正在示範這個動作" />;
-  const Icon = guide.visual === "download" ? Download : guide.visual === "open" ? FolderOpen : guide.visual === "copy" ? MousePointer2 : guide.visual === "github" ? Github : guide.visual === "private" ? LockKeyhole : guide.visual === "vercel" ? Rocket : FolderPlus;
-  return <div className="walkthrough-icon"><Icon size={34}/></div>;
+  const image = guide.visual === "download" ? modelDownloadUrl
+    : guide.visual === "folder" || guide.visual === "open" ? modelFolderOpenUrl
+    : guide.visual === "copy" || guide.visual === "edit" || guide.visual === "terminal" ? modelCodeUrl
+    : guide.visual === "github" || guide.visual === "private" ? modelGithubUrl
+    : guide.visual === "vercel" || guide.visual === "launch" ? modelLaunchUrl
+    : folderMascotUrl;
+  return <img className="walkthrough-mascot model-action-sticker" src={image} alt={`小守護員正在示範：${guide.title}`} />;
 }
 
 function FourBeat({ guide, tool, serial }: { guide: Guide; tool: string; serial: string }) {
