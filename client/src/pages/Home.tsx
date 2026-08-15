@@ -26,10 +26,10 @@ const claimHeroUrl = "/manus-storage/modelkit-claim-mobile-hero_681d04f5.png";
 const codeNames = { macFiles:"VS Code 下方的黑色 Terminal（macOS）", windowsFiles:"VS Code 下方的黑色 Terminal（Windows）", indexHtml:"VS Code 左側的 index.html", styleCss:"VS Code 左側的 style.css", scriptJs:"VS Code 左側的 script.js", gitPush:"VS Code 下方的黑色 Terminal", gitUpdate:"VS Code 下方的黑色 Terminal" };
 const actionArt = [modelDownloadUrl, folderGuideUrl, modelFolderOpenUrl, terminalGuideUrl, modelCodeUrl, codeMascotUrl, modelCodeUrl, launchGuideUrl, modelGithubUrl, securityMascotUrl, uploadMascotUrl, modelLaunchUrl, folderMascotUrl, launchPopUrl, codeMascotUrl, terminalPopUrl, modelGithubUrl, modelLaunchUrl];
 const partBreaks = [
-  { art: claimHeroUrl, label:"NEXT MODEL PART", title:"把三張網站零件砌進主頁", note:"下一部：HTML、CSS、JavaScript" },
-  { art: codeMascotUrl, label:"SAVE THE BUILD", title:"把完成的作品放進版本庫", note:"下一部：GitHub Private repository" },
-  { art: uploadMascotUrl, label:"SEND THE MODEL", title:"把版本庫變成真正網址", note:"下一部：Vercel Deploy" },
-  { art: securityMascotUrl, label:"ONE LAST TEST", title:"改一句字，看見新版自動上線", note:"下一部：第一次自動更新" }
+  { art: securityMascotUrl, label:"NEXT MODEL PART", title:"把三張網站零件砌進主頁", note:"下一部：HTML、CSS、JavaScript" },
+  { art: folderGuideUrl, label:"SAVE THE BUILD", title:"把完成的作品放進版本庫", note:"下一部：GitHub Private repository" },
+  { art: terminalGuideUrl, label:"SEND THE MODEL", title:"把版本庫變成真正網址", note:"下一部：Vercel Deploy" },
+  { art: launchPopUrl, label:"ONE LAST TEST", title:"改一句字，看見新版自動上線", note:"下一部：第一次自動更新" }
 ];
 
 function Visual({ guide, index }: { guide: Guide; index: number }) {
@@ -59,7 +59,7 @@ export default function Home() {
         {steps.map((step, partIndex) => { const offset = steps.slice(0, partIndex).reduce((total, previous) => total + previous.guides.length, 0); return <div className="part-block" key={step.id}><section className="course-part" id={`part-${step.number}`}>
           <div className="part-intro"><div className="part-number">{step.number}</div><div><p>第 {step.number} 部 · {step.tool}</p><h2>{step.title}</h2><span>{step.goal}</span></div><div className="part-reward"><CheckCircle2 size={17}/><small>完成後：</small><b>{step.reward}</b></div></div>
           <div className="guide-stack">{step.guides.map((guide, guideIndex) => <article className="guide-unit" key={guide.title}>
-            <div className="guide-visual"><Visual guide={guide} index={offset + guideIndex}/></div><div className="guide-content"><ActionCard guide={guide} serial={`${step.number}.${guideIndex + 1}`}/>{guide.link && <a className="official-link" href={guide.link.href} target="_blank" rel="noreferrer">{guide.link.label}<ExternalLink size={15}/></a>}
+            <div className="guide-visual"><Visual guide={guide} index={offset + guideIndex}/></div><div className="guide-content"><ActionCard guide={guide} serial={String(offset + guideIndex + 1).padStart(2, "0")}/>{guide.link && <a className="official-link" href={guide.link.href} target="_blank" rel="noreferrer">{guide.link.label}<ExternalLink size={15}/></a>}
               {guide.choices ? <div className="code-alternatives">{guide.choices.map((code) => <CodeBlock key={code} code={codeTemplates[code]} fileName={codeNames[code]} />)}</div> : guide.code && <CodeBlock code={codeTemplates[guide.code]} fileName={codeNames[guide.code]} />}
             </div></article>)}</div>
           </section>{partIndex < steps.length - 1 && <section className={`part-break part-break-${partIndex + 1}`}><img src={partBreaks[partIndex].art} alt={partBreaks[partIndex].title}/><div><p>{partBreaks[partIndex].label}</p><h2>{partBreaks[partIndex].title}</h2><span>{partBreaks[partIndex].note}</span></div></section>}</div>})}
