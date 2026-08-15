@@ -122,3 +122,24 @@ footer { max-width:1440px; margin:auto; padding:0 5vw 34px; color:#6d8296; displ
 
 /* Guardian cleanup: transparent-only assets, brighter white body tone, and a large centered posture for portrait characters. */
 .scroll-course .guide-visual:has(.model-action-sticker){width:100%!important;min-height:215px!important;display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important}.scroll-course .model-action-sticker{width:198px!important;height:198px!important;max-width:100%!important;object-fit:contain!important;background:transparent!important;mix-blend-mode:normal!important;filter:brightness(1.16) saturate(.78) contrast(.96) drop-shadow(0 17px 15px #102a4326)!important}.scroll-course .part-break img{background:transparent!important;mix-blend-mode:normal!important;filter:brightness(1.16) saturate(.78) contrast(.96) drop-shadow(0 25px 24px #0009)!important}.scroll-course .hero-guardian,.kit-page .hero-guardian,.mascot-inline{filter:brightness(1.1) saturate(.82) contrast(.97) drop-shadow(0 12px 12px #173f6c25)!important}.scroll-course .hero-guardian{filter:brightness(1.07) saturate(.84) contrast(.98) drop-shadow(0 0 21px #173f6c4b)!important}@media(max-width:700px){.scroll-course .guide-visual:has(.model-action-sticker){min-height:230px!important;justify-content:center!important}.scroll-course .model-action-sticker{width:212px!important;height:212px!important}.scroll-course .part-break img{width:min(92vw,350px)!important;height:59svh!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important}}
+
+
+/* Pure white canvas: remove the warm paper wash from page backgrounds while retaining blue/orange accents and guardian hint grids. */
+:root{--cream:#fff;--paper:#fff}
+html,body,#root{background:#fff!important;background-image:none!important}
+.app-shell,.kit-page,.tools-page,.guide-page,.scroll-course,.course-stream,.course-part,.course-intro,.hero,.main,.site-main{background-color:#fff!important;background-image:none!important}
+.app-shell:before{display:none!important}
+.full-hero,.hero-art,.hero-copy,.part-break,.part-intro,.guide-visual,.guide-content{background-color:#fff!important;background-image:none!important}
+
+
+/* Final white-canvas override: use background shorthand so earlier paper washes cannot reappear. */
+.app-shell,.scroll-course,.full-hero,.hero-image-stage,.full-hero-copy,.course-intro,.course-stream,.course-part,.part-block,.guide-content,.guide-visual{background:#fff!important;background-image:none!important}
+.scroll-course .part-break,.scroll-course .part-break-1,.scroll-course .part-break-2,.scroll-course .part-break-3,.scroll-course .part-break-4{background:#fff!important;background-image:none!important;color:#102a43!important}
+.scroll-course .part-break:before,.scroll-course .part-break-1:before,.scroll-course .part-break-2:before,.scroll-course .part-break-3:before,.scroll-course .part-break-4:before{display:none!important}
+.scroll-course .part-break h2,.scroll-course .part-break-1 h2,.scroll-course .part-break-2 h2,.scroll-course .part-break-3 h2,.scroll-course .part-break-4 h2{color:#102a43!important}
+.scroll-course .part-break p,.scroll-course .part-break-1 p,.scroll-course .part-break-2 p,.scroll-course .part-break-3 p,.scroll-course .part-break-4 p{color:#2e73c8!important}
+.scroll-course .part-break span,.scroll-course .part-break-1 span,.scroll-course .part-break-2 span,.scroll-course .part-break-3 span,.scroll-course .part-break-4 span{color:#557087!important}
+
+
+/* Until the source artwork can be precisely re-edited, lift the embedded warm wash on hero art. */
+.full-hero-art,.kit-page .hero-guardian{filter:brightness(1.16) saturate(.68) contrast(.94)!important}
