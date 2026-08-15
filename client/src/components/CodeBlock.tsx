@@ -25,8 +25,10 @@ export function CodeBlock({ code, fileName, caption }: Props) {
           {copied ? "已複製" : "複製 code"}
         </button>
       </div>
+      <p className="copy-destination"><Clipboard size={14} /> 你現在要做：<b>完整複製以下內容到 {fileName}</b></p>
       <p className="code-caption">{caption}</p>
-      <pre><code>{code}</code></pre>
+      <p className="edit-legend"><i>YOUR_...</i> 的橙色文字是示範位置；複製後請改成你自己的資料。</p>
+      <pre><code>{code.split(/(YOUR(?:_[A-Z_]+| [A-Z]+))/g).map((part, index) => part.startsWith("YOUR") ? <mark key={index}>{part}</mark> : part)}</code></pre>
     </section>
   );
 }
