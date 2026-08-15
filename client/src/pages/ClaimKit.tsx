@@ -5,8 +5,8 @@ import { KitFooter, KitHeader } from "@/components/KitHeader";
 import { claimCode } from "../data/claimCode";
 
 const claimHeroUrl = "/manus-storage/modelkit-claim-mobile-hero_681d04f5.png";
-const securityMascotUrl = "/manus-storage/mascot-security-point_f7f20e4c.png";
-const folderMascotUrl = "/manus-storage/mascot-folder-jump_cab03622.png";
+const securityMascotUrl = "/manus-storage/mascot-security-pop-transparent_09503c10.png";
+const folderMascotUrl = "/manus-storage/mascot-folder-pop-transparent_557b847f.png";
 
 type Sample = keyof typeof claimCode;
 const samples: { id: Sample; label: string; file: string; note: string }[] = [

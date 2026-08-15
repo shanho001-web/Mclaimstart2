@@ -1,4 +1,4 @@
-/** Design philosophy: Friendly model workbench — a calm four-beat guide that scrolls like a helpful companion. */
+/** Design philosophy: Friendly model workbench — clear route-first action cards with pop-out guardian stickers. */
 import { ArrowRight, Bot, CheckCircle2, CircleHelp, Download, ExternalLink, FolderOpen, FolderPlus, Github, LockKeyhole, MousePointer2, Rocket, TerminalSquare } from "lucide-react";
 import { CodeBlock } from "@/components/CodeBlock";
 import { codeTemplates, steps, type Guide } from "../data/course";
@@ -6,25 +6,24 @@ import { codeTemplates, steps, type Guide } from "../data/course";
 const logoUrl = "/manus-storage/modelkit-logo_f86a875b.png";
 const heroUrl = "/manus-storage/modelkit-hero_49f2565d.png";
 const mobileHeroUrl = "/manus-storage/modelkit-mobile-hero_cfab313c.png";
-const codeMascotUrl = "/manus-storage/modelkit-mascot-code_cf331196.png";
-const folderMascotUrl = "/manus-storage/mascot-folder-guide_5e3eace4.png";
-const terminalMascotUrl = "/manus-storage/mascot-terminal-guide_3a27255b.png";
-const launchMascotUrl = "/manus-storage/mascot-launch-guide_fb1a0d7f.png";
+const folderMascotUrl = "/manus-storage/mascot-folder-pop-transparent_557b847f.png";
+const terminalMascotUrl = "/manus-storage/mascot-terminal-pop-transparent_cc414563.png";
+const launchMascotUrl = "/manus-storage/mascot-launch-pop-transparent_9bb45e79.png";
 const codeNames = { macFiles:"VS Code 下方的黑色 Terminal（macOS）", windowsFiles:"VS Code 下方的黑色 Terminal（Windows）", indexHtml:"VS Code 左側的 index.html", styleCss:"VS Code 左側的 style.css", scriptJs:"VS Code 左側的 script.js", gitPush:"VS Code 下方的黑色 Terminal", gitUpdate:"VS Code 下方的黑色 Terminal" };
 
 function Visual({ guide }: { guide: Guide }) {
   const image = guide.visual === "folder" ? folderMascotUrl : guide.visual === "terminal" ? terminalMascotUrl : guide.visual === "launch" ? launchMascotUrl : null;
   if (image) return <img className="walkthrough-mascot" src={image} alt="小守護員正在示範這個動作" />;
   const Icon = guide.visual === "download" ? Download : guide.visual === "open" ? FolderOpen : guide.visual === "copy" ? MousePointer2 : guide.visual === "github" ? Github : guide.visual === "private" ? LockKeyhole : guide.visual === "vercel" ? Rocket : FolderPlus;
-  return <div className="walkthrough-icon"><Icon size={34}/><img src={codeMascotUrl} alt="小守護員在旁提示"/></div>;
+  return <div className="walkthrough-icon"><Icon size={34}/></div>;
 }
 
 function FourBeat({ guide, tool, serial }: { guide: Guide; tool: string; serial: string }) {
   return <div className="four-beat">
-    <div className="beat"><span>1</span><div><b>動作</b><p>{guide.title}</p></div></div>
-    <div className="beat"><span>2</span><div><b>到哪裡</b><p>{tool}</p></div></div>
-    <div className="beat major"><span>3</span><div><b>做甚麼</b><p>{guide.instruction}</p><small>{guide.detail}</small></div></div>
-    <div className="beat"><span>4</span><div><b>提示</b><p>{guide.tip || "做完這格，向下滑就會看到下一個小動作。"}</p></div></div>
+    <div className="beat beat-where"><span>1</span><div><b>到哪裡</b><p>{guide.instruction}</p></div></div>
+    <div className="beat beat-do major"><span>2</span><div><b>做甚麼</b><p>{guide.title}</p><small>{guide.detail}</small></div></div>
+    <div className="beat beat-see"><span>3</span><div><b>完成後會看見甚麼</b><p>{guide.result}</p></div></div>
+    <div className="beat beat-tip"><span>4</span><div><b>小守護員提示</b><p>{guide.tip || `完成這格後，直接向下滑到下一個 ${tool} 動作。`}</p></div></div>
     <div className="beat-serial">{serial}</div>
   </div>;
 }
@@ -43,7 +42,7 @@ export default function Home() {
           <div className="part-intro"><div className="part-number">{step.number}</div><div><p>第 {step.number} 部 · {step.tool}</p><h2>{step.title}</h2><span>{step.goal}</span></div><div className="part-reward"><CheckCircle2 size={17}/><small>完成後：</small><b>{step.reward}</b></div></div>
           <div className="guide-stack">{step.guides.map((guide, guideIndex) => <article className="guide-unit" key={guide.title}>
             <div className="guide-visual"><Visual guide={guide}/></div><div className="guide-content"><FourBeat guide={guide} tool={step.tool} serial={`${step.number}.${guideIndex + 1}`}/>{guide.link && <a className="official-link" href={guide.link.href} target="_blank" rel="noreferrer">{guide.link.label}<ExternalLink size={15}/></a>}
-              {guide.choices ? <div className="code-alternatives">{guide.choices.map((code) => <CodeBlock key={code} code={codeTemplates[code]} fileName={codeNames[code]} caption={code === "macFiles" || code === "windowsFiles" ? "點黑色 Terminal 一下 → 貼上 → 按 Enter。成功後，左側 Explorer 會出現三個檔案。" : "這張 code 每一行都需要；請先按右上複製，再貼到上面寫明的正確檔案。"} />)}</div> : guide.code && <CodeBlock code={codeTemplates[guide.code]} fileName={codeNames[guide.code]} caption="先看上方指定位置，再按右上複製。貼上後，按 Ctrl/Cmd + S 儲存；如果是在 Terminal，改為按 Enter。" />}
+              {guide.choices ? <div className="code-alternatives">{guide.choices.map((code) => <CodeBlock key={code} code={codeTemplates[code]} fileName={codeNames[code]} caption="把以下 code 完整 copy 到上方標示的黑色 Terminal，按 Enter。完成後，左側 Explorer 會出現三個檔案。" />)}</div> : guide.code && <CodeBlock code={codeTemplates[guide.code]} fileName={codeNames[guide.code]} caption="按右上「複製 code」，回到上方標示的位置貼上。檔案按 Ctrl/Cmd + S 儲存；黑色 Terminal 則按 Enter。" />}
               <div className="see-result"><CheckCircle2 size={19}/><div><b>做完後，你會看到</b><p>{guide.result}</p></div></div></div>
           </article>)}</div>
           {partIndex < steps.length - 1 && <div className="continue-line"><span>{step.number}</span><i/><b>向下滑，開始下一部分</b><i/><span>{steps[partIndex + 1].number}</span></div>}
