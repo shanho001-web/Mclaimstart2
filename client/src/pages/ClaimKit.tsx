@@ -4,7 +4,7 @@ import { CodeBlock } from "@/components/CodeBlock";
 import { KitFooter, KitHeader } from "@/components/KitHeader";
 import { claimCode } from "../data/claimCode";
 
-const claimHeroUrl = "/manus-storage/modelkit-claim-mobile-hero_681d04f5.png";
+const claimHeroUrl = "/manus-storage/modelkit-claim-hero-white_aaf5e8b0.png";
 const securityMascotUrl = "/manus-storage/guardian-model-github-lock_c014df84.png";
 const folderMascotUrl = "/manus-storage/guardian-model-folder-open_fb5db00d.png";
 

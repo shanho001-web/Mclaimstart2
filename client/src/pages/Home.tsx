@@ -4,8 +4,8 @@ import { CodeBlock } from "@/components/CodeBlock";
 import { codeTemplates, steps, type Guide } from "../data/course";
 
 const logoUrl = "/manus-storage/modelkit-logo_f86a875b.png";
-const heroUrl = "/manus-storage/modelkit-hero_49f2565d.png";
-const mobileHeroUrl = "/manus-storage/modelkit-mobile-hero_cfab313c.png";
+const heroUrl = "/manus-storage/modelkit-hero-white_12274455.png";
+const mobileHeroUrl = "/manus-storage/modelkit-mobile-hero-white_e139a20e.png";
 const modelDownloadUrl = "/manus-storage/guardian-model-download_3c1827bc.png";
 const modelFolderOpenUrl = "/manus-storage/guardian-model-folder-open_fb5db00d.png";
 const modelCodeUrl = "/manus-storage/guardian-model-code-fit_69207a70.png";
