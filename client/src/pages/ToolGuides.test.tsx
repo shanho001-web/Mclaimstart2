@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { FirebaseConfigBreakdown, FirebaseProcessFlow, FirebaseSecurityPrimer, FirebaseSetupWorkshop, GithubProcessFlow, VercelProcessFlow, firebaseConfigLines, firebaseSetupSteps, firebaseWelcomeMessage } from "./ToolGuides";
+import { FirebaseConfigBreakdown, FirebaseProcessFlow, FirebaseSecurityPrimer, GithubProcessFlow, ToolLessonOpening, VercelProcessFlow, firebaseConfigLines, firebaseWelcomeMessage } from "./ToolGuides";
 
 describe("tool process diagrams", () => {
   it("renders a visibly connected icon flow for GitHub, Vercel, and Firebase", () => {
@@ -15,6 +15,16 @@ describe("tool process diagrams", () => {
     expect(vercel).toContain("Configure");
     expect(firebase).toContain("Web app 〈/〉");
     expect(firebase).toContain("firebaseConfig code");
+  });
+});
+
+describe("tool lesson opening", () => {
+  it("uses the same four-step maze promise for GitHub, Vercel, and Firebase", () => {
+    ["GitHub", "Vercel", "Firebase"].forEach((tool) => {
+      const markup = renderToStaticMarkup(<ToolLessonOpening tool={tool} />);
+      expect(markup).toContain(`第一次用 ${tool}，網站設計像迷宮？`);
+      expect(markup).toContain("4 個步驟即時學識。");
+    });
   });
 });
 
@@ -41,17 +51,5 @@ describe("firebaseConfig breakdown card", () => {
     expect(markup).toContain("dashboard.html");
     expect(markup).toContain("Service Account JSON");
     expect(markup).toContain("private_key");
-  });
-});
-
-describe("Firebase setup workshop", () => {
-  it("keeps the full Console configuration, config card, and Rules work together in Lesson 05", () => {
-    const markup = renderToStaticMarkup(<FirebaseSetupWorkshop />);
-
-    expect(firebaseSetupSteps).toHaveLength(7);
-    expect(markup).toContain("Firebase 正式實作");
-    expect(markup).toContain("現在：註冊 Web app，先拿 firebaseConfig");
-    expect(markup).toContain("Firestore Rules 顯示最新 Publish 時間");
-    expect(markup).toContain("Storage Rules 顯示最新 Publish 時間");
   });
 });

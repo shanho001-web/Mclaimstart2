@@ -284,23 +284,13 @@ function TaskUnit({ step, number }: { step: TaskStep; number: number }) {
   </article>;
 }
 
-export const firebaseSetupSteps: TaskStep[] = [
-  { title: "現在：先登記／登入 Firebase", where: "瀏覽器 → console.firebase.google.com", actions: ["有 Google 帳戶：按 Sign in，用自己的 Google email 登入", "沒有 Google 帳戶：按 Create account，依畫面建立帳戶並完成驗證", "回到 Firebase Console，按 Continue to Firebase"], result: "右上角會出現你的 Google 頭像，首頁會看到 Add project。", tip: "Firebase 使用 Google 帳戶登入；之後開 Project、Authentication、Firestore、Storage 都在這個 Console 內完成。" },
-  { title: "現在：建立 Firebase Project", where: "瀏覽器 → console.firebase.google.com → Add project", actions: ["按 Add project", "輸入 Project name", "按 Continue", "Google Analytics 暫時不需要可關閉", "按 Create project，等畫面進入 Project Overview"], fill: "Project name：claim-site", result: "左上角會顯示 claim-site，並進入 Project Overview。" },
-  { title: "現在：註冊 Web app，先拿 firebaseConfig", where: "Project Overview 中間 → Web 圖示 </>", actions: ["按 Web 圖示", "輸入 app nickname", "按 Register app", "完整複製畫面上的 firebaseConfig", "依下方逐行卡，把同一份設定貼入 index.html 和 dashboard.html"], fill: "App nickname：claim-web", extra: <FirebaseConfigBreakdown />, result: "兩個檔案都有相同 firebaseConfig；第五課的登入、Claims 和收據才能連到同一個 Project。", tip: "firebaseConfig 是網站認得 Project 的地址，不是管理員密碼；但 Service Account 絕不能放進 HTML。" },
-  { title: "現在：開 Email／Password 登入", where: "左側 Build → Authentication", actions: ["按 Get started", "開 Sign-in method", "選 Email/Password", "把第一個開關設為 Enabled", "按 Save"], result: "Email/Password 顯示 Enabled；現在可以建立唯一管理員帳戶。" },
-  { title: "現在：建立唯一管理員帳戶", where: "Authentication → Users → Add user", actions: ["按 Add user", "輸入你日後管理 Claim 的 email 和強密碼", "按 Add user 完成建立", "確認 Users 清單只出現這個管理員帳戶"], fill: "Email：第五課 Rules 內的 ADMIN_EMAIL；Password：只由管理員保存", result: "Users 清單有一個管理員帳戶；Claim 網站沒有註冊按鈕，其他人不能自行開戶。", tip: "這個 email 必須和第五課 Firestore／Storage Rules 裡的 ADMIN_EMAIL 完全相同。" },
-  { title: "現在：建 Firestore，再貼報帳 Rules", where: "左側 Build → Firestore Database", actions: ["按 Create database", "選資料位置", "選 Production mode", "按 Create", "開 Rules 分頁，貼第五課的報帳 Rules", "改好管理員 email 後按 Publish"], result: "Firestore Rules 顯示最新 Publish 時間。", tip: "Rules 貼在 Firebase → Firestore → Rules，不是貼進 VS Code。" },
-  { title: "現在：建 Storage，再貼收據 Rules", where: "左側 Build → Storage", actions: ["按 Get started", "完成 Storage 建立", "開 Rules 分頁", "貼第五課的收據 Rules", "按 Publish"], result: "Storage Rules 顯示最新 Publish 時間，收據才會受你的限制保護。" },
-];
-
-export function FirebaseSetupWorkshop() {
-  return <section className="kit-section firebase-setup-workshop" data-part="02" id="firebase"><div className="section-tab">PART 02 · Firebase 正式實作</div><h2>現在才進 Firebase Console：由 Project、Web app 做到管理員與 Rules。</h2><p className="section-lead">第 4 課已解釋原因；這一節才實際按設定。每完成一個單元，再處理下一個，不要跳過 Rules。</p><div className="task-unit-list">{firebaseSetupSteps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div></section>;
+export function ToolLessonOpening({ tool }: { tool: string }) {
+  return <>第一次用 {tool}，網站設計像迷宮？<em>4 個步驟即時學識。</em></>;
 }
 
 function ToolLesson({ id }: { id: ToolGuide["id"] }) {
   const guide = guides.find((item) => item.id === id)!;
-  const standardTitle = <>第一次用 {guide.tool}？<em>照著這張大圖按。</em></>;
+  const standardTitle = <ToolLessonOpening tool={guide.tool} />;
   return <div className="kit-page tools-page tool-lesson-page"><KitHeader active={guide.lesson} /><main className="tools-main">{guide.intro}<section className="tools-hero tool-lesson-hero"><p className="kit-kicker">LESSON 0{guide.lesson} / 05 · 看著畫面按</p>{guide.id === "firebase" ? <h2 className="firebase-technical-title">{standardTitle}</h2> : <h1>{standardTitle}</h1>}<p>{guide.goal}</p></section><section className="tool-guide standalone-tool-guide" id={guide.id}><div className="tool-title"><span>0{guide.lesson}</span><div><p>{guide.tool} 操作流程圖</p><h2>{guide.title}</h2></div></div><div className="tool-image">{guide.view}</div>{guide.overview}{guide.id !== "firebase" && <div className="task-unit-list">{guide.steps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div>}<div className="tool-result"><CheckCircle2 /><div><b>本課真正完成</b><p>{guide.completion || "已完成以上每一個操作單元；下一課才會使用這一課建立的帳戶、設定或網址。"}</p></div><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt} /></div></section><LessonPager current={guide.lesson} /></main><KitFooter /></div>;
 }
 

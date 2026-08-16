@@ -185,3 +185,8 @@
 - [x] 將第 4 課 Firebase 收窄為安全概念與第 5 課實作預覽，不要求在此課實際開 Console 或貼程式碼。
 - [x] 將 Firebase Project、Web app、firebaseConfig、管理員帳戶、Firestore、Storage、Rules 的完整正式操作移至第 5 課 Claim 實作台。
 - [x] 補強跨第 3、4、5 課教學分工的測試，並驗證手機版、型別與正式建置。
+- [x] 將 GitHub、Vercel、Firebase 三課第一句統一為「第一次用＿＿網站設計像迷宮？4 個步驟即時學識」。
+- [x] 將第 5 課 Part 1 收窄為在 VS Code 替換 index.html 與 dashboard.html 兩個網頁檔案的直接操作。
+- [x] 將第 5 課 Part 2 收窄為回 Firebase 貼 Firestore Rules 與 Storage Rules 兩份規則的直接操作。
+- [x] 移除第 5 課重複安全說明與冗長指引，只保留「去邊度、撳咩掣、貼邊份 code」的順序。
+- [x] 補強三課開場與第 5 課雙部分流程的測試，並驗證手機版、型別與正式建置。
