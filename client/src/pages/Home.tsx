@@ -1,6 +1,7 @@
 /** Design philosophy: Friendly model workbench — clear route-first action cards with pop-out guardian stickers. */
 import { ArrowRight, Bot, CheckCircle2, ExternalLink, Github, Rocket, TerminalSquare } from "lucide-react";
 import { CodeBlock } from "@/components/CodeBlock";
+import { CourseNav } from "@/components/KitHeader";
 import { codeTemplates, steps, type Guide } from "../data/course";
 
 const logoUrl = "/manus-storage/modelkit-logo_f86a875b.png";
@@ -38,7 +39,8 @@ function ActionCard({ guide, sequence }: { guide: Guide; sequence: number }) {
 
 export default function Home() {
   return <div className="app-shell scroll-course">
-    <header className="site-header"><a href="#top" className="brand"><img src={logoUrl} alt="網站模型設計圖圖標"/><span><b>網站模型設計圖</b><small>FIRST PUBLISH KIT</small></span></a><div className="header-course-links"><a className="header-jump" href="#part-01">第一課：發布主頁 ↓</a><a className="header-next-kit" href="/claim-kit">第二課：Claim 網站 →</a></div></header>
+    <header className="site-header"><a href="#top" className="brand"><img src={logoUrl} alt="網站模型設計圖圖標"/><span><b>網站模型設計圖</b><small>5 LESSON COURSE</small></span></a><div className="header-course-links"><a className="header-jump" href="#part-01">第 1 課：首次發布 ↓</a><a className="header-next-kit" href="/member-guide">成員指南 →</a></div></header>
+    <CourseNav active={1} firstHref="#part-01"/>
     <div className="assembly-progress" aria-label="第一模型盒組裝進度"><span>模型進度</span><b>1</b><i/><b>2</b><i/><b>3</b><i/><b>4</b><i/><b>5</b><small>由 Folder 到網址</small></div>
     <main id="top">
       <section className="full-hero"><div className="hero-image-stage"><div className="hero-speech"><b>先讓小可愛</b><span>歡迎你。</span></div><picture><source media="(max-width: 700px)" srcSet={mobileHeroUrl}/><img className="full-hero-art hero-guardian" src={heroUrl} alt="小守護員正在砌網站模型"/></picture></div>
@@ -55,7 +57,7 @@ export default function Home() {
             </div></article>)}</div>
           </section>{partIndex < steps.length - 1 && <section className={`part-break part-break-${partIndex + 1}`}><img src={partBreaks[partIndex].art} alt={partBreaks[partIndex].title}/><div>{partBreaks[partIndex].label && <p>{partBreaks[partIndex].label}</p>}<h2>{partBreaks[partIndex].title}</h2>{partBreaks[partIndex].note && <span>{partBreaks[partIndex].note}</span>}</div></section>}</div>})}
       </div>
-      <a href="/claim-kit" className="next-kit next-kit-simple"><div><p>下一模型盒</p><h2>登入、會員頁<br/>和安全</h2><span>由歡迎主頁，砌成朋友可登入的 Claim 網站。</span></div><div className="next-kit-stamp">NEXT<br/>KIT<br/><b>02</b></div><ArrowRight className="next-kit-arrow"/></a>
+      <a href="/lesson-2-github" className="next-kit next-kit-simple"><div><p>下一課 · LESSON 02</p><h2>GitHub<br/>Private repository</h2><span>看著 GitHub 大圖，學會建立、辨認和管理私人版本庫。</span></div><div className="next-kit-stamp">NEXT<br/>LESSON<br/><b>02</b></div><ArrowRight className="next-kit-arrow"/></a>
     </main>
     <footer>首次發布模型盒 · <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository" target="_blank" rel="noreferrer">GitHub New repository <ExternalLink size={13}/></a><a href="https://vercel.com/docs/git" target="_blank" rel="noreferrer">Vercel New Project <ExternalLink size={13}/></a></footer>
   </div>;
