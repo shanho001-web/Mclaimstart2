@@ -43,6 +43,7 @@ type ToolGuide = {
   view: React.ReactNode;
   steps: TaskStep[];
   mascot: { src: string; alt: string };
+  finishArt?: { src: string; alt: string };
   completion?: string;
 };
 
@@ -172,6 +173,7 @@ export const guides: ToolGuide[] = [
       },
     ],
     mascot: { src: githubMascotUrl, alt: "小守護員正在把網站檔案收進 GitHub repository" },
+    finishArt: { src: "/images/guardian-folder-open.webp", alt: "小守護員完成檔案上載" },
     completion: "好喇，已經成功擺上雲端，你已係半個程式開發員。",
   },
   {
@@ -212,6 +214,7 @@ export const guides: ToolGuide[] = [
       },
     ],
     mascot: { src: firebaseMascotUrl, alt: "小守護員正在把 Firebase 設定零件裝進網站模型" },
+    finishArt: { src: "/images/guardian-code-fit.webp", alt: "小守護員完成 Firebase 設定" },
   },
   {
     id: "vercel",
@@ -258,6 +261,7 @@ export const guides: ToolGuide[] = [
       },
     ],
     mascot: { src: vercelMascotUrl, alt: "小守護員正在把網站模型送上 Vercel" },
+    finishArt: { src: "/images/guardian-launch.webp", alt: "小守護員完成網址發布" },
   },
 ];
 
@@ -282,7 +286,7 @@ export function ToolLessonOpening({ tool }: { tool: string }) {
 function ToolLesson({ id }: { id: ToolGuide["id"] }) {
   const guide = guides.find((item) => item.id === id)!;
   const copyGuide: LessonCopyGuideData = { subtitle: guide.article.subtitle, title: guide.article.heading, goal: guide.article.goal, flow: guide.article.flow, standard: guide.article.standard, transition: guide.article.transition };
-  return <div className="kit-page tools-page tool-lesson-page"><KitHeader active={guide.lesson} /><main className="tools-main"><LessonCopyGuide data={copyGuide}/>{guide.intro}<section className="tool-guide standalone-tool-guide" id={guide.id}><div className="tool-title"><span>0{guide.lesson}</span><div><p>{guide.tool} · 由上到下照順序做</p><h2>{guide.id === "firebase" ? "先記住這張安全地圖；第 5 課才開始按。" : "下面每張卡只做一件事。"}</h2></div></div><div className="tool-image">{guide.view}</div>{guide.overview}{guide.id !== "firebase" && <div className="task-unit-list">{guide.steps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div>}<div className="tool-result"><CheckCircle2 /><div><b>本課完成</b><p>{guide.completion || guide.article.standard}</p></div><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt} /></div></section><LessonPager current={guide.lesson} /></main><KitFooter /></div>;
+  return <div className="kit-page tools-page tool-lesson-page"><KitHeader active={guide.lesson} /><main className="tools-main"><LessonCopyGuide data={copyGuide}/>{guide.intro}<section className="tool-guide standalone-tool-guide" id={guide.id}><div className="tool-title"><span>0{guide.lesson}</span><div><p>{guide.tool} · 由上到下照順序做</p><h2>{guide.id === "firebase" ? "先記住這張安全地圖；第 5 課才開始按。" : "下面每張卡只做一件事。"}</h2></div></div><div className="tool-guide-hero"><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt} /></div><div className="tool-image">{guide.view}</div>{guide.overview}{guide.id !== "firebase" && <div className="task-unit-list">{guide.steps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div>}<div className="tool-result"><CheckCircle2 /><div><b>本課完成</b><p>{guide.completion || guide.article.standard}</p></div><ToolMascot src={(guide.finishArt || guide.mascot).src} alt={(guide.finishArt || guide.mascot).alt} /></div></section><LessonPager current={guide.lesson} /></main><KitFooter /></div>;
 }
 
 export function GithubLesson() { return <ToolLesson id="github" />; }
