@@ -173,3 +173,7 @@
 - [x] 在 Firebase 課程開首加入公開網站與受保護資料的安全概念，清楚交代為何需要 Authentication、Firestore 與 Storage Rules。
 - [x] 將 Firebase 實作流程重新整理為安全概念後的完整設定主線，保留唯一管理員帳戶、Firestore、Storage 與 Rules 的順序。
 - [x] 補強課程排序與 Firebase 安全開場的自動測試，並驗證手機版與正式建置。
+- [x] 將 GitHub、Vercel、Firebase 三張工具示意圖改為分段流程圖，在每個程序 icon 下以箭咀清楚連接下一步。
+- [x] 在第 4 課 Firebase 示意圖加入清楚可辨的 Web app、網頁程式碼與 firebaseConfig 視覺 icon／標記。
+- [x] 將 Firebase 課最先呈現的內容改為大型、感性的「開房間迎接朋友，也要鎖好重要物品」開場，之後才解釋三道安全防線與設定流程。
+- [x] 補強流程圖與 Firebase 開場的測試，並驗證手機版閱讀、型別與正式建置。

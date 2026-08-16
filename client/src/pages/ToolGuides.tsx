@@ -1,5 +1,5 @@
 /** Design philosophy: One task is one complete human action — decide, find, act, fill, and verify without scrolling between summaries. */
-import { CheckCircle2, ChevronDown, CirclePlus, Code2, Database, FolderGit2, Github, KeyRound, Lock, Plus, Rocket, ShieldCheck, UploadCloud } from "lucide-react";
+import { ArrowDown, CheckCircle2, ChevronDown, CirclePlus, Code2, Database, FileCode2, FolderGit2, Github, KeyRound, Lock, Plus, Rocket, ShieldCheck, TerminalSquare, UploadCloud } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { CodeBlock } from "@/components/CodeBlock";
 import { KitFooter, KitHeader, LessonPager } from "@/components/KitHeader";
@@ -39,9 +39,35 @@ export const firebaseSecurityPrinciples = [
   { name: "Storage Rules", summary: "每次上載、查看或刪除收據時，由另一組規則限制存取。" },
 ];
 
-function FirebaseSecurityPrimer() {
-  return <section className="firebase-security-brief" aria-labelledby="firebase-security-title">
-    <div className="firebase-security-heading"><span><Lock size={16}/> 先看安全概念</span><h2 id="firebase-security-title">公開網站，<em>不等於公開資料。</em></h2><p>歡迎頁可以讓朋友打開，就像一間屋的前門可以迎接訪客；但管理員帳戶、Claim 紀錄和收據不是放在門口。它們必須由登入身分和資料規則分開保護。</p></div>
+export const firebaseWelcomeMessage = {
+  eyebrow: "第 4 課 · 先打開你想分享的房間",
+  title: "想開一間屋，讓朋友安心走進來。",
+  emphasis: "但重要物品，不應放在門口。",
+};
+
+function ProcessArrow({ label }: { label: string }) {
+  return <div className="process-arrow" aria-label={`下一步：${label}`}><span>{label}</span><ArrowDown size={20}/></div>;
+}
+
+function ProcessNode({ number, icon, title, detail, tone = "blue" }: { number: string; icon: React.ReactNode; title: string; detail: string; tone?: "blue" | "orange" | "green" }) {
+  return <article className={`process-node process-node-${tone}`}><span className="process-node-number">{number}</span><div className="process-node-icon">{icon}</div><div><b>{title}</b><small>{detail}</small></div></article>;
+}
+
+export function GithubProcessFlow() {
+  return <div className="mock-window process-flow-window github-window"><div className="mock-top"><Github /> github.com <span className="mock-avatar">你</span></div><div className="process-flow-stack"><ProcessNode number="01" icon={<Github />} title="登入 GitHub" detail="右上角看見你的頭像"/><ProcessArrow label="按頭像旁的 +"/><ProcessNode number="02" icon={<CirclePlus />} title="New repository" detail="輸入 welcome-site" tone="orange"/><ProcessArrow label="選擇儲存方式"/><ProcessNode number="03" icon={<Lock />} title="Private repository" detail="README、License 先不勾選"/><ProcessArrow label="建立後回 VS Code"/><ProcessNode number="04" icon={<TerminalSquare />} title="貼上 git code" detail="把三個網站檔案 push 上雲端" tone="green"/></div></div>;
+}
+
+export function VercelProcessFlow() {
+  return <div className="mock-window process-flow-window vercel-window"><div className="mock-top"><span className="vercel-mark">▲</span> Vercel Dashboard <span className="mock-avatar">你</span></div><div className="process-flow-stack"><ProcessNode number="01" icon={<Github />} title="Continue with GitHub" detail="先登入並同意 Vercel 連結 GitHub"/><ProcessArrow label="回到 Dashboard"/><ProcessNode number="02" icon={<Plus />} title="Add New → Project" detail="開啟 Import Git Repository" tone="orange"/><ProcessArrow label="找到你的 repository"/><ProcessNode number="03" icon={<FolderGit2 />} title="Import welcome-site" detail="按同一行的 Import"/><ProcessArrow label="確認設定後部署"/><ProcessNode number="04" icon={<Rocket />} title="Deploy → Ready" detail="取得第一條 HTTPS 網址" tone="green"/></div></div>;
+}
+
+export function FirebaseProcessFlow() {
+  return <div className="mock-window process-flow-window firebase-window"><div className="mock-top"><span className="firebase-mark">◆</span> Firebase console <ChevronDown size={15} /></div><div className="process-flow-stack firebase-process-stack"><ProcessNode number="01" icon={<Database />} title="Firebase Project" detail="先建立 claim-site Project"/><ProcessArrow label="Project Overview 中間"/><ProcessNode number="02" icon={<Code2 />} title="Web app 〈/〉" detail="按 Web icon，Register app" tone="orange"/><ProcessArrow label="畫面會顯示網頁設定"/><ProcessNode number="03" icon={<FileCode2 />} title="firebaseConfig code" detail="複製給第 5 課 index.html 和 dashboard.html"/><ProcessArrow label="再設定登入與存取規則"/><ProcessNode number="04" icon={<ShieldCheck />} title="Authentication + Rules" detail="唯一管理員、Firestore、Storage" tone="green"/></div></div>;
+}
+
+export function FirebaseSecurityPrimer() {
+  return <section className="firebase-opening" aria-labelledby="firebase-welcome-title"><div className="firebase-welcome-copy"><p><Lock size={16}/>{firebaseWelcomeMessage.eyebrow}</p><h1 id="firebase-welcome-title">{firebaseWelcomeMessage.title}<em>{firebaseWelcomeMessage.emphasis}</em></h1><span>歡迎頁可以讓朋友走進來；但管理員帳戶、Claim 紀錄和收據，應該放在有鎖的地方。</span></div><section className="firebase-security-brief" aria-labelledby="firebase-security-title">
+    <div className="firebase-security-heading"><span><ShieldCheck size={16}/> 現在才看安全概念</span><h2 id="firebase-security-title">公開網站，<em>不等於公開資料。</em></h2><p>畫面和網站程式碼可以公開；每次需要登入、讀取 Claim 或接觸收據時，Firebase 會根據身分和 Rules 再判斷是否准許。</p></div>
     <div className="security-boundary" aria-label="公開畫面與受保護資料的分界">
       <div className="security-zone public-zone"><small>公開區</small><b>歡迎頁、登入畫面</b><p>任何人都可以看見畫面與網站程式碼。</p></div>
       <div className="security-divider"><span>登入後的每次請求</span><ShieldCheck size={20}/></div>
@@ -49,7 +75,7 @@ function FirebaseSecurityPrimer() {
     </div>
     <div className="security-principle-grid">{firebaseSecurityPrinciples.map((item, index) => <article key={item.name}><span>0{index + 1}</span><div><b>{item.name}</b><p>{item.summary}</p></div></article>)}</div>
     <p className="security-flow-bridge"><b>之後的流程：</b>先建立 Firebase Project 和 Web app，然後啟用登入、建立唯一管理員，再把 Firestore 和 Storage 的 Rules 發佈。前端畫面被修改並不會取代 Firebase 伺服器端規則。</p>
-  </section>;
+  </section></section>;
 }
 
 function ToolMascot({ src, alt }: { src: string; alt: string }) {
@@ -82,7 +108,7 @@ const guides: ToolGuide[] = [
     tool: "GitHub",
     title: "把 welcome-site 資料夾變成可保存版本的 Private repository。",
     goal: "完成這課後，GitHub 會看到三個網站檔案；你每次改動都會有一個可回復的版本。",
-    view: <div className="mock-window github-window"><div className="mock-top"><Github /> github.com <span className="mock-avatar">你</span></div><div className="mock-body"><div className="mock-menu"><b><CirclePlus /> 登入後：右上角按「+」</b><span>New repository</span></div><div className="repo-form"><label>Repository name</label><div className="fake-input">welcome-site</div><label>Visibility</label><div className="visibility"><span><Lock /> Private <small>推薦</small></span><span>○ Public</span></div><p className="mock-note">名稱可自訂；三個額外選項不勾選。</p><button>Create repository</button></div></div></div>,
+    view: <GithubProcessFlow />,
     steps: [
       {
         title: "現在：登入 GitHub",
@@ -123,7 +149,7 @@ const guides: ToolGuide[] = [
     title: "把公開頁、管理員身分與資料規則分開設好。",
     goal: "先了解三道防線，再有 Project 和 Web app，才開 Authentication、Firestore、Storage；Rules 一定放在最後。",
     intro: <FirebaseSecurityPrimer />,
-    view: <div className="mock-window firebase-window"><div className="mock-top"><span className="firebase-mark">◆</span> Firebase console <ChevronDown size={15} /></div><div className="firebase-body"><aside><b>Project Overview</b><small>Build</small><span className="selected"><KeyRound /> Authentication</span><span><Database /> Firestore Database</span><span><UploadCloud /> Storage</span></aside><main><p>同一個 Build 內，依次開啟需要的服務</p><div className="firebase-card"><Code2 /><b>Web app</b><small>Project settings → Your apps → </small><button>Register app</button></div><div className="firebase-card small"><ShieldCheck /><b>Rules</b><small>Firestore / Storage → Rules → Publish</small></div></main></div></div>,
+    view: <FirebaseProcessFlow />,
     steps: [
       {
         title: "現在：先登記／登入 Firebase",
@@ -183,7 +209,7 @@ const guides: ToolGuide[] = [
     tool: "Vercel",
     title: "把 GitHub repository 接到 Vercel，取得第一條可分享的 HTTPS 網址。",
     goal: "Vercel 先要看得到 GitHub repository；Import、Deploy 成功後才會有公開網址。",
-    view: <div className="mock-window vercel-window"><div className="mock-top"><span className="vercel-mark">▲</span> Dashboard <button><Plus size={14} /> Add New</button></div><div className="vercel-body"><div className="new-menu"><b>登入後：Add New</b><span>Project</span></div><div className="import-card"><FolderGit2 /><div><b>Import Git Repository</b><small>welcome-site · Private</small></div><button>Import</button></div><div className="deploy-card"><Rocket /><div><b>Configure Project</b><small>Other · Build Command 留空</small></div><button>Deploy</button></div><div className="ready"><CheckCircle2 /> Ready · https://welcome-site.vercel.app</div></div></div>,
+    view: <VercelProcessFlow />,
     steps: [
       {
         title: "現在：先登記／登入 Vercel",
@@ -237,7 +263,8 @@ function TaskUnit({ step, number }: { step: TaskStep; number: number }) {
 
 function ToolLesson({ id }: { id: ToolGuide["id"] }) {
   const guide = guides.find((item) => item.id === id)!;
-  return <div className="kit-page tools-page tool-lesson-page"><KitHeader active={guide.lesson} /><main className="tools-main"><section className="tools-hero tool-lesson-hero"><p className="kit-kicker">LESSON 0{guide.lesson} / 05 · 看著畫面按</p><h1>第一次用 {guide.tool}？<em>照著這張大圖按。</em></h1><p>{guide.goal}</p></section>{guide.intro}<section className="tool-guide standalone-tool-guide" id={guide.id}><div className="tool-title"><span>0{guide.lesson}</span><div><p>{guide.tool} 操作畫面</p><h2>{guide.title}</h2></div></div><div className="tool-image">{guide.view}</div><div className="task-unit-list">{guide.steps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div><div className="tool-result"><CheckCircle2 /><div><b>本課真正完成</b><p>{guide.completion || "已完成以上每一個操作單元；下一課才會使用這一課建立的帳戶、設定或網址。"}</p></div><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt} /></div></section><LessonPager current={guide.lesson} /></main><KitFooter /></div>;
+  const standardTitle = <>第一次用 {guide.tool}？<em>照著這張大圖按。</em></>;
+  return <div className="kit-page tools-page tool-lesson-page"><KitHeader active={guide.lesson} /><main className="tools-main">{guide.intro}<section className="tools-hero tool-lesson-hero"><p className="kit-kicker">LESSON 0{guide.lesson} / 05 · 看著畫面按</p>{guide.id === "firebase" ? <h2 className="firebase-technical-title">{standardTitle}</h2> : <h1>{standardTitle}</h1>}<p>{guide.goal}</p></section><section className="tool-guide standalone-tool-guide" id={guide.id}><div className="tool-title"><span>0{guide.lesson}</span><div><p>{guide.tool} 操作流程圖</p><h2>{guide.title}</h2></div></div><div className="tool-image">{guide.view}</div><div className="task-unit-list">{guide.steps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div><div className="tool-result"><CheckCircle2 /><div><b>本課真正完成</b><p>{guide.completion || "已完成以上每一個操作單元；下一課才會使用這一課建立的帳戶、設定或網址。"}</p></div><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt} /></div></section><LessonPager current={guide.lesson} /></main><KitFooter /></div>;
 }
 
 export function GithubLesson() { return <ToolLesson id="github" />; }
