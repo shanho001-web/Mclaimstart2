@@ -8,7 +8,7 @@ export type LessonLink = {
 };
 
 export const lessons: LessonLink[] = [
-  { number: 1, short: "首次發布", title: "由 Folder 做到第一條網址", href: "/" },
+  { number: 1, short: "首次發布", title: "由 Folder 製作守護員歡迎頁", href: "/" },
   { number: 2, short: "GitHub", title: "建立及管理 Private repository", href: "/lesson-2-github" },
   { number: 3, short: "Firebase", title: "開啟登入、資料庫與 Storage", href: "/lesson-3-firebase" },
   { number: 4, short: "Vercel", title: "Import、Deploy 與正式網址", href: "/lesson-4-vercel" },

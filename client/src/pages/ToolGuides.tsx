@@ -29,6 +29,7 @@ type ToolGuide = {
   view: React.ReactNode;
   steps: TaskStep[];
   mascot: { src: string; alt: string };
+  completion?: string;
 };
 
 function ToolMascot({ src, alt }: { src: string; alt: string }) {
@@ -93,6 +94,7 @@ const guides: ToolGuide[] = [
       },
     ],
     mascot: { src: githubMascotUrl, alt: "小守護員正在把網站檔案收進 GitHub repository" },
+    completion: "好喇，已經成功擺上雲端，你已係半個程式開發員。",
   },
   {
     id: "firebase",
@@ -128,7 +130,15 @@ const guides: ToolGuide[] = [
         title: "現在：開 Email／Password 登入",
         where: "左側 Build → Authentication",
         actions: ["按 Get started", "開 Sign-in method", "選 Email/Password", "把第一個開關設為 Enabled", "按 Save"],
-        result: "Authentication → Users 可以建立會員帳戶。",
+        result: "Email/Password 顯示 Enabled；現在可以建立唯一管理員帳戶。",
+      },
+      {
+        title: "現在：建立唯一管理員帳戶",
+        where: "Authentication → Users → Add user",
+        actions: ["按 Add user", "輸入你日後管理 Claim 的 email 和強密碼", "按 Add user 完成建立", "確認 Users 清單只出現這個管理員帳戶"],
+        fill: "Email：第五課 Rules 內的 ADMIN_EMAIL；Password：只由管理員保存",
+        result: "Users 清單有一個管理員帳戶；Claim 網站沒有註冊按鈕，其他人不能自行開戶。",
+        tip: "這個 email 必須和第五課 Firestore／Storage Rules 裡的 ADMIN_EMAIL 完全相同。",
       },
       {
         title: "現在：建 Firestore，再貼報帳 Rules",
@@ -155,10 +165,16 @@ const guides: ToolGuide[] = [
     view: <div className="mock-window vercel-window"><div className="mock-top"><span className="vercel-mark">▲</span> Dashboard <button><Plus size={14} /> Add New</button></div><div className="vercel-body"><div className="new-menu"><b>登入後：Add New</b><span>Project</span></div><div className="import-card"><FolderGit2 /><div><b>Import Git Repository</b><small>welcome-site · Private</small></div><button>Import</button></div><div className="deploy-card"><Rocket /><div><b>Configure Project</b><small>Other · Build Command 留空</small></div><button>Deploy</button></div><div className="ready"><CheckCircle2 /> Ready · https://welcome-site.vercel.app</div></div></div>,
     steps: [
       {
-        title: "現在：用 GitHub 登入 Vercel",
-        where: "瀏覽器 → vercel.com → Continue with GitHub",
-        actions: ["按 Continue with GitHub", "完成 GitHub 登入與授權", "進入 Dashboard 後，在右上角按 Add New，再按 Project"],
-        result: "畫面進入 New Project，並出現 Import Git Repository。",
+        title: "現在：先登記／登入 Vercel",
+        where: "瀏覽器 → vercel.com → Sign Up 或 Log In",
+        actions: ["第一次用：按 Sign Up，再選 Continue with GitHub", "在跳出的 GitHub 畫面登入並同意連結", "回到 Vercel Dashboard，確認右上角有自己的頭像"],
+        result: "你已進入 Vercel Dashboard，現在才可以建立部署 Project。",
+      },
+      {
+        title: "現在：開一個 Vercel Project",
+        where: "Vercel Dashboard → 右上角 Add New → Project",
+        actions: ["按 Add New", "選 Project", "等畫面開啟 Import Git Repository"],
+        result: "畫面顯示 Import Git Repository 清單。",
       },
       {
         title: "現在：找到 welcome-site，按 Import",
@@ -200,7 +216,7 @@ function TaskUnit({ step, number }: { step: TaskStep; number: number }) {
 
 function ToolLesson({ id }: { id: ToolGuide["id"] }) {
   const guide = guides.find((item) => item.id === id)!;
-  return <div className="kit-page tools-page tool-lesson-page"><KitHeader active={guide.lesson} /><main className="tools-main"><section className="tools-hero tool-lesson-hero"><p className="kit-kicker">LESSON 0{guide.lesson} / 05 · 看著畫面按</p><h1>第一次用 {guide.tool}？<em>照著這張大圖按。</em></h1><p>{guide.goal}</p></section><section className="tool-guide standalone-tool-guide" id={guide.id}><div className="tool-title"><span>0{guide.lesson}</span><div><p>{guide.tool} 操作畫面</p><h2>{guide.title}</h2></div></div><div className="tool-image">{guide.view}</div><div className="task-unit-list">{guide.steps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div><div className="tool-result"><CheckCircle2 /><div><b>本課真正完成</b><p>已完成以上每一個操作單元；下一課才會使用這一課建立的帳戶、設定或網址。</p></div><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt} /></div></section><LessonPager current={guide.lesson} /></main><KitFooter /></div>;
+  return <div className="kit-page tools-page tool-lesson-page"><KitHeader active={guide.lesson} /><main className="tools-main"><section className="tools-hero tool-lesson-hero"><p className="kit-kicker">LESSON 0{guide.lesson} / 05 · 看著畫面按</p><h1>第一次用 {guide.tool}？<em>照著這張大圖按。</em></h1><p>{guide.goal}</p></section><section className="tool-guide standalone-tool-guide" id={guide.id}><div className="tool-title"><span>0{guide.lesson}</span><div><p>{guide.tool} 操作畫面</p><h2>{guide.title}</h2></div></div><div className="tool-image">{guide.view}</div><div className="task-unit-list">{guide.steps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div><div className="tool-result"><CheckCircle2 /><div><b>本課真正完成</b><p>{guide.completion || "已完成以上每一個操作單元；下一課才會使用這一課建立的帳戶、設定或網址。"}</p></div><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt} /></div></section><LessonPager current={guide.lesson} /></main><KitFooter /></div>;
 }
 
 export function GithubLesson() { return <ToolLesson id="github" />; }
