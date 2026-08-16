@@ -12,10 +12,15 @@ const lesson: LessonCopyGuideData = {
 };
 
 describe("LessonCopyGuide", () => {
-  it("renders the requested copy-guide sections in one reusable block", () => {
+  it("renders a closed V-shaped summary that contains the full copy guide when expanded", () => {
     const markup = renderToStaticMarkup(<LessonCopyGuide data={lesson} />);
 
-    ["本課使用說明", "副標題", "本課目標", "本課流程", "完成標準", "開始前先知道"].forEach((label) => {
+    expect(markup).toContain("<details");
+    expect(markup).not.toContain("<details open");
+    expect(markup).toContain("<summary");
+    expect(markup).toContain("按 V 查看本課說明");
+    expect(markup).toContain("⌄");
+    ["副標題", "本課目標", "本課流程", "完成標準", "開始前先知道"].forEach((label) => {
       expect(markup).toContain(label);
     });
     expect(markup).toContain(lesson.title);
