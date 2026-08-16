@@ -190,3 +190,6 @@
 - [x] 將第 5 課 Part 2 收窄為回 Firebase 貼 Firestore Rules 與 Storage Rules 兩份規則的直接操作。
 - [x] 移除第 5 課重複安全說明與冗長指引，只保留「去邊度、撳咩掣、貼邊份 code」的順序。
 - [x] 補強三課開場與第 5 課雙部分流程的測試，並驗證手機版、型別與正式建置。
+- [x] 在第 5 課 Firebase 部分、兩份 Rules 之前，加入 Authentication → Users → Add user 的唯一管理員帳戶建立操作。
+- [x] 清楚要求新增的管理員 Email 與兩份 Rules 內的 YOUR_ADMIN_EMAIL 完全一致，並提醒記下密碼。
+- [x] 補強唯一管理員帳戶操作的測試，並驗證手機版、型別與正式建置。
