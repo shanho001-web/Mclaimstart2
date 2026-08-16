@@ -1,12 +1,12 @@
 import { ArrowLeft, ArrowRight, BookOpen, ExternalLink, ShieldCheck } from "lucide-react";
 import { Link } from "wouter";
-import { getLesson, lessons, type LessonNumber } from "@/data/lessons";
+import { getCourseNavHref, getLessonPager, lessons, type LessonNumber } from "@/data/lessons";
 
 const logoUrl = "/manus-storage/modelkit-logo_f86a875b.png";
 
 export function CourseNav({ active, firstHref = "/#part-01" }: { active?: LessonNumber; firstHref?: string }) {
   return <nav className="course-nav" aria-label="五課課程導航">{lessons.map((lesson) => {
-    const href = lesson.number === 1 ? firstHref : lesson.href;
+    const href = getCourseNavHref(lesson.number, firstHref);
     return <a key={lesson.number} href={href} className={active === lesson.number ? "course-nav-link active" : "course-nav-link"} aria-current={active === lesson.number ? "page" : undefined}><span>{lesson.number}</span><b>{lesson.short}</b></a>;
   })}</nav>;
 }
@@ -16,9 +16,8 @@ export function KitHeader({ active }: { active: LessonNumber | "guide" }) {
 }
 
 export function LessonPager({ current }: { current: LessonNumber }) {
-  const previous = current > 1 ? getLesson((current - 1) as LessonNumber) : undefined;
-  const next = current < 5 ? getLesson((current + 1) as LessonNumber) : undefined;
-  return <nav className="lesson-pager" aria-label="上一課與下一課">{previous ? <Link href={previous.href} className="lesson-pager-link previous"><ArrowLeft/><small>上一課 · 第 {previous.number} 課</small><b>{previous.short}</b></Link> : <span/>}{next ? <Link href={next.href} className="lesson-pager-link next"><small>下一課 · 第 {next.number} 課</small><b>{next.short}</b><ArrowRight/></Link> : <Link href="/member-guide" className="lesson-pager-link next"><small>五課完成</small><b>查看成員指南</b><ArrowRight/></Link>}</nav>;
+  const { previous, next } = getLessonPager(current);
+  return <nav className="lesson-pager" aria-label="上一課與下一課">{previous ? <a href={previous.href} className="lesson-pager-link previous"><ArrowLeft/><small>上一課 · 第 {previous.number} 課</small><b>{previous.short}</b></a> : <span/>}{next ? <a href={next.href} className="lesson-pager-link next"><small>下一課 · 第 {next.number} 課</small><b>{next.short}</b><ArrowRight/></a> : <a href="/member-guide" className="lesson-pager-link next"><small>五課完成</small><b>查看成員指南</b><ArrowRight/></a>}</nav>;
 }
 
 export function KitFooter() {

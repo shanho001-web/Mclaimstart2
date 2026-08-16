@@ -18,3 +18,14 @@ export const lessons: LessonLink[] = [
 export function getLesson(number: LessonNumber) {
   return lessons.find((lesson) => lesson.number === number)!;
 }
+
+export function getLessonPager(current: LessonNumber) {
+  return {
+    previous: current > 1 ? getLesson((current - 1) as LessonNumber) : undefined,
+    next: current < 5 ? getLesson((current + 1) as LessonNumber) : undefined,
+  };
+}
+
+export function getCourseNavHref(number: LessonNumber, firstHref = "/#part-01") {
+  return number === 1 ? firstHref : getLesson(number).href;
+}
