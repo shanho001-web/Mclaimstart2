@@ -130,13 +130,13 @@ export const guides: ToolGuide[] = [
     view: <GithubProcessFlow />,
     steps: [
       {
-        title: "現在：登入 GitHub",
+        title: "登入 GitHub",
         where: "瀏覽器 → github.com → 右上角",
         actions: ["有帳戶按 Sign in；沒有帳戶才按 Sign up", "用自己的 GitHub 帳戶完成登入", "右上角看見頭像後，按頭像旁的 +"],
         result: "頭像旁的小選單會出現 New repository。",
       },
       {
-        title: "現在：在同一張表格建立 Private repository",
+        title: "建立 Private repository",
         where: "+ 小選單 → New repository → Create a new repository 表格",
         actions: ["按 New repository", "Owner 保留自己的帳戶", "在 Repository name 輸入 welcome-site", "向下到 Visibility，選 Private", "README、.gitignore template、License 三項保持不勾選", "按綠色 Create repository"],
         fill: "Repository name：welcome-site；Visibility：Private",
@@ -144,9 +144,9 @@ export const guides: ToolGuide[] = [
         tip: "名稱會成為網址的一部分：github.com/你的帳戶/welcome-site。所有設定都在同一張表格完成，不用轉畫面。",
       },
       {
-        title: "現在：從 VS Code 上載三個檔案",
+        title: "回到 VS Code 上載三個檔案",
         where: "VS Code → welcome-site → 下方黑色 Terminal",
-        actions: ["將 git code 裡的 YOUR NAME、YOUR_EMAIL、YOUR_GITHUB_NAME 改成自己的資料", "完整複製 git code", "貼進 Terminal 後按 Enter；第一次若開瀏覽器登入 GitHub，跟畫面完成登入"],
+        actions: ["按下方 code 卡的「複製 code」", "回 VS Code → welcome-site → 下方黑色 Terminal，貼上整段 code", "把 YOUR NAME、YOUR_EMAIL、YOUR_GITHUB_NAME 改成自己的資料，再按 Enter；第一次若開瀏覽器登入 GitHub，跟畫面完成登入"],
         code: codeTemplates.gitPush,
         result: "回 GitHub 重新整理後，會看到 index.html、style.css、script.js 和最新 commit。",
         tip: "GitHub 密碼只在 GitHub 的登入畫面輸入；不要貼進 Terminal 或公開筆記。",
@@ -166,21 +166,21 @@ export const guides: ToolGuide[] = [
     view: <FirebaseProcessFlow />,
     steps: [
       {
-        title: "現在：先登記／登入 Firebase",
+        title: "登入 Firebase",
         where: "瀏覽器 → console.firebase.google.com",
         actions: ["有 Google 帳戶：按 Sign in，用自己的 Google email 登入", "沒有 Google 帳戶：按 Create account，依畫面建立帳戶並完成驗證", "回到 Firebase Console，按 Continue to Firebase"],
         result: "右上角會出現你的 Google 頭像，首頁會看到 Add project。",
         tip: "Firebase 使用 Google 帳戶登入；之後開 Project、Authentication、Firestore、Storage 都在這個 Console 內完成。",
       },
       {
-        title: "現在：建立 Firebase Project",
+        title: "建立 Firebase Project",
         where: "瀏覽器 → console.firebase.google.com → Add project",
         actions: ["按 Add project", "輸入 Project name", "按 Continue", "Google Analytics 暫時不需要可關閉", "按 Create project，等畫面進入 Project Overview"],
         fill: "Project name：claim-site",
         result: "左上角會顯示 claim-site，並進入 Project Overview。",
       },
       {
-        title: "現在：註冊 Web app，先拿 firebaseConfig",
+        title: "建立 Web app，複製 firebaseConfig",
         where: "Project Overview 中間 → Web 圖示 </>",
         actions: ["按 Web 圖示", "輸入 app nickname", "按 Register app", "完整複製畫面上的 firebaseConfig", "依下方逐行卡，把同一份設定貼入 index.html 和 dashboard.html"],
         fill: "App nickname：claim-web",
@@ -189,13 +189,13 @@ export const guides: ToolGuide[] = [
         tip: "firebaseConfig 是網站認得 Project 的地址，不是管理員密碼；但 Service Account 絕不能放進 HTML。",
       },
       {
-        title: "現在：開 Email／Password 登入",
+        title: "開啟 Email／Password 登入",
         where: "左側 Build → Authentication",
         actions: ["按 Get started", "開 Sign-in method", "選 Email/Password", "把第一個開關設為 Enabled", "按 Save"],
         result: "Email/Password 顯示 Enabled；現在可以建立唯一管理員帳戶。",
       },
       {
-        title: "現在：建立唯一管理員帳戶",
+        title: "建立唯一管理員帳戶",
         where: "Authentication → Users → Add user",
         actions: ["按 Add user", "輸入你日後管理 Claim 的 email 和強密碼", "按 Add user 完成建立", "確認 Users 清單只出現這個管理員帳戶"],
         fill: "Email：第五課 Rules 內的 ADMIN_EMAIL；Password：只由管理員保存",
@@ -203,14 +203,14 @@ export const guides: ToolGuide[] = [
         tip: "這個 email 必須和第五課 Firestore／Storage Rules 裡的 ADMIN_EMAIL 完全相同。",
       },
       {
-        title: "現在：建 Firestore，再貼報帳 Rules",
+        title: "建立 Firestore，貼報帳 Rules",
         where: "左側 Build → Firestore Database",
         actions: ["按 Create database", "選資料位置", "選 Production mode", "按 Create", "開 Rules 分頁，貼第五課的報帳 Rules", "改好管理員 email 後按 Publish"],
         result: "Firestore Rules 顯示最新 Publish 時間。",
         tip: "Rules 貼在 Firebase → Firestore → Rules，不是貼進 VS Code。",
       },
       {
-        title: "現在：建 Storage，再貼收據 Rules",
+        title: "建立 Storage，貼收據 Rules",
         where: "左側 Build → Storage",
         actions: ["按 Get started", "完成 Storage 建立", "開 Rules 分頁", "貼第五課的收據 Rules", "按 Publish"],
         result: "Storage Rules 顯示最新 Publish 時間，收據才會受你的限制保護。",
@@ -227,27 +227,27 @@ export const guides: ToolGuide[] = [
     view: <VercelProcessFlow />,
     steps: [
       {
-        title: "現在：先登記／登入 Vercel",
+        title: "登入 Vercel",
         where: "瀏覽器 → vercel.com → Sign Up 或 Log In",
         actions: ["第一次用：按 Sign Up，再選 Continue with GitHub", "在跳出的 GitHub 畫面登入並同意連結", "回到 Vercel Dashboard，確認右上角有自己的頭像"],
         result: "你已進入 Vercel Dashboard，現在才可以建立部署 Project。",
       },
       {
-        title: "現在：開 New Project，直接找到 welcome-site",
+        title: "建立 New Project，Import welcome-site",
         where: "Vercel Dashboard → 右上角 Add New → Project → Import Git Repository",
         actions: ["按 Add New → Project，等 Import Git Repository 清單出現", "在清單找 welcome-site；看見就按同一行 Import", "如果清單沒有 welcome-site，不要重新建立 repository；保持這頁開著，另開 GitHub", "GitHub → 右上角頭像 → Settings → Applications → Vercel application → Configure", "在 Repository access 選 Only select repositories，展開清單後選 welcome-site → Save／Update", "回剛才的 Vercel New Project 頁重新整理；welcome-site 出現後按 Import"],
         result: "Vercel Import Git Repository 清單出現 welcome-site；按 Import 後畫面進入 Configure Project。",
         tip: "只選 welcome-site 已足夠，毋須讓 Vercel 讀取所有 GitHub repositories。若 GitHub 畫面把 Vercel 放在 Installed GitHub Apps，進入後同樣按 Configure，再選 Only select repositories。",
       },
       {
-        title: "現在：填部署設定，再按 Deploy",
+        title: "設定並 Deploy",
         where: "Configure Project",
         actions: ["Project Name 保留 welcome-site", "Framework Preset 選 Other", "Build Command 留空", "按 Deploy"],
         fill: "Project Name：welcome-site；Framework Preset：Other；Build Command：留空",
         result: "部署畫面先顯示 Building，完成後會變 Ready。",
       },
       {
-        title: "現在：打開網址測試",
+        title: "打開網址測試",
         where: "Deploy 完成畫面 → Ready 旁的 Visit",
         actions: ["等 Building 變 Ready", "按 Visit 開網址", "用手機或無痕視窗再開一次"],
         result: "看到 https://...vercel.app；這就是第一條可分享網址。",
@@ -260,12 +260,12 @@ export const guides: ToolGuide[] = [
 
 function TaskUnit({ step, number }: { step: TaskStep; number: number }) {
   return <article className="task-unit">
-    <header className="task-unit-head"><b>{number}</b><div><small>現在做甚麼</small><h3>{step.title}</h3></div></header>
+    <header className="task-unit-head"><b>{number}</b><div><h3>{step.title}</h3></div></header>
     <div className="task-unit-body">
       <div className="task-location"><small>到哪裡</small><p>{step.where}</p></div>
       <div className="task-instructions"><small>怎樣做</small><ol>{step.actions.map((item) => <li key={item}>{item}</li>)}</ol></div>
       {step.fill && <div className="task-fill"><small>填甚麼</small><p>{step.fill}</p></div>}
-      {step.code && <div className="task-code"><div><small>完整複製這段</small><p>先把橙色的 YOUR NAME、YOUR_EMAIL、YOUR_GITHUB_NAME 改成自己的資料；再完整複製，貼進 Terminal 後按 Enter。</p></div><CodeBlock code={step.code} fileName="貼進 VS Code 的 Terminal" /></div>}
+      {step.code && <div className="task-code"><div><small>貼上位置</small><p>按這張 code 卡的「複製 code」；回 VS Code → welcome-site → 下方黑色 Terminal 貼上。把 YOUR NAME、YOUR_EMAIL、YOUR_GITHUB_NAME 改成自己的資料後，再按 Enter。</p></div><CodeBlock code={step.code} fileName="VS Code → welcome-site → 黑色 Terminal" /></div>}
       {step.extra && <div className="task-extra">{step.extra}</div>}
       <div className="task-result"><CheckCircle2 /><div><small>完成後</small><p>{step.result}{step.tip && <><span className="result-note">注意：{step.tip}</span></>}</p></div></div>
     </div>

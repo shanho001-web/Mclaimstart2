@@ -44,6 +44,19 @@ describe("same-place operation cards", () => {
   });
 });
 
+describe("short connected operation titles", () => {
+  it("removes duplicated current-step phrasing and names a real destination action", () => {
+    const allVisibleToolSteps = guides.filter((guide) => guide.id !== "firebase").flatMap((guide) => guide.steps);
+
+    expect(allVisibleToolSteps.every((step) => !step.title.startsWith("現在："))).toBe(true);
+    expect(guides.find((guide) => guide.id === "github")!.steps.map((step) => step.title)).toEqual([
+      "登入 GitHub", "建立 Private repository", "回到 VS Code 上載三個檔案",
+    ]);
+    expect(guides.find((guide) => guide.id === "github")!.steps[2].actions[0]).toContain("下方 code 卡的「複製 code」");
+    expect(guides.find((guide) => guide.id === "github")!.steps[2].actions[1]).toContain("下方黑色 Terminal");
+  });
+});
+
 describe("Firebase opening", () => {
   it("starts with the welcoming-room promise before the technical safeguards", () => {
     const markup = renderToStaticMarkup(<FirebaseSecurityPrimer />);

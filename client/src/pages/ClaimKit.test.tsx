@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { claimAdminSetup, claimAssemblyParts } from "./ClaimKit";
+import { claimAdminSetup, claimAssemblyParts, claimCopyInstructions } from "./ClaimKit";
 
 describe("ClaimKit direct assembly flow", () => {
   it("keeps the final lesson to two practical parts: VS Code files and Firebase Rules", () => {
@@ -9,5 +9,7 @@ describe("ClaimKit direct assembly flow", () => {
     expect(claimAssemblyParts.rules.ids).toEqual(["firestoreRules", "storageRules"]);
     expect(claimAdminSetup.where).toContain("Authentication → Users → Add user");
     expect(claimAdminSetup.requirement).toContain("YOUR_ADMIN_EMAIL 完全相同");
+    expect(claimCopyInstructions.website).toContain("VS Code 左邊 Explorer");
+    expect(claimCopyInstructions.rules).toContain("回本頁按「複製 code」");
   });
 });
