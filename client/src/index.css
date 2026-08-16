@@ -323,3 +323,9 @@ body{background:#fff}
 /* A6 渲染實測修正：part-break 文字與圖重疊（1440px 文字右緣 771 深入圖左緣 516） */
 .scroll-course .part-break>div{max-width:min(440px,40vw)!important;margin-right:min(52vw,560px)!important;z-index:2}
 .scroll-course .part-break img{right:2vw!important;opacity:.96}
+
+/* A6 修正 v2：桌面版 part-break 文字改絕對定位，與右側圖徹底分開 */
+@media(min-width:701px){
+  .scroll-course .part-break>div{position:absolute!important;left:clamp(24px,6vw,90px)!important;top:50%!important;transform:translateY(-50%)!important;margin:0!important;width:min(440px,40vw)!important;z-index:3}
+  .scroll-course .part-break img{right:clamp(12px,3vw,48px)!important}
+}
