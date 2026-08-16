@@ -16,6 +16,7 @@ type TaskStep = {
   actions: string[];
   fill?: string;
   code?: string;
+  extra?: React.ReactNode;
   result: string;
   tip?: string;
 };
@@ -44,6 +45,19 @@ export const firebaseWelcomeMessage = {
   title: "想開一間屋，讓朋友安心走進來。",
   emphasis: "但重要物品，不應放在門口。",
 };
+
+export const firebaseConfigLines = [
+  { key: "apiKey", value: "YOUR_API_KEY", meaning: "這個 Web app 使用的 Firebase API 設定值；以 Console 顯示的內容取代。" },
+  { key: "authDomain", value: "YOUR_AUTH_DOMAIN", meaning: "Email／Password 登入使用的驗證網域。" },
+  { key: "projectId", value: "YOUR_PROJECT_ID", meaning: "指出要連接哪一個 Firebase Project 和 Firestore。" },
+  { key: "storageBucket", value: "YOUR_STORAGE_BUCKET", meaning: "指出收據圖片要使用的 Cloud Storage bucket。" },
+  { key: "messagingSenderId", value: "YOUR_MESSAGING_SENDER_ID", meaning: "Web app 的訊息識別值；Console 有這行就完整保留。" },
+  { key: "appId", value: "YOUR_APP_ID", meaning: "辨識這個已註冊的 Web app；Console 有這行就完整保留。" },
+] as const;
+
+export function FirebaseConfigBreakdown() {
+  return <section className="firebase-config-breakdown" aria-labelledby="firebase-config-card-title"><header><span><FileCode2 size={16}/> firebaseConfig · 逐行核對</span><h4 id="firebase-config-card-title">不要自己猜欄位；把 Console 的每一行放到同一個位置。</h4><p>先在 Firebase Console 完整複製 `firebaseConfig`，再對照下列卡片。每個 Project 的值不同，所以示範中的 `YOUR_...` 只用來找位置。</p></header><div className="config-destinations"><FileCode2 size={22}/><div><b>同一份設定放進兩個檔案</b><p><code>index.html</code> 與 <code>dashboard.html</code> 內原有的 <code>const firebaseConfig = &#123; ... &#125;</code> 區塊。</p></div></div><div className="config-code-card"><div className="config-line config-declaration"><code>const firebaseConfig = &#123;</code><span>不要改這一行</span></div>{firebaseConfigLines.map((line, index) => <div className="config-line" key={line.key}><code><b>{line.key}</b>: <mark>"{line.value}"</mark>{index < firebaseConfigLines.length - 1 ? "," : ""}</code><p><span>0{index + 1}</span>{line.meaning}</p></div>)}<div className="config-line config-declaration"><code>&#125;;</code><span>保留結尾的分號</span></div></div><aside className="config-security-note"><ShieldCheck size={20}/><div><b>網站設定，不是管理員密碼。</b><p>`firebaseConfig` 會隨網站交付，真正的資料存取仍由 Authentication 和 Firestore／Storage Rules 決定。<strong>不可</strong>把 Service Account JSON、`private_key`、Admin SDK 或管理員密碼貼進 `index.html`、`dashboard.html` 或公開 repository。</p></div></aside></section>;
+}
 
 function ProcessArrow({ label }: { label: string }) {
   return <div className="process-arrow" aria-label={`下一步：${label}`}><span>{label}</span><ArrowDown size={20}/></div>;
@@ -168,9 +182,10 @@ const guides: ToolGuide[] = [
       {
         title: "現在：註冊 Web app，先拿 firebaseConfig",
         where: "Project Overview 中間 → Web 圖示 </>",
-        actions: ["按 Web 圖示", "輸入 app nickname", "按 Register app", "複製畫面上的 firebaseConfig，先放在安全筆記"],
+        actions: ["按 Web 圖示", "輸入 app nickname", "按 Register app", "完整複製畫面上的 firebaseConfig", "依下方逐行卡，把同一份設定貼入 index.html 和 dashboard.html"],
         fill: "App nickname：claim-web",
-        result: "你會看到 firebaseConfig；第五課要貼進 index.html 和 dashboard.html。",
+        extra: <FirebaseConfigBreakdown />,
+        result: "兩個檔案都有相同 firebaseConfig；第五課的登入、Claims 和收據才能連到同一個 Project。",
         tip: "firebaseConfig 是網站認得 Project 的地址，不是管理員密碼；但 Service Account 絕不能放進 HTML。",
       },
       {
@@ -256,6 +271,7 @@ function TaskUnit({ step, number }: { step: TaskStep; number: number }) {
       <div className="task-instructions"><small>怎樣做</small><ol>{step.actions.map((item) => <li key={item}>{item}</li>)}</ol></div>
       {step.fill && <div className="task-fill"><small>填甚麼</small><p>{step.fill}</p></div>}
       {step.code && <div className="task-code"><div><small>完整複製這段</small><p>先把橙色的 YOUR NAME、YOUR_EMAIL、YOUR_GITHUB_NAME 改成自己的資料；再完整複製，貼進 Terminal 後按 Enter。</p></div><CodeBlock code={step.code} fileName="貼進 VS Code 的 Terminal" /></div>}
+      {step.extra && <div className="task-extra">{step.extra}</div>}
       <div className="task-result"><CheckCircle2 /><div><small>完成後</small><p>{step.result}{step.tip && <><span className="result-note">注意：{step.tip}</span></>}</p></div></div>
     </div>
   </article>;

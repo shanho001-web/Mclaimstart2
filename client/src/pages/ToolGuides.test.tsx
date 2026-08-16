@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { FirebaseProcessFlow, FirebaseSecurityPrimer, GithubProcessFlow, VercelProcessFlow, firebaseWelcomeMessage } from "./ToolGuides";
+import { FirebaseConfigBreakdown, FirebaseProcessFlow, FirebaseSecurityPrimer, GithubProcessFlow, VercelProcessFlow, firebaseConfigLines, firebaseWelcomeMessage } from "./ToolGuides";
 
 describe("tool process diagrams", () => {
   it("renders a visibly connected icon flow for GitHub, Vercel, and Firebase", () => {
@@ -24,5 +24,19 @@ describe("Firebase opening", () => {
     expect(markup).toContain(firebaseWelcomeMessage.emphasis);
     expect(markup).toContain("現在才看安全概念");
     expect(markup.indexOf(firebaseWelcomeMessage.title)).toBeLessThan(markup.indexOf("現在才看安全概念"));
+  });
+});
+
+describe("firebaseConfig breakdown card", () => {
+  it("labels every core config line, both destination files, and the Service Account boundary", () => {
+    const markup = renderToStaticMarkup(<FirebaseConfigBreakdown />);
+
+    expect(firebaseConfigLines.map((line) => line.key)).toEqual([
+      "apiKey", "authDomain", "projectId", "storageBucket", "messagingSenderId", "appId",
+    ]);
+    expect(markup).toContain("index.html");
+    expect(markup).toContain("dashboard.html");
+    expect(markup).toContain("Service Account JSON");
+    expect(markup).toContain("private_key");
   });
 });

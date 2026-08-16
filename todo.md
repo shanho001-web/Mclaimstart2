@@ -177,3 +177,6 @@
 - [x] 在第 4 課 Firebase 示意圖加入清楚可辨的 Web app、網頁程式碼與 firebaseConfig 視覺 icon／標記。
 - [x] 將 Firebase 課最先呈現的內容改為大型、感性的「開房間迎接朋友，也要鎖好重要物品」開場，之後才解釋三道安全防線與設定流程。
 - [x] 補強流程圖與 Firebase 開場的測試，並驗證手機版閱讀、型別與正式建置。
+- [x] 在 Firebase 第 4 課加入 `firebaseConfig` 逐行拆解程式碼卡，標示每個欄位的用途與應保留的內容。
+- [x] 清楚標示 `firebaseConfig` 應貼入第 5 課的 index.html 和 dashboard.html，並區分公開網站設定與不可放入前端的 Service Account。
+- [x] 補強 firebaseConfig 程式碼卡的測試，並驗證手機版、型別檢查與正式建置。
