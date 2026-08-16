@@ -4,8 +4,8 @@ import { claimAdminSetup, claimAssemblyParts, claimCopyInstructions, claimFireba
 describe("ClaimKit direct assembly flow", () => {
   it("keeps the final lesson to three practical parts: Firebase setup, VS Code files and Firebase Rules", () => {
     expect(claimAssemblyParts.setup.title).toBe("PART 00 · Firebase：建立 Project 與 Web app");
-    expect(claimAssemblyParts.website.title).toBe("PART 01 · VS Code：兩個網頁檔案");
-    expect(claimAssemblyParts.website.ids).toEqual(["indexHtml", "dashboardHtml"]);
+    expect(claimAssemblyParts.website.title).toBe("PART 01 · VS Code：三個網頁檔案");
+    expect(claimAssemblyParts.website.ids).toEqual(["indexHtml", "dashboardHtml", "vercelJson"]);
     expect(claimAssemblyParts.rules.title).toBe("PART 02 · Firebase：兩份 Rules");
     expect(claimAssemblyParts.rules.ids).toEqual(["firestoreRules", "storageRules"]);
     expect(claimFirebaseSetup.where).toContain("Add project");
