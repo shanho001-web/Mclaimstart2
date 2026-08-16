@@ -9,11 +9,11 @@ describe("five-lesson navigation components", () => {
 
     expect(markup).toContain('href="#part-01"');
     expect(markup).toContain('href="/lesson-2-github"');
-    expect(markup).toContain('href="/lesson-3-firebase"');
-    expect(markup).toContain('href="/lesson-4-vercel"');
+    expect(markup).toContain('href="/lesson-3-vercel"');
+    expect(markup).toContain('href="/lesson-4-firebase"');
     expect(markup).toContain('href="/claim-kit"');
     expect(markup).toContain('aria-current="page"');
-    expect(markup).toContain("Firebase");
+    expect(markup).toContain("Vercel");
   });
 
   it("renders a continuous previous-next path from lesson 1 through lesson 5", () => {
@@ -29,10 +29,10 @@ describe("five-lesson navigation components", () => {
 
     expect(lessonOne).toContain('href="/lesson-2-github"');
     expect(lessonTwo).toContain('href="/"');
-    expect(lessonTwo).toContain('href="/lesson-3-firebase"');
-    expect(lessonFour).toContain('href="/lesson-3-firebase"');
+    expect(lessonTwo).toContain('href="/lesson-3-vercel"');
+    expect(lessonFour).toContain('href="/lesson-3-vercel"');
     expect(lessonFour).toContain('href="/claim-kit"');
-    expect(lessonFive).toContain('href="/lesson-4-vercel"');
+    expect(lessonFive).toContain('href="/lesson-4-firebase"');
     expect(lessonFive).toContain('href="/member-guide"');
   });
 });

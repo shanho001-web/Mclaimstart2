@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { codeTemplates } from "./course";
 import { claimCode, memberAnnouncement } from "./claimCode";
 import { lessons } from "./lessons";
+import { firebaseSecurityPrinciples } from "../pages/ToolGuides";
 
 describe("first website guardian template", () => {
   it("builds the guardian welcome scene instead of the old generic card", () => {
@@ -33,5 +34,17 @@ describe("admin-only claim templates", () => {
     expect(claimCode.dashboardHtml).toContain("新增 Claim");
     expect(claimCode.dashboardHtml).toContain("管理 Claim");
     expect(memberAnnouncement).toContain("沒有公開會員註冊頁");
+  });
+});
+
+describe("Firebase security primer", () => {
+  it("introduces identity and both server-side rule boundaries before Firebase setup", () => {
+    expect(firebaseSecurityPrinciples.map((item) => item.name)).toEqual([
+      "Authentication",
+      "Firestore Rules",
+      "Storage Rules",
+    ]);
+    expect(firebaseSecurityPrinciples[1]?.summary).toContain("指定管理員 Email");
+    expect(firebaseSecurityPrinciples[2]?.summary).toContain("收據");
   });
 });

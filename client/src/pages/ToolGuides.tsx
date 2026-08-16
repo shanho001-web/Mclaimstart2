@@ -26,11 +26,31 @@ type ToolGuide = {
   tool: string;
   title: string;
   goal: string;
+  intro?: React.ReactNode;
   view: React.ReactNode;
   steps: TaskStep[];
   mascot: { src: string; alt: string };
   completion?: string;
 };
+
+export const firebaseSecurityPrinciples = [
+  { name: "Authentication", summary: "先確認目前是誰登入；沒有通過登入就不應取得需要登入的身分。" },
+  { name: "Firestore Rules", summary: "每次讀取或改動 Claim 資料時，由規則再次核對指定管理員 Email。" },
+  { name: "Storage Rules", summary: "每次上載、查看或刪除收據時，由另一組規則限制存取。" },
+];
+
+function FirebaseSecurityPrimer() {
+  return <section className="firebase-security-brief" aria-labelledby="firebase-security-title">
+    <div className="firebase-security-heading"><span><Lock size={16}/> 先看安全概念</span><h2 id="firebase-security-title">公開網站，<em>不等於公開資料。</em></h2><p>歡迎頁可以讓朋友打開，就像一間屋的前門可以迎接訪客；但管理員帳戶、Claim 紀錄和收據不是放在門口。它們必須由登入身分和資料規則分開保護。</p></div>
+    <div className="security-boundary" aria-label="公開畫面與受保護資料的分界">
+      <div className="security-zone public-zone"><small>公開區</small><b>歡迎頁、登入畫面</b><p>任何人都可以看見畫面與網站程式碼。</p></div>
+      <div className="security-divider"><span>登入後的每次請求</span><ShieldCheck size={20}/></div>
+      <div className="security-zone protected-zone"><small>受保護區</small><b>管理員、Claims、收據</b><p>Firebase 會按 Authentication 和 Rules 判斷是否准許存取。</p></div>
+    </div>
+    <div className="security-principle-grid">{firebaseSecurityPrinciples.map((item, index) => <article key={item.name}><span>0{index + 1}</span><div><b>{item.name}</b><p>{item.summary}</p></div></article>)}</div>
+    <p className="security-flow-bridge"><b>之後的流程：</b>先建立 Firebase Project 和 Web app，然後啟用登入、建立唯一管理員，再把 Firestore 和 Storage 的 Rules 發佈。前端畫面被修改並不會取代 Firebase 伺服器端規則。</p>
+  </section>;
+}
 
 function ToolMascot({ src, alt }: { src: string; alt: string }) {
   const ref = useRef<HTMLImageElement>(null);
@@ -98,10 +118,11 @@ const guides: ToolGuide[] = [
   },
   {
     id: "firebase",
-    lesson: 3,
+    lesson: 4,
     tool: "Firebase",
-    title: "先建立一個 Firebase Project，再逐一開登入、資料庫與收據空間。",
-    goal: "先有 Project 和 Web app，才開 Authentication、Firestore、Storage；Rules 一定放在最後。",
+    title: "把公開頁、管理員身分與資料規則分開設好。",
+    goal: "先了解三道防線，再有 Project 和 Web app，才開 Authentication、Firestore、Storage；Rules 一定放在最後。",
+    intro: <FirebaseSecurityPrimer />,
     view: <div className="mock-window firebase-window"><div className="mock-top"><span className="firebase-mark">◆</span> Firebase console <ChevronDown size={15} /></div><div className="firebase-body"><aside><b>Project Overview</b><small>Build</small><span className="selected"><KeyRound /> Authentication</span><span><Database /> Firestore Database</span><span><UploadCloud /> Storage</span></aside><main><p>同一個 Build 內，依次開啟需要的服務</p><div className="firebase-card"><Code2 /><b>Web app</b><small>Project settings → Your apps → </small><button>Register app</button></div><div className="firebase-card small"><ShieldCheck /><b>Rules</b><small>Firestore / Storage → Rules → Publish</small></div></main></div></div>,
     steps: [
       {
@@ -158,7 +179,7 @@ const guides: ToolGuide[] = [
   },
   {
     id: "vercel",
-    lesson: 4,
+    lesson: 3,
     tool: "Vercel",
     title: "把 GitHub repository 接到 Vercel，取得第一條可分享的 HTTPS 網址。",
     goal: "Vercel 先要看得到 GitHub repository；Import、Deploy 成功後才會有公開網址。",
@@ -216,7 +237,7 @@ function TaskUnit({ step, number }: { step: TaskStep; number: number }) {
 
 function ToolLesson({ id }: { id: ToolGuide["id"] }) {
   const guide = guides.find((item) => item.id === id)!;
-  return <div className="kit-page tools-page tool-lesson-page"><KitHeader active={guide.lesson} /><main className="tools-main"><section className="tools-hero tool-lesson-hero"><p className="kit-kicker">LESSON 0{guide.lesson} / 05 · 看著畫面按</p><h1>第一次用 {guide.tool}？<em>照著這張大圖按。</em></h1><p>{guide.goal}</p></section><section className="tool-guide standalone-tool-guide" id={guide.id}><div className="tool-title"><span>0{guide.lesson}</span><div><p>{guide.tool} 操作畫面</p><h2>{guide.title}</h2></div></div><div className="tool-image">{guide.view}</div><div className="task-unit-list">{guide.steps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div><div className="tool-result"><CheckCircle2 /><div><b>本課真正完成</b><p>{guide.completion || "已完成以上每一個操作單元；下一課才會使用這一課建立的帳戶、設定或網址。"}</p></div><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt} /></div></section><LessonPager current={guide.lesson} /></main><KitFooter /></div>;
+  return <div className="kit-page tools-page tool-lesson-page"><KitHeader active={guide.lesson} /><main className="tools-main"><section className="tools-hero tool-lesson-hero"><p className="kit-kicker">LESSON 0{guide.lesson} / 05 · 看著畫面按</p><h1>第一次用 {guide.tool}？<em>照著這張大圖按。</em></h1><p>{guide.goal}</p></section>{guide.intro}<section className="tool-guide standalone-tool-guide" id={guide.id}><div className="tool-title"><span>0{guide.lesson}</span><div><p>{guide.tool} 操作畫面</p><h2>{guide.title}</h2></div></div><div className="tool-image">{guide.view}</div><div className="task-unit-list">{guide.steps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div><div className="tool-result"><CheckCircle2 /><div><b>本課真正完成</b><p>{guide.completion || "已完成以上每一個操作單元；下一課才會使用這一課建立的帳戶、設定或網址。"}</p></div><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt} /></div></section><LessonPager current={guide.lesson} /></main><KitFooter /></div>;
 }
 
 export function GithubLesson() { return <ToolLesson id="github" />; }
