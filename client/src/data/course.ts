@@ -81,11 +81,12 @@ export type Guide = { title:string; instruction:string; detail:string; microStep
 export type CourseStep = { id:string; number:string; title:string; short:string; tool:string; reward:string; goal:string; guides:Guide[] };
 
 export const homeLessonArticle = {
-  heading: "在 VS Code 做出第一個歡迎頁。",
-  ease: "不用自己寫 code。",
-  summary: "先建立 welcome-site 和三個檔案，再把完整 code 放進正確位置，最後在瀏覽器打開 index.html。",
+  subtitle: "LESSON 01 / 05 · VS CODE · 零基礎",
+  title: "由第一個網站頁面開始",
+  goal: "今課會用 VS Code 建立一個簡單的歡迎頁，並在瀏覽器開啟它。你不需要自己編寫程式碼；只要把提供的內容貼到正確檔案即可。",
   flow: ["建立 welcome-site", "建立三個檔案", "貼 code 並開主頁"],
-  finish: "瀏覽器看見會動的小守護員歡迎頁，便代表第一課完成。",
+  standard: "瀏覽器顯示小守護員的歡迎頁，而且畫面動畫正常運作。",
+  transition: "今課只專注完成一件事：在自己電腦建立並打開第一個網站頁面。VS Code 用來查看和編輯程式碼；GitHub 的版本保存、Vercel 的網址發布，以及 Firebase 的登入和資料設定，會在之後課堂逐步處理。現在請跟住以下分部完成本機版本。",
 };
 
 export const steps: CourseStep[] = [

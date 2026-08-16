@@ -3,6 +3,7 @@ import { ArrowDown, CheckCircle2, ChevronDown, CirclePlus, Code2, Database, File
 import { useEffect, useRef } from "react";
 import { CodeBlock } from "@/components/CodeBlock";
 import { KitFooter, KitHeader, LessonPager } from "@/components/KitHeader";
+import { LessonCopyGuide, type LessonCopyGuideData } from "@/components/LessonCopyGuide";
 import { codeTemplates } from "@/data/course";
 import type { LessonNumber } from "@/data/lessons";
 
@@ -22,11 +23,12 @@ type TaskStep = {
 };
 
 type LessonArticle = {
+  subtitle: string;
   heading: string;
-  ease: string;
-  summary: string;
+  goal: string;
   flow: string[];
-  finish: string;
+  standard: string;
+  transition: string;
 };
 
 type ToolGuide = {
@@ -137,11 +139,12 @@ export const guides: ToolGuide[] = [
     title: "把 welcome-site 資料夾變成可保存版本的 Private repository。",
     goal: "完成這課後，GitHub 會看到三個網站檔案；你每次改動都會有一個可回復的版本。",
     article: {
-      heading: "把歡迎頁保存到 GitHub，",
-      ease: "只做 3 件事，第一次也能完成。",
-      summary: "第 1 課已在電腦建立 welcome-site。這一課不用重新寫網站：先登入 GitHub，建立一個 Private repository，最後回 VS Code 把現有三個檔案送上去。",
+      subtitle: "LESSON 02 / 05 · GITHUB · 零基礎",
+      heading: "把第一個網站保存到 GitHub",
+      goal: "今課會把第 1 課的 welcome-site 放進 Private repository。你不用重寫網站；只要登入 GitHub、建立 repository，再從 VS Code 上載三個檔案。",
       flow: ["登入 GitHub", "建立 welcome-site Private repository", "回 VS Code 貼 git code"],
-      finish: "完成後，GitHub 的 welcome-site 頁會看到 index.html、style.css、script.js。",
+      standard: "GitHub 的 welcome-site 頁會看到 index.html、style.css、script.js 和最新 commit。",
+      transition: "GitHub 只負責保存程式碼和版本。Vercel 發出網址會在下一課處理；現在先由下列三步把本機檔案安全保存起來。",
     },
     view: <GithubProcessFlow />,
     steps: [
@@ -178,11 +181,12 @@ export const guides: ToolGuide[] = [
     title: "先看懂資料如何被分開保護；第 5 課才親手設定。",
     goal: "本課只建立安全概念和操作地圖，不需要開 Firebase Console、貼程式碼或發布 Rules。",
     article: {
-      heading: "先看懂資料怎樣被保護，",
-      ease: "這一課不用按 Firebase。",
-      summary: "你會先知道第 5 課為甚麼要建立 Web app、管理員帳戶和兩份 Rules。看完這張地圖，再去實作時只需照順序按，不用一邊找按鈕一邊猜用途。",
+      subtitle: "LESSON 04 / 05 · FIREBASE · 先看概念",
+      heading: "先看懂資料如何被保護",
+      goal: "今課不需要開 Firebase Console 或貼程式碼。你會先知道第 5 課為甚麼要建立 Web app、管理員帳戶和兩份 Rules。",
       flow: ["建立 Firebase Project", "註冊 Web app 並取得 firebaseConfig", "建立唯一管理員", "發布 Firestore 和 Storage Rules"],
-      finish: "完成本課，你會知道第 5 課每一段操作在保護甚麼。",
+      standard: "你能說出第 5 課的四段設定各自保護甚麼，並知道實作時要到 Firebase 的哪個服務。",
+      transition: "公開網站不等於公開資料。這課先看安全地圖；真正按 Firebase 按鈕、建立管理員和發布 Rules，全部留到第 5 課一次完成。",
     },
     intro: <FirebaseSecurityPrimer />,
     overview: <FirebaseLessonPreview />,
@@ -248,11 +252,12 @@ export const guides: ToolGuide[] = [
     title: "把 GitHub repository 接到 Vercel，取得第一條可分享的 HTTPS 網址。",
     goal: "Vercel 先要看得到 GitHub repository；Import、Deploy 成功後才會有公開網址。",
     article: {
-      heading: "把 GitHub 網站變成可開啟網址，",
-      ease: "跟 4 個畫面按，就能完成發布。",
-      summary: "Vercel 不用重新上載檔案。它會讀取你在第 2 課建立的 welcome-site repository，完成 Import 和 Deploy 後，自動給你一條 HTTPS 網址。",
+      subtitle: "LESSON 03 / 05 · VERCEL · 零基礎",
+      heading: "把 GitHub 網站變成可開啟網址",
+      goal: "今課會把 GitHub 的 welcome-site repository 接到 Vercel。Vercel 會讀取現有檔案，完成 Import 和 Deploy 後給你一條 HTTPS 網址。",
       flow: ["登入 Vercel", "建立 New Project 並 Import welcome-site", "確認設定後 Deploy", "開網址測試"],
-      finish: "完成後，你會有一條可用手機和無痕視窗開啟的 Vercel 網址。",
+      standard: "看到 Vercel 的 Ready 狀態，並可用手機或無痕視窗打開 HTTPS 網址。",
+      transition: "這課不再上載檔案。只要 GitHub 的 welcome-site 已完成上一課，Vercel 就能讀取它；現在照四個畫面按即可。",
     },
     view: <VercelProcessFlow />,
     steps: [
@@ -308,7 +313,8 @@ export function ToolLessonOpening({ tool }: { tool: string }) {
 
 function ToolLesson({ id }: { id: ToolGuide["id"] }) {
   const guide = guides.find((item) => item.id === id)!;
-  return <div className="kit-page tools-page tool-lesson-page"><KitHeader active={guide.lesson} /><main className="tools-main"><section className="tools-hero tool-lesson-hero lesson-article-lead"><p className="kit-kicker">LESSON 0{guide.lesson} / 05 · 看著畫面按</p><p className="lesson-article-promise"><ToolLessonOpening tool={guide.tool} /></p>{guide.id === "firebase" ? <h2 className="firebase-technical-title">{guide.article.heading}<em>{guide.article.ease}</em></h2> : <h1>{guide.article.heading}<em>{guide.article.ease}</em></h1>}<p className="lesson-article-summary">{guide.article.summary}</p><ol className="lesson-article-flow">{guide.article.flow.map((item, index) => <li key={item}><b>{index + 1}</b>{item}</li>)}</ol></section>{guide.intro}<section className="tool-guide standalone-tool-guide" id={guide.id}><div className="tool-title"><span>0{guide.lesson}</span><div><p>{guide.tool} · 由上到下照順序做</p><h2>{guide.id === "firebase" ? "先記住這張安全地圖；第 5 課才開始按。" : "下面每張卡只做一件事。"}</h2></div></div><div className="tool-image">{guide.view}</div>{guide.overview}{guide.id !== "firebase" && <div className="task-unit-list">{guide.steps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div>}<div className="tool-result"><CheckCircle2 /><div><b>本課完成</b><p>{guide.completion || guide.article.finish}</p></div><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt} /></div></section><LessonPager current={guide.lesson} /></main><KitFooter /></div>;
+  const copyGuide: LessonCopyGuideData = { subtitle: guide.article.subtitle, title: guide.article.heading, goal: guide.article.goal, flow: guide.article.flow, standard: guide.article.standard, transition: guide.article.transition };
+  return <div className="kit-page tools-page tool-lesson-page"><KitHeader active={guide.lesson} /><main className="tools-main"><LessonCopyGuide data={copyGuide}/>{guide.intro}<section className="tool-guide standalone-tool-guide" id={guide.id}><div className="tool-title"><span>0{guide.lesson}</span><div><p>{guide.tool} · 由上到下照順序做</p><h2>{guide.id === "firebase" ? "先記住這張安全地圖；第 5 課才開始按。" : "下面每張卡只做一件事。"}</h2></div></div><div className="tool-image">{guide.view}</div>{guide.overview}{guide.id !== "firebase" && <div className="task-unit-list">{guide.steps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div>}<div className="tool-result"><CheckCircle2 /><div><b>本課完成</b><p>{guide.completion || guide.article.standard}</p></div><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt} /></div></section><LessonPager current={guide.lesson} /></main><KitFooter /></div>;
 }
 
 export function GithubLesson() { return <ToolLesson id="github" />; }

@@ -2,6 +2,7 @@
 import { ArrowRight, Bot, CheckCircle2, ExternalLink, TerminalSquare } from "lucide-react";
 import { CodeBlock } from "@/components/CodeBlock";
 import { CourseNav } from "@/components/KitHeader";
+import { LessonCopyGuide } from "@/components/LessonCopyGuide";
 import { codeTemplates, homeLessonArticle, steps, type Guide } from "../data/course";
 
 const logoUrl = "/manus-storage/modelkit-logo_f86a875b.png";
@@ -38,10 +39,8 @@ export default function Home() {
     <CourseNav active={1} firstHref="#part-01"/>
     <div className="assembly-progress" aria-label="第一模型盒組裝進度"><span>模型進度</span><b>1</b><i/><b>2</b><i/><b>3</b><i/><b>4</b><i/><b>5</b><small>由 Folder 到網址</small></div>
     <main id="top">
-      <section className="full-hero"><div className="hero-image-stage"><div className="hero-speech"><b>先讓小可愛</b><span>歡迎你。</span></div><picture><source media="(max-width: 700px)" srcSet={mobileHeroUrl}/><img className="full-hero-art hero-guardian" src={heroUrl} alt="小守護員正在砌網站模型"/></picture></div>
-        <div className="full-hero-copy"><div className="cover-serial">LESSON 01 / 05 · VS CODE · 零基礎</div><p className="eyebrow"><Bot size={15}/> 這一課會完成甚麼</p><h1><span>{homeLessonArticle.heading}</span><em>{homeLessonArticle.ease}</em></h1><div className="hero-opening"><b>{homeLessonArticle.summary}</b><p>{homeLessonArticle.finish}</p></div><div className="hero-cta-row"><a className="primary-cta" href="#part-01">開始做歡迎頁 ↓</a></div></div>
-      </section>
-      <section className="course-intro"><div><b>這課只照一條線完成</b><p>GitHub 保存版本和 Vercel 發出網址，留到後面兩課才做。這一課只需要完成下列三步。</p><ol className="home-article-flow">{homeLessonArticle.flow.map((item, index) => <li key={item}><b>{index + 1}</b>{item}</li>)}</ol></div><div className="mini-tools"><span><TerminalSquare/> VS Code</span></div></section>
+      <section className="full-hero"><div className="hero-image-stage"><div className="hero-speech"><b>先讓小可愛</b><span>歡迎你。</span></div><picture><source media="(max-width: 700px)" srcSet={mobileHeroUrl}/><img className="full-hero-art hero-guardian" src={heroUrl} alt="小守護員正在砌網站模型"/></picture></div></section>
+      <LessonCopyGuide data={homeLessonArticle}/>
       <div className="course-stream">
         {steps.map((step, partIndex) => { const offset = steps.slice(0, partIndex).reduce((total, previous) => total + previous.guides.length, 0); return <div className="part-block" key={step.id}><section className="course-part" id={`part-${step.number}`}>
           <div className="part-intro"><div className="part-number">{Number(step.number)}</div><div><p>第 {Number(step.number)} 部 · {step.tool}</p><h2>{step.title}</h2>{step.goal && <span>{step.goal}</span>}</div>{step.reward && <div className="part-reward"><CheckCircle2 size={17}/><small>完成後：</small><b>{step.reward}</b></div>}</div>
