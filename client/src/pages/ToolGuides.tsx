@@ -1,5 +1,6 @@
 /** Design philosophy: Route-first visual guide — every instruction begins with a findable location, then one action. */
 import { ArrowRight, CheckCircle2, ChevronDown, CirclePlus, Code2, Database, FolderGit2, Github, KeyRound, Lock, Plus, Rocket, ShieldCheck, UploadCloud } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { KitFooter, KitHeader } from "@/components/KitHeader";
 
 const githubMascotUrl = "/manus-storage/guardian-model-folder-open_fb5db00d.png";
@@ -8,6 +9,33 @@ const vercelMascotUrl = "/manus-storage/guardian-model-launch_1f0fec45.png";
 
 type ActionStep = { where: string; action: string };
 type ToolGuide = { id: string; tool: string; title: string; goal: string; view: React.ReactNode; steps: ActionStep[]; result: string; mascot: { src: string; alt: string } };
+
+function splitIntoHumanSteps(action: string) {
+  return action.split(/[；。]/).map((item) => item.trim()).filter(Boolean);
+}
+
+function ToolMascot({ src, alt }: { src: string; alt: string }) {
+  const ref = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const mascot = ref.current;
+    if (!mascot) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+      mascot.classList.add("is-visible");
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        mascot.classList.add("is-visible");
+        observer.unobserve(mascot);
+      }
+    }, { threshold: 0.4 });
+    observer.observe(mascot);
+    return () => observer.disconnect();
+  }, []);
+
+  return <img ref={ref} className="tool-mascot-pop" src={src} alt={alt}/>;
+}
 
 const guides: ToolGuide[] = [
   {
@@ -44,5 +72,5 @@ const guides: ToolGuide[] = [
 ];
 
 export default function ToolGuides() {
-  return <div className="kit-page tools-page"><KitHeader active="tools"/><main className="tools-main"><section className="tools-hero"><p className="kit-kicker">MODEL KIT 02 · 看著畫面按</p><h1>第一次用 GitHub、Firebase、Vercel？<em>照著這三張大圖按。</em></h1><p>每一步以一個畫面位置完成一件事：先到那裡，再在同一格完成連續操作；不用為相鄰按鈕來回切換卡片。</p><div className="tools-rail"><span>① GitHub 建私人 repository</span><i/><span>② Firebase 開服務</span><i/><span>③ Vercel Import + Deploy</span></div></section>{guides.map((guide, index) => <section className="tool-guide" key={guide.id} id={guide.id}><div className="tool-title"><span>0{index+1}</span><div><p>{guide.tool} 操作畫面</p><h2>{guide.title}</h2><small>{guide.goal}</small></div></div><div className="tool-showcase"><div className="tool-image">{guide.view}</div><div className="tool-actions"><p className="action-label">一個位置，完成一件事</p><ol>{guide.steps.map((step, stepIndex) => <li key={step.where}><b>{stepIndex+1}</b><div><small>到哪裡</small><p>{step.where}</p><small>在這裡完成</small><p>{step.action}</p></div></li>)}</ol><div className="tool-result"><CheckCircle2/><div><b>按完後會看到</b><p>{guide.result}</p></div><img src={guide.mascot.src} alt={guide.mascot.alt}/></div>{index < guides.length-1 && <a href={`#${guides[index+1].id}`} className="tool-next">下一個工具 <ArrowRight size={16}/></a>}</div></div></section>)}</main><KitFooter/></div>;
+  return <div className="kit-page tools-page"><KitHeader active="tools"/><main className="tools-main"><section className="tools-hero"><p className="kit-kicker">MODEL KIT 02 · 看著畫面按</p><h1>第一次用 GitHub、Firebase、Vercel？<em>照著這三張大圖按。</em></h1><p>每一步以一個畫面位置完成一件事：先到那裡，再在同一格完成連續操作；不用為相鄰按鈕來回切換卡片。</p><div className="tools-rail"><span>① GitHub 建私人 repository</span><i/><span>② Firebase 開服務</span><i/><span>③ Vercel Import + Deploy</span></div></section>{guides.map((guide, index) => <section className="tool-guide" key={guide.id} id={guide.id}><div className="tool-title"><span>0{index+1}</span><div><p>{guide.tool} 操作畫面</p><h2>{guide.title}</h2><small>{guide.goal}</small></div></div><div className="tool-showcase"><div className="tool-image">{guide.view}</div><div className="tool-actions"><p className="action-label">一個位置，完成一件事</p><ol>{guide.steps.map((step, stepIndex) => <li key={step.where}><b>{stepIndex+1}</b><div><small>到哪裡</small><p className="where-line">{step.where}</p><small>做甚麼</small><ol className="human-steps">{splitIntoHumanSteps(step.action).map((item) => <li key={item}>{item}</li>)}</ol></div></li>)}</ol><div className="tool-result"><CheckCircle2/><div><b>按完後會看到</b><p>{guide.result}</p></div><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt}/></div>{index < guides.length-1 && <a href={`#${guides[index+1].id}`} className="tool-next">下一個工具 <ArrowRight size={16}/></a>}</div></div></section>)}</main><KitFooter/></div>;
 }

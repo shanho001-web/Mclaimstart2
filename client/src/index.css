@@ -162,6 +162,27 @@ html,body,#root{background:#fff!important;background-image:none!important}
 .tools-page .tool-actions li small{font-size:10px!important;color:#7890a3!important;font-weight:900!important}
 .tools-page .tool-actions li p{font-size:13px!important;color:#315876!important;font-weight:800!important}
 .tools-page .tool-result{min-height:88px!important;margin-top:15px!important;padding:14px 94px 14px 14px!important;background:#e7f7ed!important;border-radius:0 12px 0 12px!important}
-.tools-page .tool-result img{width:96px!important;height:96px!important;right:-7px!important;bottom:-19px!important;animation:guardian-proud 3.6s ease-in-out infinite!important}
+.tools-page .tool-result img{width:96px!important;height:96px!important;right:-7px!important;bottom:-19px!important}
+.tools-page .tool-result .tool-mascot-pop{opacity:0;transform:translateY(14px) scale(.93);animation:none!important}
+.tools-page .tool-result .tool-mascot-pop.is-visible{animation:tool-mascot-arrive .58s cubic-bezier(.23,1,.32,1) forwards,tool-mascot-proud 3.4s .62s ease-in-out infinite!important}
+@keyframes tool-mascot-arrive{0%{opacity:0;transform:translateY(14px) scale(.93)}70%{opacity:1;transform:translateY(-5px) scale(1.04)}100%{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes tool-mascot-proud{50%{transform:translateY(-4px) rotate(1deg)}}
 .tools-page .tool-next{margin-top:19px!important}
 @media(max-width:700px){.tools-page .tool-guide{padding:48px 0!important}.tools-page .tool-title>span{font-size:25px!important}.tools-page .tool-title h2{font-size:31px!important}.tools-page .tool-title small{font-size:13px!important}.tools-page .tool-image{padding:9px!important}.tools-page .tool-result{min-height:78px!important;padding-right:78px!important}.tools-page .tool-result img{width:78px!important;height:78px!important;right:-4px!important;bottom:-15px!important}}
+
+/* Human-action grammar: a short instruction followed by countable actions, then a separate guardian note. */
+.action-lead{font-weight:900!important;color:#244761!important;margin:0 0 7px!important}
+.human-steps{display:grid;gap:5px;margin:8px 0 0;padding:0;list-style:none;counter-reset:human-step}
+.human-steps li{position:relative;padding-left:22px;color:#587186;font-size:12px;line-height:1.65;counter-increment:human-step}
+.human-steps li:before{content:counter(human-step) ".";position:absolute;left:0;top:0;color:#2e73c8;font:900 11px "JetBrains Mono",monospace}
+.tools-page .tool-actions li{display:block!important;padding-left:34px!important;position:relative}
+.tools-page .tool-actions li>b{position:absolute;left:0;top:13px}
+.tools-page .tool-actions .where-line{margin:2px 0 9px!important;font-size:13px!important}
+.tools-page .tool-actions .human-steps{margin-top:6px!important}
+.tools-page .tool-actions .human-steps li{padding:0 0 0 21px!important;border:0!important;color:#587186!important;font-size:12px!important;font-weight:500!important}
+.console-steps .step-where{color:#315876!important;font-weight:900!important;margin:5px 0 0!important}
+.console-steps .human-steps,.https-grid .human-steps{margin-top:9px}
+.console-steps .guardian-tip,.https-grid .guardian-tip{margin-top:11px}
+.https-grid .human-steps li{font-size:12px}
+@media(max-width:700px){.human-steps li{font-size:12px}.tools-page .tool-actions .human-steps li{font-size:12px!important}.console-steps .guardian-tip,.https-grid .guardian-tip{margin-left:0;margin-right:0}}
+@media(prefers-reduced-motion:reduce){.tools-page .tool-result .tool-mascot-pop{opacity:1!important;transform:none!important;animation:none!important}}

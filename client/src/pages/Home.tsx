@@ -25,10 +25,14 @@ function Visual({ guide, index }: { guide: Guide; index: number }) {
   return <img className="walkthrough-mascot model-action-sticker" src={image} alt={`小守護員正在示範：${guide.title}`} />;
 }
 
+function splitIntoHumanSteps(detail: string) {
+  return detail.split(/[。；]/).map((item) => item.trim()).filter(Boolean);
+}
+
 function ActionCard({ guide, sequence }: { guide: Guide; sequence: number }) {
   return <div className="action-card">
     <div className="beat beat-where"><span>{sequence * 2 - 1}</span><div><b>到哪裡</b><p>{guide.instruction}</p></div></div>
-    <div className="beat beat-do major"><span>{sequence * 2}</span><div><b>做甚麼</b><p>{guide.title}</p><small>{guide.detail}</small></div></div>
+    <div className="beat beat-do major"><span>{sequence * 2}</span><div><b>做甚麼</b><p className="action-lead">{guide.title}</p><ol className="human-steps">{(guide.microSteps || splitIntoHumanSteps(guide.detail)).map((item) => <li key={item}>{item}</li>)}</ol></div></div>
   </div>;
 }
 
