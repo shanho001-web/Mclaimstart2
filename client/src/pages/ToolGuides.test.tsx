@@ -58,7 +58,8 @@ describe("same-place operation cards", () => {
     expect(vercel.steps).toHaveLength(4);
     expect(vercel.steps[1].where).toContain("Import Git Repository");
     expect(vercel.steps[1].actions).toContain("按 Add New → Project，等 Import Git Repository 清單出現");
-    expect(vercel.steps[1].actions).toContain("回剛才的 Vercel New Project 頁重新整理；welcome-site 出現後按 Import");
+    expect(vercel.steps[1].tip).toContain("Settings → Applications");
+    expect(vercel.steps[1].tip).toContain("Only select repositories");
   });
 });
 

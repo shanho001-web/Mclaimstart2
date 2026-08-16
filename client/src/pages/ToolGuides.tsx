@@ -7,9 +7,9 @@ import { LessonCopyGuide, type LessonCopyGuideData } from "@/components/LessonCo
 import { codeTemplates } from "@/data/course";
 import type { LessonNumber } from "@/data/lessons";
 
-const githubMascotUrl = "/manus-storage/guardian-model-folder-open_fb5db00d.png";
-const firebaseMascotUrl = "/manus-storage/guardian-model-code-fit_69207a70.png";
-const vercelMascotUrl = "/manus-storage/guardian-model-launch_1f0fec45.png";
+const githubMascotUrl = "/images/guardian-folder-open.webp";
+const firebaseMascotUrl = "/images/guardian-code-fit.webp";
+const vercelMascotUrl = "/images/guardian-launch.webp";
 
 type TaskStep = {
   title: string;
@@ -160,15 +160,15 @@ export const guides: ToolGuide[] = [
         actions: ["按 New repository", "Owner 保留自己的帳戶", "在 Repository name 輸入 welcome-site", "向下到 Visibility，選 Private", "README、.gitignore template、License 三項保持不勾選", "按綠色 Create repository"],
         fill: "Repository name：welcome-site；Visibility：Private",
         result: "畫面進入 Quick setup，代表空 repository 已建立。",
-        tip: "名稱會成為網址的一部分：github.com/你的帳戶/welcome-site。所有設定都在同一張表格完成，不用轉畫面。",
+        tip: "名稱會成為網址的一部分：github.com/你的帳戶/welcome-site。所有設定都在同一張表格完成，不用轉畫面。README、.gitignore、License 先不勾選，是因為你稍後會從 VS Code push 現有檔案；若在網頁先建立這些檔案，之後 push 會出現合併衝突。",
       },
       {
         title: "回到 VS Code 上載三個檔案",
         where: "VS Code → welcome-site → 下方黑色 Terminal",
-        actions: ["按下方 code 卡的「複製 code」", "回 VS Code → welcome-site → 下方黑色 Terminal，貼上整段 code", "把 YOUR NAME、YOUR_EMAIL、YOUR_GITHUB_NAME 改成自己的資料，再按 Enter；第一次若開瀏覽器登入 GitHub，跟畫面完成登入"],
+        actions: ["按下方 code 卡的「複製 code」", "回 VS Code → welcome-site → 下方黑色 Terminal，貼上整段 code", "把 YOUR NAME、YOUR_EMAIL、YOUR_GITHUB_NAME 三處改成自己的資料：YOUR NAME 填你的名字，YOUR_EMAIL 填你的電郵，網址裡的 YOUR_GITHUB_NAME 填你的 GitHub 帳戶名（就是 github.com/你的帳戶名/welcome-site 中間那段）", "再按 Enter 執行；第一次若開瀏覽器登入 GitHub，跟畫面完成登入"],
         code: codeTemplates.gitPush,
         result: "回 GitHub 重新整理後，會看到 index.html、style.css、script.js 和最新 commit。",
-        tip: "GitHub 密碼只在 GitHub 的登入畫面輸入；不要貼進 Terminal 或公開筆記。",
+        tip: "GitHub 密碼只在 GitHub 的登入畫面輸入；不要貼進 Terminal 或公開筆記。如果出現 repository not found，代表網址裡的 YOUR_GITHUB_NAME 未改成自己的帳戶名；改好後重新貼一次。",
       },
     ],
     mascot: { src: githubMascotUrl, alt: "小守護員正在把網站檔案收進 GitHub repository" },
@@ -184,8 +184,8 @@ export const guides: ToolGuide[] = [
       subtitle: "LESSON 04 / 05 · FIREBASE · 先看概念",
       heading: "先看懂資料如何被保護",
       goal: "今課不需要開 Firebase Console 或貼程式碼。你會先知道第 5 課為甚麼要建立 Web app、管理員帳戶和兩份 Rules。",
-      flow: ["建立 Firebase Project", "註冊 Web app 並取得 firebaseConfig", "建立唯一管理員", "發布 Firestore 和 Storage Rules"],
-      standard: "你能說出第 5 課的四段設定各自保護甚麼，並知道實作時要到 Firebase 的哪個服務。",
+      flow: ["認識公開與受保護的分界", "看懂三道安全防線", "對照第 5 課的設定地圖"],
+      standard: "你能說出公開區與受保護區的分別，並知道第 5 課會到 Firebase 的哪個服務做設定。",
       transition: "公開網站不等於公開資料。這課先看安全地圖；真正按 Firebase 按鈕、建立管理員和發布 Rules，全部留到第 5 課一次完成。",
     },
     intro: <FirebaseSecurityPrimer />,
@@ -193,54 +193,22 @@ export const guides: ToolGuide[] = [
     view: <FirebaseProcessFlow />,
     steps: [
       {
-        title: "登入 Firebase",
-        where: "瀏覽器 → console.firebase.google.com",
-        actions: ["有 Google 帳戶：按 Sign in，用自己的 Google email 登入", "沒有 Google 帳戶：按 Create account，依畫面建立帳戶並完成驗證", "回到 Firebase Console，按 Continue to Firebase"],
-        result: "右上角會出現你的 Google 頭像，首頁會看到 Add project。",
-        tip: "Firebase 使用 Google 帳戶登入；之後開 Project、Authentication、Firestore、Storage 都在這個 Console 內完成。",
+        title: "認識公開與受保護的分界",
+        where: "本課頁面 → 公開區與受保護區圖",
+        actions: ["記住：歡迎頁、登入畫面是公開區，任何人都看得到", "記住：管理員、Claims、收據是受保護區，要登入才可存取"],
+        result: "你能指出哪些東西公開、哪些要保護。",
       },
       {
-        title: "建立 Firebase Project",
-        where: "瀏覽器 → console.firebase.google.com → Add project",
-        actions: ["按 Add project", "輸入 Project name", "按 Continue", "Google Analytics 暫時不需要可關閉", "按 Create project，等畫面進入 Project Overview"],
-        fill: "Project name：claim-site",
-        result: "左上角會顯示 claim-site，並進入 Project Overview。",
+        title: "看懂三道安全防線",
+        where: "本課頁面 → 三道防線圖",
+        actions: ["Authentication：先確認目前是誰登入", "Firestore Rules：每次讀取或改動 Claim 時再核對指定管理員 Email", "Storage Rules：每次上載、查看或刪除收據時再核對一次"],
+        result: "你能說出每一道防線各自保護甚麼。",
       },
       {
-        title: "建立 Web app，複製 firebaseConfig",
-        where: "Project Overview 中間 → Web 圖示 </>",
-        actions: ["按 Web 圖示", "輸入 app nickname", "按 Register app", "完整複製畫面上的 firebaseConfig", "依下方逐行卡，把同一份設定貼入 index.html 和 dashboard.html"],
-        fill: "App nickname：claim-web",
-        extra: <FirebaseConfigBreakdown />,
-        result: "兩個檔案都有相同 firebaseConfig；第五課的登入、Claims 和收據才能連到同一個 Project。",
-        tip: "firebaseConfig 是網站認得 Project 的地址，不是管理員密碼；但 Service Account 絕不能放進 HTML。",
-      },
-      {
-        title: "開啟 Email／Password 登入",
-        where: "左側 Build → Authentication",
-        actions: ["按 Get started", "開 Sign-in method", "選 Email/Password", "把第一個開關設為 Enabled", "按 Save"],
-        result: "Email/Password 顯示 Enabled；現在可以建立唯一管理員帳戶。",
-      },
-      {
-        title: "建立唯一管理員帳戶",
-        where: "Authentication → Users → Add user",
-        actions: ["按 Add user", "輸入你日後管理 Claim 的 email 和強密碼", "按 Add user 完成建立", "確認 Users 清單只出現這個管理員帳戶"],
-        fill: "Email：第五課 Rules 內的 ADMIN_EMAIL；Password：只由管理員保存",
-        result: "Users 清單有一個管理員帳戶；Claim 網站沒有註冊按鈕，其他人不能自行開戶。",
-        tip: "這個 email 必須和第五課 Firestore／Storage Rules 裡的 ADMIN_EMAIL 完全相同。",
-      },
-      {
-        title: "建立 Firestore，貼報帳 Rules",
-        where: "左側 Build → Firestore Database",
-        actions: ["按 Create database", "選資料位置", "選 Production mode", "按 Create", "開 Rules 分頁，貼第五課的報帳 Rules", "改好管理員 email 後按 Publish"],
-        result: "Firestore Rules 顯示最新 Publish 時間。",
-        tip: "Rules 貼在 Firebase → Firestore → Rules，不是貼進 VS Code。",
-      },
-      {
-        title: "建立 Storage，貼收據 Rules",
-        where: "左側 Build → Storage",
-        actions: ["按 Get started", "完成 Storage 建立", "開 Rules 分頁", "貼第五課的收據 Rules", "按 Publish"],
-        result: "Storage Rules 顯示最新 Publish 時間，收據才會受你的限制保護。",
+        title: "對照第 5 課的設定地圖",
+        where: "本課頁面 → 第 5 課預覽卡",
+        actions: ["知道第 5 課會建立 Firebase Project 和 Web app", "知道第 5 課會建立唯一管理員、發布 Firestore 和 Storage Rules", "把這頁記住；真正按鈕操作全部在第 5 課一次完成"],
+        result: "你已準備好，可在第 5 課直接動手。",
       },
     ],
     mascot: { src: firebaseMascotUrl, alt: "小守護員正在把 Firebase 設定零件裝進網站模型" },
@@ -270,9 +238,9 @@ export const guides: ToolGuide[] = [
       {
         title: "建立 New Project，Import welcome-site",
         where: "Vercel Dashboard → 右上角 Add New → Project → Import Git Repository",
-        actions: ["按 Add New → Project，等 Import Git Repository 清單出現", "在清單找 welcome-site；看見就按同一行 Import", "如果清單沒有 welcome-site，不要重新建立 repository；保持這頁開著，另開 GitHub", "GitHub → 右上角頭像 → Settings → Applications → Vercel application → Configure", "在 Repository access 選 Only select repositories，展開清單後選 welcome-site → Save／Update", "回剛才的 Vercel New Project 頁重新整理；welcome-site 出現後按 Import"],
+        actions: ["按 Add New → Project，等 Import Git Repository 清單出現", "在清單找 welcome-site；看見就按同一行 Import", "畫面進入 Configure Project 後，代表已成功 Import"],
         result: "Vercel Import Git Repository 清單出現 welcome-site；按 Import 後畫面進入 Configure Project。",
-        tip: "只選 welcome-site 已足夠，毋須讓 Vercel 讀取所有 GitHub repositories。若 GitHub 畫面把 Vercel 放在 Installed GitHub Apps，進入後同樣按 Configure，再選 Only select repositories。",
+        tip: "清單沒有 welcome-site？不要重新建立 repository；保持這頁開著，另開 GitHub → 右上角頭像 → Settings → Applications → Vercel application → Configure，在 Repository access 選 Only select repositories，展開清單後選 welcome-site → Save／Update，再回剛才的 Vercel New Project 頁重新整理；welcome-site 出現後按 Import。若 GitHub 畫面把 Vercel 放在 Installed GitHub Apps，進入後同樣按 Configure。只授權 welcome-site 已足夠，毋須讓 Vercel 讀取所有 repositories。",
       },
       {
         title: "設定並 Deploy",

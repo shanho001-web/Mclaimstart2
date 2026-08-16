@@ -216,3 +216,10 @@
 - [x] 檢查 GitHub 連結狀態、本機 git remote 與目前已驗證專案版本。
 - [x] 建立或連接合適的 GitHub repository，將最新網站程式碼推送到預設分支。
 - [x] 驗證 GitHub 遠端 repository 的最新 commit 與課程程式碼已成功同步。
+- [x] 盤點所有網站圖片與現有 manus-storage 引用，確認可供 GitHub 打包的原始素材。
+- [x] 已改為本地打包：不再將守護員、主視覺與操作貼紙寫入 GitHub repository 的 public/images 目錄。
+- [x] 已改為本地打包：不再將網站圖片路徑改為 GitHub public/images 的網址。
+- [x] 已改為本地打包：不再以 GitHub ZIP 作為素材完整性驗證目標。
+- [ ] 建立本地部署副本，將八張素材放入副本的 public/images 目錄。
+- [ ] 將副本中的圖片引用改為 /images 相對路徑，並提供獨立部署素材說明。
+- [ ] 驗證本地副本可完成型別檢查與 production build，並建立完整下載 ZIP。

@@ -2,7 +2,7 @@ import { ArrowLeft, ArrowRight, BookOpen, ExternalLink, ShieldCheck } from "luci
 import { Link } from "wouter";
 import { getCourseNavHref, getLessonPager, lessons, type LessonNumber } from "@/data/lessons";
 
-const logoUrl = "/manus-storage/modelkit-logo_f86a875b.png";
+const logoUrl = "/images/logo.webp";
 
 export function CourseNav({ active, firstHref = "/#part-01" }: { active?: LessonNumber; firstHref?: string }) {
   return <nav className="course-nav" aria-label="五課課程導航">{lessons.map((lesson) => {

@@ -3,9 +3,10 @@ import { CheckCircle2, Code2, Database, Globe2, KeyRound, MonitorPlay, ShieldChe
 import { CodeBlock } from "@/components/CodeBlock";
 import { KitFooter, KitHeader, LessonPager } from "@/components/KitHeader";
 import { LessonCopyGuide } from "@/components/LessonCopyGuide";
+import { FirebaseConfigBreakdown } from "./ToolGuides";
 import { claimCode } from "../data/claimCode";
 
-const claimHeroUrl = "/manus-storage/modelkit-claim-hero-white_aaf5e8b0.png";
+const claimHeroUrl = "/images/guardian-claim-hero.png";
 
 type Sample = keyof typeof claimCode;
 function HumanSteps({ steps, tip }: { steps: string[]; tip?: string }) {
@@ -20,8 +21,14 @@ const samples: { id: Sample; label: string; file: string; note: string }[] = [
 ];
 
 export const claimAssemblyParts = {
+  setup: { title: "PART 00 · Firebase：建立 Project 與 Web app", ids: [] as const },
   website: { title: "PART 01 · VS Code：兩個網頁檔案", ids: ["indexHtml", "dashboardHtml"] as const },
   rules: { title: "PART 02 · Firebase：兩份 Rules", ids: ["firestoreRules", "storageRules"] as const },
+};
+
+export const claimFirebaseSetup = {
+  where: "瀏覽器 → console.firebase.google.com → Add project",
+  requirement: "每個 Project 的 firebaseConfig 都不同；複製後暫時保存在記事本，Part 1 貼 code 時逐行填入。",
 };
 
 export const claimAdminSetup = {
@@ -30,17 +37,17 @@ export const claimAdminSetup = {
 };
 
 export const claimCopyInstructions = {
-  website: "先在 VS Code 左邊 Explorer 按指定檔案；回本頁按「複製 code」；回同一個檔案全選、貼上、儲存。",
+  website: "先在 VS Code 左邊 Explorer 按指定檔案；回本頁按「複製 code」；回同一個檔案全選、貼上、儲存。貼好後，把 code 內 6 個 firebaseConfig 的 YOUR_ 欄位換成自己在 Firebase 複製的真實值，並把 YOUR_ADMIN_EMAIL 改成你打算使用的管理員 Email。",
   rules: "在 Firebase 左邊 Build 選對應服務 → 按 Rules → 回本頁按「複製 code」→ 回 Rules 貼上 → Publish。",
 };
 
 export const claimLessonArticle = {
   subtitle: "LESSON 05 / 05 · 管理員專用 CLAIM 控制台",
   title: "把 Claim 控制台接上 Firebase",
-  goal: "今課會把管理員登入頁和管理主頁放進 VS Code，然後在 Firebase 建立自己的管理員帳戶並發布兩份 Rules。前面四課的網站、版本、網址和安全概念已準備好，今課只需把它們集合起來。",
-  flow: ["替換 index.html", "替換 dashboard.html", "建立唯一管理員", "發布兩份 Rules"],
+  goal: "今課會先建立 Firebase Project 和 Web app（取得 firebaseConfig），再把管理員登入頁和管理主頁放進 VS Code，最後建立管理員帳戶並發布兩份 Rules。前面四課的網站、版本、網址和安全概念已準備好，今課只需把它們集合起來。",
+  flow: ["建立 Firebase Project 與 Web app", "替換 index.html", "替換 dashboard.html", "建立唯一管理員", "發布兩份 Rules"],
   standard: "回 Vercel 網址，用管理員 Email 登入後看見守護員管理主頁，而且可查看 Claim、開收據和更新狀態。",
-  transition: "本課分兩部分完成。先留在 VS Code 替換兩個網頁檔案；之後才返回 Firebase 建立唯一管理員，逐一貼 Firestore 和 Storage Rules。程式碼卡內容已準備好，不需要自己重寫。",
+  transition: "本課分三部分完成。先到 Firebase 建立 Project 與 Web app 並複製 firebaseConfig（PART 00）；再留在 VS Code 替換兩個網頁檔案並填入真實設定（PART 01）；最後返回 Firebase 建立唯一管理員，逐一貼 Firestore 和 Storage Rules（PART 02）。程式碼卡內容已準備好，不需要自己重寫。",
 };
 
 export default function ClaimKit() {
@@ -53,8 +60,9 @@ export default function ClaimKit() {
   return <div className="kit-page"><KitHeader active={5}/><main className="kit-main">
     <section className="claim-hero-image"><img src={claimHeroUrl} className="hero-guardian" alt="小守護員正在砌登入與安全 Claim 網站模型"/></section>
     <LessonCopyGuide data={claimLessonArticle}/>
-    <section className="kit-section" data-part="01" id="website-code"><div className="section-tab">{claimAssemblyParts.website.title}</div><h2>第一部分：在 VS Code 換兩個網頁檔案。</h2><p className="section-lead">先按上方的檔案名稱選擇 <b>index.html</b> 或 <b>dashboard.html</b>。然後只做同一個動作：在 VS Code 左邊 Explorer 開同名檔案，複製下方 code，回檔案全選、貼上、儲存。</p><div className="code-tab-row">{websiteSamples.map(item=><button className={item.id === websiteActive ? "code-tab active" : "code-tab"} onClick={()=>setWebsiteActive(item.id)} key={item.id}>{item.label}</button>)}</div><div className="sample-explain"><Code2 size={18}/><div><b>{websiteSample.file}</b><span>{websiteSample.note}</span></div></div><CodeBlock code={claimCode[websiteActive]} fileName={websiteSample.file}/><HumanSteps steps={[`VS Code 左邊 Explorer → 開 ${websiteSample.file}`, "回這張卡按「複製 code」", "回同一個檔案按 Ctrl/Cmd + A → 貼上 → Ctrl/Cmd + S 儲存"]}/></section>
-    <section className="kit-section" data-part="02" id="rules"><div className="section-tab">{claimAssemblyParts.rules.title}</div><h2>第二部分：在 Firebase 建管理員，再發布兩份 Rules。</h2><p className="section-lead">先在 Authentication 建立自己的管理員 Email；再輪流選 Firestore Rules 和 Storage Rules。兩份 code 都要把 <b>YOUR_ADMIN_EMAIL</b> 改成同一個 Email。</p><div className="admin-setup-quick"><div><KeyRound size={20}/><p>先加自己做唯一管理員</p><h3>{claimAdminSetup.where}</h3></div><ol><li>第一次用：先開 Sign-in method → Email/Password → Enabled → Save。</li><li>開 Users → 按 Add user。</li><li>輸入你自己的管理員 Email 和強密碼 → 按 Add user。</li><li>在 Users 清單看見這個 Email；記下密碼。</li></ol><aside><b>最重要：</b>{claimAdminSetup.requirement}</aside></div><p className="section-lead">選下方一份 Rules：在 Firebase 左邊 Build 開對應服務，按 Rules，回本頁複製 code，再回 Rules 貼上和 Publish。完成一份後，再選另一份。</p><div className="code-tab-row">{ruleSamples.map(item=><button className={item.id === ruleActive ? "code-tab active" : "code-tab"} onClick={()=>setRuleActive(item.id)} key={item.id}>{item.label}</button>)}</div><div className="sample-explain"><ShieldCheck size={18}/><div><b>{ruleSample.file}</b><span>{ruleSample.note}</span></div></div><CodeBlock code={claimCode[ruleActive]} fileName={ruleSample.file}/><HumanSteps steps={[`Firebase Console 左邊 Build → ${ruleActive === "firestoreRules" ? "Firestore Database" : "Storage"}`, "按 Rules → 回這張卡按「複製 code」", "回 Rules 全選舊內容 → 貼上 → 按 Publish"]}/></section>
+    <section className="kit-section" data-part="00" id="firebase-setup"><div className="section-tab">{claimAssemblyParts.setup.title}</div><h2>開始之前：先建立 Firebase Project 和 Web app。</h2><p className="section-lead">如果之前從未在 Firebase 建立過 Project，先完成下面四步，取得你的 <b>firebaseConfig</b>（之後 Part 1 貼 code 時要逐行填入）。已建立過 Project 的話，可以直接跳到 Part 1。</p><div className="admin-setup-quick"><div><KeyRound size={20}/><p>先建立並複製你的 firebaseConfig</p><h3>{claimFirebaseSetup.where}</h3></div><ol><li>用你的 Google 帳戶登入 Firebase Console（沒有帳戶就按 Create account 建立）。</li><li>按 Add project → 輸入 Project name（例如 claim-site）→ 按 Continue → 完成 Create project。</li><li>進入 Project Overview 後，按中間的 Web 圖示 〈/〉，輸入 App nickname（例如 claim-web），按 Register app。</li><li>畫面上會顯示 6 行 firebaseConfig code；按複製，貼到記事本暫時保存。</li></ol><aside><b>最重要：</b>{claimFirebaseSetup.requirement}</aside></div></section>
+    <section className="kit-section" data-part="01" id="website-code"><div className="section-tab">{claimAssemblyParts.website.title}</div><h2>第一部分：在 VS Code 換兩個網頁檔案。</h2><p className="section-lead">先按上方的檔案名稱選擇 <b>index.html</b> 或 <b>dashboard.html</b>。然後只做同一個動作：在 VS Code 左邊 Explorer 開同名檔案，複製下方 code，回檔案全選、貼上、儲存。貼好後，把 code 內 6 個 firebaseConfig 的 <b>YOUR_</b> 欄位換成你在 PART 00 複製的真實值，並把 <b>YOUR_ADMIN_EMAIL</b> 改成你打算使用的管理員 Email。</p><FirebaseConfigBreakdown/><div className="code-tab-row">{websiteSamples.map(item=><button className={item.id === websiteActive ? "code-tab active" : "code-tab"} onClick={()=>setWebsiteActive(item.id)} key={item.id}>{item.label}</button>)}</div><div className="sample-explain"><Code2 size={18}/><div><b>{websiteSample.file}</b><span>{websiteSample.note}</span></div></div><CodeBlock code={claimCode[websiteActive]} fileName={websiteSample.file}/><HumanSteps steps={[`VS Code 左邊 Explorer → 開 ${websiteSample.file}`, "回這張卡按「複製 code」", "回同一個檔案按 Ctrl/Cmd + A → 貼上 → Ctrl/Cmd + S 儲存", "對照上方逐行卡，把 code 內 6 個 firebaseConfig 的 YOUR_ 欄位換成 PART 00 複製的真實值，並把 YOUR_ADMIN_EMAIL 改成自己的管理員 Email"]}/></section>
+    <section className="kit-section" data-part="02" id="rules"><div className="section-tab">{claimAssemblyParts.rules.title}</div><h2>第二部分：在 Firebase 建管理員，再發布兩份 Rules。</h2><p className="section-lead">先在 Authentication 建立自己的管理員 Email；再輪流選 Firestore Rules 和 Storage Rules。兩份 code 都要把 <b>YOUR_ADMIN_EMAIL</b> 改成與 Part 1 相同的 Email。如果左側 Build 還沒有 <b>Firestore Database</b> 或 <b>Storage</b>，先按下方「小守護員提示」建立，否則 Rules 沒有地方可以貼。</p><div className="admin-setup-quick"><div><KeyRound size={20}/><p>先加自己做唯一管理員</p><h3>{claimAdminSetup.where}</h3></div><ol><li>第一次用：先開 Sign-in method → Email/Password → Enabled → Save。</li><li>開 Users → 按 Add user。</li><li>輸入你自己的管理員 Email 和強密碼 → 按 Add user。</li><li>在 Users 清單看見這個 Email；記下密碼。</li></ol><aside><b>最重要：</b>{claimAdminSetup.requirement}</aside><div className="admin-storage-pre"><b>如果 Build 沒有 Firestore Database 或 Storage：</b><ol><li>Firestore Database → Create database → 選資料位置 → Production mode → Create。</li><li>Storage → Get started → 按畫面完成建立。</li><li>完成後 Build 左側才會出現這兩個服務，可開 Rules 分頁。</li></ol></div></div><p className="section-lead">選下方一份 Rules：在 Firebase 左邊 Build 開對應服務，按 Rules，回本頁複製 code，再回 Rules 貼上和 Publish。完成一份後，再選另一份。</p><div className="code-tab-row">{ruleSamples.map(item=><button className={item.id === ruleActive ? "code-tab active" : "code-tab"} onClick={()=>setRuleActive(item.id)} key={item.id}>{item.label}</button>)}</div><div className="sample-explain"><ShieldCheck size={18}/><div><b>{ruleSample.file}</b><span>{ruleSample.note}</span></div></div><CodeBlock code={claimCode[ruleActive]} fileName={ruleSample.file}/><HumanSteps steps={[`Firebase Console 左邊 Build → ${ruleActive === "firestoreRules" ? "Firestore Database" : "Storage"}`, "按 Rules → 回這張卡按「複製 code」", "回 Rules 全選舊內容 → 貼上 → 把 YOUR_ADMIN_EMAIL 改成與 Part 1 相同的 Email → 按 Publish"]}/></section>
     <section className="kit-section secure-finish"><div><p className="section-tab">本課完成</p><h2>回 Vercel 網址，用管理員 Email 登入。</h2><p>{claimLessonArticle.standard}</p></div><ShieldCheck className="finish-shield"/></section><LessonPager current={5}/>
   </main><KitFooter/></div>;
 }
