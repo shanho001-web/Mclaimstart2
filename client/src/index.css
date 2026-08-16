@@ -274,6 +274,13 @@ button{padding-top:12px;padding-bottom:12px}
 .code-shell pre, .config-line>code, .task-code pre, code{overflow-wrap:break-word;word-break:break-word}
 .task-location p, .task-fill p, .section-lead, .kit-section p{overflow-wrap:break-word}
 
+/* A1 渲染實測修正：grid 子項 min-width 撐爆（code-pack 寬度 11432px 問題） */
+.code-pack-grid{grid-template-columns:1fr!important;min-width:0}
+.code-pack-item{min-width:0;max-width:100%}
+.code-pack-item .code-shell, .code-pack-item .code-shell pre{max-width:100%;overflow-x:auto}
+.code-shell pre{white-space:pre-wrap!important;overflow-wrap:break-word!important}
+.guide-stack, .code-pack-grid, .guide-content{min-width:0}
+
 /* A4/A5 間距系統：統一卡片內距、加大章節呼吸 */
 .task-unit-head, .task-location, .task-instructions, .task-fill, .task-result, .task-extra{padding-left:20px;padding-right:20px}
 .kit-section, .guide-unit{margin-bottom:8px}
@@ -298,3 +305,17 @@ body{background:#fff}
 
 /* C2 橙強調色面積控制：大面積橙改為藍，只留「下一步」用小橙 */
 .tool-title>span, .kit-section:before{background:#2e73c8!important;color:#fff!important}
+
+/* A3 渲染實測修正：守護員圖被 max-width 壓寬但 height 固定 → 拉伸。強制正方形縮放 */
+.scroll-course .model-action-sticker, .scroll-course .walkthrough-mascot{
+  width:auto!important;height:auto!important;max-width:100%!important;max-height:200px!important;aspect-ratio:1/1!important;object-fit:contain!important
+}
+.scroll-course .part-break img{width:auto!important;height:auto!important;max-width:min(560px,76vw)!important;max-height:60svh!important;object-fit:contain!important}
+.tools-page .tool-result img{width:auto!important;height:auto!important;max-width:190px!important;max-height:190px!important;aspect-ratio:1/1!important;object-fit:contain!important}
+.tool-lesson-page .tool-guide-hero img{width:auto!important;height:auto!important;max-width:280px!important;max-height:280px!important;aspect-ratio:1/1!important;object-fit:contain!important}
+.kit-page .finish-guardian{width:auto!important;height:auto!important;max-width:200px!important;max-height:200px!important;aspect-ratio:1/1!important;object-fit:contain!important}
+.claim-hero-image img{object-fit:contain!important;max-height:440px}
+
+/* A7 渲染實測修正：導航連結觸控高度 */
+.course-nav-link, .header-next-kit, .header-jump{min-height:44px!important;display:inline-flex;align-items:center}
+.course-nav{padding-top:6px;padding-bottom:6px}
