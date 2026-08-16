@@ -28,6 +28,23 @@ describe("tool lesson opening", () => {
   });
 });
 
+describe("unified lesson article structure", () => {
+  it("gives every tool lesson one outcome heading, ease promise, short introduction, connected flow and one finish", () => {
+    guides.forEach((guide) => {
+      expect(guide.article.heading.length).toBeGreaterThan(4);
+      expect(guide.article.ease.length).toBeGreaterThan(4);
+      expect(guide.article.summary.length).toBeGreaterThan(20);
+      expect(guide.article.flow.length).toBeGreaterThanOrEqual(3);
+      expect(guide.article.finish.length).toBeGreaterThan(8);
+    });
+
+    expect(guides.find((guide) => guide.id === "github")!.article.flow).toEqual([
+      "登入 GitHub", "建立 welcome-site Private repository", "回 VS Code 貼 git code",
+    ]);
+    expect(guides.find((guide) => guide.id === "firebase")!.article.ease).toContain("不用按 Firebase");
+  });
+});
+
 describe("same-place operation cards", () => {
   it("keeps GitHub repository fields and Vercel New Project import work in single continuous cards", () => {
     const github = guides.find((guide) => guide.id === "github")!;

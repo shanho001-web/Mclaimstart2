@@ -80,6 +80,14 @@ git push`,
 export type Guide = { title:string; instruction:string; detail:string; microSteps?:string[]; result:string; visual:"download"|"folder"|"open"|"terminal"|"copy"|"github"|"private"|"vercel"|"launch"|"edit"; code?:CodeKey; choices?:CodeKey[]; link?:{label:string;href:string}; tip?:string };
 export type CourseStep = { id:string; number:string; title:string; short:string; tool:string; reward:string; goal:string; guides:Guide[] };
 
+export const homeLessonArticle = {
+  heading: "在 VS Code 做出第一個歡迎頁。",
+  ease: "不用自己寫 code。",
+  summary: "先建立 welcome-site 和三個檔案，再把完整 code 放進正確位置，最後在瀏覽器打開 index.html。",
+  flow: ["建立 welcome-site", "建立三個檔案", "貼 code 並開主頁"],
+  finish: "瀏覽器看見會動的小守護員歡迎頁，便代表第一課完成。",
+};
+
 export const steps: CourseStep[] = [
   { id:"vscode", number:"01", title:"打開 VS Code 工作枱", short:"下載 → Folder → Terminal", tool:"VS Code", reward:"", goal:"", guides:[
     { visual:"download", title:"下載並打開 VS Code", instruction:"在這張卡下方的「下載 VS Code」按鈕，開啟官方下載頁。", detail:"下載並安裝 VS Code。", microSteps:["按下方「下載 VS Code」", "選自己的 Mac 或 Windows 版本", "下載完成後雙擊安裝檔，跟畫面完成安裝，再開啟 VS Code"], result:"你會看到藍色 VS Code 圖示和開始畫面。", link:{ label:"下載 VS Code", href:"https://code.visualstudio.com/Download" }, tip:"不要從不明網站下載。這個按鈕會直接前往 VS Code 官方下載頁。" },

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { codeTemplates } from "./course";
+import { codeTemplates, homeLessonArticle } from "./course";
 import { claimCode, memberAnnouncement } from "./claimCode";
 import { lessons } from "./lessons";
 import { firebaseSecurityPrinciples } from "../pages/ToolGuides";
@@ -16,6 +16,13 @@ describe("first website guardian template", () => {
   it("describes lesson one as a guardian welcome-page build, not a completed deployment", () => {
     expect(lessons[0].title).toContain("守護員歡迎頁");
     expect(lessons[0].title).not.toContain("第一條網址");
+  });
+
+  it("uses the same outcome, ease, flow, and single finish structure as the other lessons", () => {
+    expect(homeLessonArticle.heading).toContain("VS Code");
+    expect(homeLessonArticle.ease).toContain("不用自己寫 code");
+    expect(homeLessonArticle.flow).toEqual(["建立 welcome-site", "建立三個檔案", "貼 code 並開主頁"]);
+    expect(homeLessonArticle.finish).toContain("小守護員歡迎頁");
   });
 });
 
