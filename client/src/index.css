@@ -319,3 +319,7 @@ body{background:#fff}
 /* A7 渲染實測修正：導航連結觸控高度 */
 .course-nav-link, .header-next-kit, .header-jump{min-height:44px!important;display:inline-flex;align-items:center}
 .course-nav{padding-top:6px;padding-bottom:6px}
+
+/* A6 渲染實測修正：part-break 文字與圖重疊（1440px 文字右緣 771 深入圖左緣 516） */
+.scroll-course .part-break>div{max-width:min(440px,40vw)!important;margin-right:min(52vw,560px)!important;z-index:2}
+.scroll-course .part-break img{right:2vw!important;opacity:.96}
