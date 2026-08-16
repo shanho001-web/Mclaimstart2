@@ -165,7 +165,7 @@ export const guides: ToolGuide[] = [
       {
         title: "回到 VS Code 上載三個檔案",
         where: "VS Code → welcome-site → 下方黑色 Terminal",
-        actions: ["按下方 code 卡的「複製 code」", "回 VS Code → welcome-site → 下方黑色 Terminal，貼上整段 code", "把 YOUR NAME、YOUR_EMAIL、YOUR_GITHUB_NAME 三處改成自己的資料：YOUR NAME 填你的名字，YOUR_EMAIL 填你的電郵，網址裡的 YOUR_GITHUB_NAME 填你的 GitHub 帳戶名（就是 github.com/你的帳戶名/welcome-site 中間那段）", "再按 Enter 執行；第一次若開瀏覽器登入 GitHub，跟畫面完成登入"],
+        actions: ["按下方 code 卡的「複製 code」", "先貼到任何文字檔（例如 VS Code 開一個 New File 或記事本），把三處 YOUR_ 改成自己的資料：YOUR NAME 填你的名字、YOUR_EMAIL 填你的電郵、網址裡的 YOUR_GITHUB_NAME 填你的 GitHub 帳戶名（就是 github.com/你的帳戶名/welcome-site 中間那段）", "改好後整段複製，回 VS Code → welcome-site → 下方黑色 Terminal 貼上，再按 Enter 執行；第一次若開瀏覽器登入 GitHub，跟畫面完成登入"],
         code: codeTemplates.gitPush,
         result: "回 GitHub 重新整理後，會看到 index.html、style.css、script.js 和最新 commit。",
         tip: "GitHub 密碼只在 GitHub 的登入畫面輸入；不要貼進 Terminal 或公開筆記。如果出現 repository not found，代表網址裡的 YOUR_GITHUB_NAME 未改成自己的帳戶名；改好後重新貼一次。",
