@@ -143,3 +143,8 @@
 - [x] 重排第 2 至第 4 課，讓每一步詳情緊貼其任務標題，不需上下來回比對。
 - [x] 驗證手機版第 2 至第 4 課的任務、操作和完成結果都在同一閱讀單元。
 - [x] 執行完整任務單元重排後的 Vitest、型別檢查與 production build。
+- [x] 在 GitHub 上載任務內加入可見的 git code 對照，清楚標示 YOUR_NAME、YOUR_EMAIL、YOUR_GITHUB_NAME 的實際位置。
+- [x] 在 Firebase 第一個 Project 任務前加入帳戶登記、驗證與登入 Firebase Console 的完整起始步驟。
+- [x] 合併每個任務的完成結果與可選提示，只保留一個精簡的結果／注意區塊。
+- [x] 驗證 GitHub、Firebase 的手機版 code 對照、帳戶起始及提示密度。
+- [x] 執行 Git code 對照與 Firebase 起始流程修訂後的 Vitest、型別檢查與 production build。

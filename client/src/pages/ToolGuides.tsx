@@ -1,7 +1,9 @@
 /** Design philosophy: One task is one complete human action — decide, find, act, fill, and verify without scrolling between summaries. */
 import { CheckCircle2, ChevronDown, CirclePlus, Code2, Database, FolderGit2, Github, KeyRound, Lock, Plus, Rocket, ShieldCheck, UploadCloud } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { CodeBlock } from "@/components/CodeBlock";
 import { KitFooter, KitHeader, LessonPager } from "@/components/KitHeader";
+import { codeTemplates } from "@/data/course";
 import type { LessonNumber } from "@/data/lessons";
 
 const githubMascotUrl = "/manus-storage/guardian-model-folder-open_fb5db00d.png";
@@ -13,6 +15,7 @@ type TaskStep = {
   where: string;
   actions: string[];
   fill?: string;
+  code?: string;
   result: string;
   tip?: string;
 };
@@ -84,6 +87,7 @@ const guides: ToolGuide[] = [
         title: "現在：從 VS Code 上載三個檔案",
         where: "VS Code → welcome-site → 下方黑色 Terminal",
         actions: ["將 git code 裡的 YOUR NAME、YOUR_EMAIL、YOUR_GITHUB_NAME 改成自己的資料", "完整複製 git code", "貼進 Terminal 後按 Enter；第一次若開瀏覽器登入 GitHub，跟畫面完成登入"],
+        code: codeTemplates.gitPush,
         result: "回 GitHub 重新整理後，會看到 index.html、style.css、script.js 和最新 commit。",
         tip: "GitHub 密碼只在 GitHub 的登入畫面輸入；不要貼進 Terminal 或公開筆記。",
       },
@@ -98,6 +102,13 @@ const guides: ToolGuide[] = [
     goal: "先有 Project 和 Web app，才開 Authentication、Firestore、Storage；Rules 一定放在最後。",
     view: <div className="mock-window firebase-window"><div className="mock-top"><span className="firebase-mark">◆</span> Firebase console <ChevronDown size={15} /></div><div className="firebase-body"><aside><b>Project Overview</b><small>Build</small><span className="selected"><KeyRound /> Authentication</span><span><Database /> Firestore Database</span><span><UploadCloud /> Storage</span></aside><main><p>同一個 Build 內，依次開啟需要的服務</p><div className="firebase-card"><Code2 /><b>Web app</b><small>Project settings → Your apps → </small><button>Register app</button></div><div className="firebase-card small"><ShieldCheck /><b>Rules</b><small>Firestore / Storage → Rules → Publish</small></div></main></div></div>,
     steps: [
+      {
+        title: "現在：先登記／登入 Firebase",
+        where: "瀏覽器 → console.firebase.google.com",
+        actions: ["有 Google 帳戶：按 Sign in，用自己的 Google email 登入", "沒有 Google 帳戶：按 Create account，依畫面建立帳戶並完成驗證", "回到 Firebase Console，按 Continue to Firebase"],
+        result: "右上角會出現你的 Google 頭像，首頁會看到 Add project。",
+        tip: "Firebase 使用 Google 帳戶登入；之後開 Project、Authentication、Firestore、Storage 都在這個 Console 內完成。",
+      },
       {
         title: "現在：建立 Firebase Project",
         where: "瀏覽器 → console.firebase.google.com → Add project",
@@ -181,8 +192,8 @@ function TaskUnit({ step, number }: { step: TaskStep; number: number }) {
       <div className="task-location"><small>到哪裡</small><p>{step.where}</p></div>
       <div className="task-instructions"><small>怎樣做</small><ol>{step.actions.map((item) => <li key={item}>{item}</li>)}</ol></div>
       {step.fill && <div className="task-fill"><small>填甚麼</small><p>{step.fill}</p></div>}
-      <div className="task-result"><CheckCircle2 /><div><small>完成後看到</small><p>{step.result}</p></div></div>
-      {step.tip && <div className="task-tip"><b>小提示</b><p>{step.tip}</p></div>}
+      {step.code && <div className="task-code"><div><small>完整複製這段</small><p>先把橙色的 YOUR NAME、YOUR_EMAIL、YOUR_GITHUB_NAME 改成自己的資料；再完整複製，貼進 Terminal 後按 Enter。</p></div><CodeBlock code={step.code} fileName="貼進 VS Code 的 Terminal" /></div>}
+      <div className="task-result"><CheckCircle2 /><div><small>完成後</small><p>{step.result}{step.tip && <><span className="result-note">注意：{step.tip}</span></>}</p></div></div>
     </div>
   </article>;
 }
