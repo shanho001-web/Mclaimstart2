@@ -20,8 +20,8 @@ describe("first website guardian template", () => {
 
   it("uses the same copy-guide structure as the other lessons", () => {
     expect(homeLessonArticle.subtitle).toContain("LESSON 01");
-    expect(homeLessonArticle.title).toContain("第一個網站頁面");
-    expect(homeLessonArticle.goal).toContain("VS Code");
+    expect(homeLessonArticle.title).toContain("三個檔案");
+    expect(homeLessonArticle.goal).toContain("小守護員歡迎頁");
     expect(homeLessonArticle.flow).toEqual(["建立 welcome-site", "建立三個檔案", "貼 code 並開主頁"]);
     expect(homeLessonArticle.standard).toContain("小守護員");
     expect(homeLessonArticle.transition).toContain("GitHub");

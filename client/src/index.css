@@ -335,3 +335,9 @@ body{background:#fff}
   .scroll-course .part-break img{width:min(400px,38vw)!important;right:clamp(8px,2vw,32px)!important;max-height:56svh!important}
   .scroll-course .part-break>div{left:clamp(16px,4vw,64px)!important;width:min(400px,38vw)!important}
 }
+
+/* 過場 Action（super-headline-generator）：短句、口語、不承載主資訊 */
+.hero-transition-line{position:absolute;z-index:3;left:50%;top:6%;transform:translateX(-50%);margin:0;padding:8px 14px;background:#fffefae6;border:1px dashed #f4a340;border-radius:8px 14px 8px 14px;color:#8a570d;font-size:13px;font-weight:800;letter-spacing:.02em;box-shadow:0 8px 16px #102a4318}
+.part-break-transition{display:block;margin:14px 0 0!important;color:#8ec5ff!important;font-size:14px!important;font-weight:700!important;line-height:1.7!important}
+.scroll-course .part-break-1 .part-break-transition{color:#2e73c8!important}
+@media(max-width:700px){.hero-transition-line{top:10%;font-size:12px;white-space:nowrap}.part-break-transition{font-size:13px!important}}
