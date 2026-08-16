@@ -12,12 +12,12 @@ export function CourseNav({ active, firstHref = "/#part-01" }: { active?: Lesson
 }
 
 export function KitHeader({ active }: { active: LessonNumber | "guide" }) {
-  return <><header className="kit-header"><Link href="/" className="kit-brand"><img src={logoUrl} alt="網站模型設計圖"/><span><b>網站模型設計圖</b><small>5 LESSON COURSE</small></span></Link><nav><Link href="/" className="nav-back"><ArrowLeft size={15}/> 課程首頁</Link><Link href="/member-guide" className={active === "guide" ? "nav-current" : ""}><BookOpen size={15}/> 成員指南</Link></nav></header><CourseNav active={typeof active === "number" ? active : undefined}/></>;
+  return <><header className="kit-header"><Link href="/" className="kit-brand"><img src={logoUrl} alt="網站模型設計圖"/><span><b>網站模型設計圖</b><small>5 LESSON COURSE</small></span></Link><nav><Link href="/" className="nav-back"><ArrowLeft size={15}/> 課程首頁</Link><Link href="/member-guide" className={active === "guide" ? "nav-current" : ""}><BookOpen size={15}/> 管理員指南</Link></nav></header><CourseNav active={typeof active === "number" ? active : undefined}/></>;
 }
 
 export function LessonPager({ current }: { current: LessonNumber }) {
   const { previous, next } = getLessonPager(current);
-  return <nav className="lesson-pager" aria-label="上一課與下一課">{previous ? <a href={previous.href} className="lesson-pager-link previous"><ArrowLeft/><small>上一課 · 第 {previous.number} 課</small><b>{previous.short}</b></a> : <span/>}{next ? <a href={next.href} className="lesson-pager-link next"><small>下一課 · 第 {next.number} 課</small><b>{next.short}</b><ArrowRight/></a> : <a href="/member-guide" className="lesson-pager-link next"><small>五課完成</small><b>查看成員指南</b><ArrowRight/></a>}</nav>;
+  return <nav className="lesson-pager" aria-label="上一課與下一課">{previous ? <a href={previous.href} className="lesson-pager-link previous"><ArrowLeft/><small>上一課 · 第 {previous.number} 課</small><b>{previous.short}</b></a> : <span/>}{next ? <a href={next.href} className="lesson-pager-link next"><small>下一課 · 第 {next.number} 課</small><b>{next.short}</b><ArrowRight/></a> : <a href="/member-guide" className="lesson-pager-link next"><small>五課完成</small><b>查看管理員指南</b><ArrowRight/></a>}</nav>;
 }
 
 export function KitFooter() {

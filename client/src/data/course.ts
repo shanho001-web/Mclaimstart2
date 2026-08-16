@@ -8,43 +8,60 @@ export const codeTemplates: Record<CodeKey, string> = {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>我的小守護員網站</title>
+  <title>小守護員歡迎你</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="welcome-card">
-    <div id="bot" class="bot" aria-label="小守護員">
-      <div class="antenna"></div><div class="face"><span>• ᴗ •</span></div><div class="badge">✦</div>
-    </div>
-    <p class="label">MY FIRST WEBSITE</p>
-    <h1>你好，我的網站砌好了！</h1>
-    <p id="message">小守護員會陪你把作品送上網。</p>
-    <button id="celebrate">按我慶祝一下</button>
+  <main class="stage">
+    <section class="welcome-copy">
+      <p class="label">MY FIRST WEBSITE / 由 0 開始</p>
+      <h1>先讓小可愛<br><strong>歡迎你。</strong></h1>
+      <p id="message">由 Folder 開始，做到第一條網址。</p>
+      <button id="celebrate">按一下，開始砌網站</button>
+    </section>
+
+    <section id="scene" class="model-scene" aria-label="小守護員和網站模型">
+      <div class="code-block">&lt;/&gt;<span>HTML</span></div>
+      <div class="folder-block">▰<span>我的網站</span></div>
+      <div class="cloud-block">☁<span>發布</span></div>
+      <div class="guardian" aria-hidden="true">
+        <i class="antenna"></i><i class="ear left"></i><i class="ear right"></i>
+        <div class="head"><div class="visor">• ᴗ •</div></div>
+        <div class="body"><b>⬟</b></div><i class="arm left"></i><i class="arm right"></i>
+        <i class="leg left"></i><i class="leg right"></i>
+      </div>
+      <div class="paper-plane">➤</div>
+    </section>
   </main>
   <script src="script.js"></script>
 </body>
 </html>`,
   styleCss: `* { box-sizing: border-box; }
-body { min-height: 100vh; margin: 0; display: grid; place-items: center; font-family: system-ui, sans-serif; color: #102a43; background: radial-gradient(circle at top right, #dcecff, transparent 38%), #fff9ee; }
-.welcome-card { width: min(90%, 680px); padding: 52px 28px; text-align: center; background: #fffefa; border: 1px solid #dce6ee; border-radius: 28px; box-shadow: 0 24px 55px #102a4318; }
-.bot { width: 142px; height: 142px; margin: 0 auto 18px; position: relative; border: 6px solid #102a43; border-radius: 48px; background: #fff5e4; animation: float 2.4s ease-in-out infinite; }
-.antenna { position: absolute; width: 14px; height: 25px; background: #2e73c8; border: 4px solid #102a43; border-bottom: 0; border-radius: 20px 20px 0 0; left: 58px; top: -26px; }
-.face { position: absolute; inset: 22px; display: grid; place-items: center; background: #102a43; color: white; border-radius: 34px; font-size: 32px; letter-spacing: 4px; }
-.badge { position: absolute; right: -17px; top: -20px; color: #f4a340; font-size: 38px; animation: twinkle 1.4s ease-in-out infinite alternate; }
-.label { color: #2e73c8; font-weight: 800; font-size: 12px; letter-spacing: .12em; }
-h1 { margin: 8px 0; font-size: clamp(31px, 7vw, 52px); letter-spacing: -.06em; } p { color: #557087; line-height: 1.8; }
-button { border: 0; border-radius: 12px; padding: 13px 18px; background: #f4a340; color: #5a3500; font-weight: 800; cursor: pointer; }
-.celebrate { animation: celebrate .45s ease both; }
-@keyframes float { 50% { transform: translateY(-10px) rotate(2deg); } } @keyframes twinkle { to { transform: scale(1.18) rotate(12deg); } } @keyframes celebrate { 50% { transform: scale(1.08) rotate(-3deg); } }`,
-  scriptJs: `const bot = document.getElementById('bot');
+:root { --ink:#102a43; --blue:#2e73c8; --orange:#f4a340; --paper:#ffffff; }
+body { min-height:100vh; margin:0; display:grid; place-items:center; overflow-x:hidden; font-family:system-ui,-apple-system,sans-serif; color:var(--ink); background:#fff; }
+.stage { width:min(1100px,94vw); min-height:620px; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:34px; padding:48px; border:1px solid #dce8f0; box-shadow:0 22px 55px #102a4310; background:#fff; }
+.label { margin:0 0 14px; color:var(--blue); font-size:12px; font-weight:900; letter-spacing:.12em; }
+h1 { margin:0; font-size:clamp(40px,6vw,76px); line-height:1.02; letter-spacing:-.08em; } h1 strong { color:var(--blue); }
+#message { max-width:430px; margin:20px 0; color:#60798e; font-size:17px; line-height:1.7; }
+button { border:0; padding:15px 20px; border-radius:11px 17px 11px 17px; background:var(--orange); color:#5a3500; font-size:16px; font-weight:900; cursor:pointer; box-shadow:0 8px 0 #d7851b; } button:active { transform:translateY(4px); box-shadow:0 4px 0 #d7851b; }
+.model-scene { position:relative; min-height:440px; border:1px dashed #a8c7dd; background:linear-gradient(90deg,#2e73c80b 1px,transparent 1px),linear-gradient(#2e73c80b 1px,transparent 1px),#fff; background-size:28px 28px; overflow:hidden; }
+.model-scene > div:not(.guardian) { position:absolute; display:grid; place-items:center; font-weight:900; box-shadow:0 12px 0 #102a4320; }
+.model-scene span { display:block; font-size:10px; letter-spacing:.08em; }
+.code-block { width:142px; height:110px; left:42px; top:65px; border-radius:14px; background:var(--blue); color:#fff; font-size:48px; transform:rotate(-5deg); }.code-block span{font-size:11px}
+.folder-block { width:132px; height:104px; left:38px; bottom:62px; border-radius:13px; background:#102a43; color:#fff; font-size:43px; transform:rotate(4deg); }.folder-block span{font-size:10px}
+.cloud-block { width:126px; height:104px; right:46px; bottom:58px; border-radius:13px; background:var(--blue); color:#fff; font-size:42px; transform:rotate(-3deg); }.cloud-block span{font-size:10px}
+.guardian { position:absolute; z-index:2; width:156px; height:244px; right:120px; top:77px; animation:float 3s ease-in-out infinite; }.head { position:absolute; top:21px; left:18px; width:120px; height:100px; padding:12px; border:5px solid var(--ink); border-radius:44px; background:#fff; }.visor { height:100%; display:grid; place-items:center; border-radius:28px; background:var(--ink); color:#fff; font-size:29px; letter-spacing:4px; }.antenna { position:absolute; left:70px; top:0; width:14px; height:28px; border:4px solid var(--ink); border-bottom:0; border-radius:18px 18px 0 0; background:var(--blue); }.ear { position:absolute; z-index:-1; top:56px; width:27px; height:44px; border:4px solid var(--ink); border-radius:17px; background:var(--blue); }.ear.left{left:2px}.ear.right{right:2px}.body { position:absolute; left:37px; top:119px; width:83px; height:85px; display:grid; place-items:center; border:5px solid var(--ink); border-radius:30px; background:#fff; color:var(--blue); font-size:31px; }.arm { position:absolute; top:137px; width:44px; height:19px; border:5px solid var(--ink); border-radius:18px; background:#fff; }.arm.left{left:2px;transform:rotate(22deg)}.arm.right{right:1px;transform:rotate(-25deg)}.leg { position:absolute; top:200px; width:28px; height:39px; border:5px solid var(--ink); border-radius:15px 15px 20px 20px; background:#fff; }.leg.left{left:46px}.leg.right{right:43px}.paper-plane { right:18px; top:38px; color:var(--orange); font-size:49px; transform:rotate(-22deg); background:transparent!important; box-shadow:none!important; }
+.celebrate { animation:celebrate .65s ease both!important; } @keyframes float{50%{transform:translateY(-12px) rotate(1deg)}} @keyframes celebrate{45%{transform:translateY(-28px) rotate(-5deg) scale(1.08)}75%{transform:translateY(0) rotate(3deg) scale(.98)}}
+@media(max-width:720px){.stage{grid-template-columns:1fr;padding:31px 23px;gap:26px}.model-scene{min-height:405px}.guardian{right:80px}.code-block{left:23px}.folder-block{left:25px}.cloud-block{right:23px}h1{font-size:48px}}`,
+  scriptJs: `const scene = document.getElementById('scene');
 const message = document.getElementById('message');
 const button = document.getElementById('celebrate');
 
 button.addEventListener('click', () => {
-  bot.classList.remove('celebrate');
-  void bot.offsetWidth;
-  bot.classList.add('celebrate');
-  message.textContent = '第一關完成！下一關，我們把這個網站放進 GitHub。';
+  scene.classList.remove('celebrate');
+  void scene.offsetWidth;
+  scene.classList.add('celebrate');
+  message.textContent = '第一步完成！現在把這個網站放進 GitHub，讓版本可以安全保存。';
 });`,
   gitPush: `git config --global user.name "YOUR NAME"
 git config --global user.email "YOUR_EMAIL@example.com"

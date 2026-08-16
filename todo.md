@@ -148,3 +148,12 @@
 - [x] 合併每個任務的完成結果與可選提示，只保留一個精簡的結果／注意區塊。
 - [x] 驗證 GitHub、Firebase 的手機版 code 對照、帳戶起始及提示密度。
 - [x] 執行 Git code 對照與 Firebase 起始流程修訂後的 Vitest、型別檢查與 production build。
+- [x] 盤點第一課 HTML／CSS／JavaScript 範本及第五課 Claim code、Firebase 教學和 Rules 的現況。
+- [x] 將第一課成品改為首圖同系亮白守護員與「歡迎你」主視覺的可運作網站範本。
+- [x] 將第五課改為管理員專用登入，移除會員註冊與會員端流程，登入後顯示守護員設計的管理主頁。
+- [x] 在管理員主頁加入新增 Claim、選收據、查看全部紀錄及更新狀態的管理操作。
+- [x] 更新 Firebase Authentication、Firestore／Storage Rules 與第五課教學，限制為指定管理員帳戶。
+- [x] 將成員指南與共用導覽改為管理員操作指南，移除會員註冊、會員上載與多帳戶安全說明。
+- [x] 驗證重設後範本、管理員流程、手機版教學、型別與 production build。
+- [x] 新增第一課歡迎頁與管理員 Claim 範本測試，驗證守護員歡迎頁、指定管理員限制與無會員註冊流程。
+- [x] 執行第一課守護員歡迎頁與管理員 Claim 控制台改版後的 production build。
