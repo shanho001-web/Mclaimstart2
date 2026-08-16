@@ -180,3 +180,8 @@
 - [x] 在 Firebase 第 4 課加入 `firebaseConfig` 逐行拆解程式碼卡，標示每個欄位的用途與應保留的內容。
 - [x] 清楚標示 `firebaseConfig` 應貼入第 5 課的 index.html 和 dashboard.html，並區分公開網站設定與不可放入前端的 Service Account。
 - [x] 補強 firebaseConfig 程式碼卡的測試，並驗證手機版、型別檢查與正式建置。
+- [x] 補齊第 3 課 Vercel「找不到 welcome-site」時的 GitHub Settings → Applications → Vercel application → Configure → Only select repositories → welcome-site 授權流程。
+- [x] 重寫 Firebase 開場為「邀請朋友到家吃飯，客廳可歡迎、重要物品需鎖進房間」的自然安全邏輯。
+- [x] 將第 4 課 Firebase 收窄為安全概念與第 5 課實作預覽，不要求在此課實際開 Console 或貼程式碼。
+- [x] 將 Firebase Project、Web app、firebaseConfig、管理員帳戶、Firestore、Storage、Rules 的完整正式操作移至第 5 課 Claim 實作台。
+- [x] 補強跨第 3、4、5 課教學分工的測試，並驗證手機版、型別與正式建置。
