@@ -1,6 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
-import { FirebaseConfigBreakdown, FirebaseProcessFlow, FirebaseSecurityPrimer, GithubProcessFlow, ToolLessonOpening, VercelProcessFlow, firebaseConfigLines, firebaseWelcomeMessage } from "./ToolGuides";
+import { FirebaseConfigBreakdown, FirebaseProcessFlow, FirebaseSecurityPrimer, GithubProcessFlow, ToolLessonOpening, VercelProcessFlow, firebaseConfigLines, firebaseWelcomeMessage, guides } from "./ToolGuides";
 
 describe("tool process diagrams", () => {
   it("renders a visibly connected icon flow for GitHub, Vercel, and Firebase", () => {
@@ -25,6 +25,22 @@ describe("tool lesson opening", () => {
       expect(markup).toContain(`第一次用 ${tool}，網站設計像迷宮？`);
       expect(markup).toContain("4 個步驟即時學識。");
     });
+  });
+});
+
+describe("same-place operation cards", () => {
+  it("keeps GitHub repository fields and Vercel New Project import work in single continuous cards", () => {
+    const github = guides.find((guide) => guide.id === "github")!;
+    const vercel = guides.find((guide) => guide.id === "vercel")!;
+
+    expect(github.steps).toHaveLength(3);
+    expect(github.steps[1].where).toContain("Create a new repository 表格");
+    expect(github.steps[1].actions).toContain("向下到 Visibility，選 Private");
+
+    expect(vercel.steps).toHaveLength(4);
+    expect(vercel.steps[1].where).toContain("Import Git Repository");
+    expect(vercel.steps[1].actions).toContain("按 Add New → Project，等 Import Git Repository 清單出現");
+    expect(vercel.steps[1].actions).toContain("回剛才的 Vercel New Project 頁重新整理；welcome-site 出現後按 Import");
   });
 });
 

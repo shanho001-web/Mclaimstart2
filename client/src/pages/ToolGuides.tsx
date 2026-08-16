@@ -120,7 +120,7 @@ function ToolMascot({ src, alt }: { src: string; alt: string }) {
   return <img ref={ref} className="tool-mascot-pop" src={src} alt={alt} />;
 }
 
-const guides: ToolGuide[] = [
+export const guides: ToolGuide[] = [
   {
     id: "github",
     lesson: 2,
@@ -136,18 +136,12 @@ const guides: ToolGuide[] = [
         result: "頭像旁的小選單會出現 New repository。",
       },
       {
-        title: "現在：建立空 repository",
-        where: "+ 小選單 → New repository",
-        actions: ["按 New repository", "Owner 保留自己的帳戶", "在 Repository name 輸入名稱"],
-        fill: "Repository name：welcome-site",
-        result: "你會停留在 Create a new repository 表格。",
-        tip: "這個名稱會成為網址的一部分：github.com/你的帳戶/welcome-site。",
-      },
-      {
-        title: "現在：設為 Private，再建立",
-        where: "Create a new repository 表格 → Visibility",
-        actions: ["選 Private", "README、.gitignore template、License 三項保持不勾選", "按綠色 Create repository"],
+        title: "現在：在同一張表格建立 Private repository",
+        where: "+ 小選單 → New repository → Create a new repository 表格",
+        actions: ["按 New repository", "Owner 保留自己的帳戶", "在 Repository name 輸入 welcome-site", "向下到 Visibility，選 Private", "README、.gitignore template、License 三項保持不勾選", "按綠色 Create repository"],
+        fill: "Repository name：welcome-site；Visibility：Private",
         result: "畫面進入 Quick setup，代表空 repository 已建立。",
+        tip: "名稱會成為網址的一部分：github.com/你的帳戶/welcome-site。所有設定都在同一張表格完成，不用轉畫面。",
       },
       {
         title: "現在：從 VS Code 上載三個檔案",
@@ -239,15 +233,9 @@ const guides: ToolGuide[] = [
         result: "你已進入 Vercel Dashboard，現在才可以建立部署 Project。",
       },
       {
-        title: "現在：開一個 Vercel Project",
-        where: "Vercel Dashboard → 右上角 Add New → Project",
-        actions: ["按 Add New", "選 Project", "等畫面開啟 Import Git Repository"],
-        result: "畫面顯示 Import Git Repository 清單。",
-      },
-      {
-        title: "現在：找到 welcome-site；沒有就先授權 Vercel application",
-        where: "New Project → Import Git Repository",
-        actions: ["先在 Import Git Repository 清單找 welcome-site；看見才按同一行 Import", "清單沒有 welcome-site 時，先不要重新建立 repository；這通常代表 GitHub 還未授權 Vercel application 看這個檔案", "另開 GitHub → 右上角頭像 → Settings → Applications → 找 Vercel application → Configure", "在 Repository access 選 Only select repositories，展開清單後選 welcome-site", "按 Save／Update，回 Vercel New Project 重新整理；welcome-site 出現後按 Import"],
+        title: "現在：開 New Project，直接找到 welcome-site",
+        where: "Vercel Dashboard → 右上角 Add New → Project → Import Git Repository",
+        actions: ["按 Add New → Project，等 Import Git Repository 清單出現", "在清單找 welcome-site；看見就按同一行 Import", "如果清單沒有 welcome-site，不要重新建立 repository；保持這頁開著，另開 GitHub", "GitHub → 右上角頭像 → Settings → Applications → Vercel application → Configure", "在 Repository access 選 Only select repositories，展開清單後選 welcome-site → Save／Update", "回剛才的 Vercel New Project 頁重新整理；welcome-site 出現後按 Import"],
         result: "Vercel Import Git Repository 清單出現 welcome-site；按 Import 後畫面進入 Configure Project。",
         tip: "只選 welcome-site 已足夠，毋須讓 Vercel 讀取所有 GitHub repositories。若 GitHub 畫面把 Vercel 放在 Installed GitHub Apps，進入後同樣按 Configure，再選 Only select repositories。",
       },
