@@ -5,9 +5,9 @@
 import { Check, Clipboard, Code2 } from "lucide-react";
 import { useState } from "react";
 
-type Props = { code: string; fileName: string };
+type Props = { code: string; fileName: string; tone?: "mac" | "windows" };
 
-export function CodeBlock({ code, fileName }: Props) {
+export function CodeBlock({ code, fileName, tone }: Props) {
   const [copied, setCopied] = useState(false);
 
   async function copyCode() {
@@ -17,7 +17,7 @@ export function CodeBlock({ code, fileName }: Props) {
   }
 
   return (
-    <section className="code-shell" aria-label={`${fileName} 程式碼`}>
+    <section className={`code-shell${tone ? ` system-code ${tone}-code` : ""}`} aria-label={`${fileName} 程式碼`}>
       <div className="code-topbar">
         <div className="file-chip"><Code2 size={15} /> {fileName}</div>
         <button className={copied ? "copy-button copied" : "copy-button"} onClick={copyCode}>
