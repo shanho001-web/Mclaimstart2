@@ -11,10 +11,11 @@ const mobileHeroUrl = "/images/guardian-welcome-mobile.png";
 const modelDownloadUrl = "/images/guardian-download.webp";
 const modelFolderOpenUrl = "/images/guardian-folder-open.webp";
 const modelCodeUrl = "/images/guardian-code-fit.webp";
+const modelIdeaUrl = "/images/guardian-idea.png";
 const codeNames = { macFiles:"VS Code 下方的黑色 Terminal（macOS）", windowsFiles:"VS Code 下方的黑色 Terminal（Windows）", indexHtml:"VS Code 左側的 index.html", styleCss:"VS Code 左側的 style.css", scriptJs:"VS Code 左側的 script.js", gitPush:"VS Code 下方的黑色 Terminal", gitUpdate:"VS Code 下方的黑色 Terminal" };
 const actionArt = [modelDownloadUrl, modelFolderOpenUrl, modelFolderOpenUrl, modelCodeUrl, modelCodeUrl, modelFolderOpenUrl, modelCodeUrl, modelDownloadUrl];
 const partBreaks = [
-  { art: modelCodeUrl, label:"", title:"把三張網站零件砌進主頁", note:"" },
+  { art: modelIdeaUrl, label:"", title:"把三張網站零件砌進主頁", note:"" },
 ];
 
 function Visual({ guide, index }: { guide: Guide; index: number }) {

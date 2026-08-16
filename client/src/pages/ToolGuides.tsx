@@ -7,9 +7,9 @@ import { LessonCopyGuide, type LessonCopyGuideData } from "@/components/LessonCo
 import { codeTemplates } from "@/data/course";
 import type { LessonNumber } from "@/data/lessons";
 
-const githubMascotUrl = "/images/guardian-folder-open.webp";
-const firebaseMascotUrl = "/images/guardian-code-fit.webp";
-const vercelMascotUrl = "/images/guardian-launch.webp";
+const githubMascotUrl = "/images/guardian-inspector.png";
+const firebaseMascotUrl = "/images/guardian-shield.png";
+const vercelMascotUrl = "/images/guardian-celebrate.png";
 
 type TaskStep = {
   title: string;
