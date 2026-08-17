@@ -592,3 +592,15 @@ body{background:#fff}
 /* 課5 頂圖改 inspector（正方形）→ contain 完整顯示 */
 .claim-hero-image{max-width:560px!important;background:#fff!important}
 .claim-hero-image img{max-height:420px!important;object-fit:contain!important}
+
+/* ===== UI 微調 v7 ===== */
+/* 課1 hero-speech 字體與課2「認識X」一致：Noto Sans TC、900、負字距、clamp size */
+.scroll-course .hero-speech b{font-family:"Noto Sans TC","PingFang TC",sans-serif!important;font-size:clamp(14px,1.6vw,18px)!important;color:#173f6c!important;font-weight:900!important;letter-spacing:.02em!important}
+.scroll-course .hero-speech span{font-family:"Noto Sans TC","PingFang TC",sans-serif!important;font-size:clamp(34px,4.5vw,52px)!important;line-height:1.05!important;letter-spacing:-.09em!important;color:#102a43!important;font-weight:900!important}
+
+/* 課5 副標 point size 與課2副標一致（12px） */
+.claim-page-title p{font-size:12px!important;font-weight:500!important;color:#7a8fa3!important}
+
+/* 課5 頂圖退地：移除米色底與外框，圖透明浮起 */
+.claim-hero-image{background:transparent!important;border:none!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important}
+.claim-hero-image img{filter:drop-shadow(0 14px 14px #173f6c22)!important}
