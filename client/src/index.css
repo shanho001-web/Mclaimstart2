@@ -392,7 +392,7 @@ body{background:#fff}
 /* ===== 留白空間修訂（ui-aesthetic-review：macro/micro whitespace + 8px 間距系統 + Gestalt 50% 規則）===== */
 
 /* Macro：章節間呼吸 64–96px（理論：SaaS/教學頁 section gap 64–96px） */
-.scroll-course .course-part{margin-top:96px!important}
+.scroll-course .part-block + .part-block .course-part{margin-top:96px!important}
 .scroll-course .course-part:first-child{margin-top:0!important}
 .scroll-course .part-break{margin-top:64px!important;margin-bottom:64px!important}
 .scroll-course .next-kit{margin-top:96px!important}
