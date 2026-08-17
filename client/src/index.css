@@ -787,3 +787,13 @@ body{background:#fff}
 
 /* ===== 課1 頂圖放大 15% ===== */
 .scroll-course .full-hero-art{transform:scale(1.15)}
+
+/* ===== 課5 移除右邊藍色條 + 手機顯示 PDF 按鈕 ===== */
+.kit-page .kit-section{background:transparent!important}
+@media(max-width:800px){
+  .header-course-links .header-jump.roadmap-download{display:inline-flex!important;align-items:center!important}
+}
+@media(max-width:480px){
+  .header-course-links .header-next-kit{display:none!important}
+  .header-course-links .header-jump.roadmap-download{font-size:10px!important;padding:5px 8px!important}
+}
