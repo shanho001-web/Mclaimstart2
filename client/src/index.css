@@ -830,3 +830,6 @@ body{background:#fff}
 .live-popup-sound{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#f4a340;color:#5a3500;border:0;border-radius:10px 16px 10px 16px;padding:13px 22px;font-size:15px;font-weight:900;cursor:pointer;box-shadow:0 8px 20px #0006;z-index:2;white-space:nowrap}
 .live-popup-sound:hover{background:#e79b20}
 @media(max-width:700px){.live-popup-sound{font-size:13px;padding:11px 16px}}
+
+/* ===== 課4 HOME LIVE B 影片（取代 living-room 圖） ===== */
+video.firebase-living-room{background:#102a43;aspect-ratio:16/9;object-fit:cover}
