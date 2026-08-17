@@ -776,3 +776,6 @@ body{background:#fff}
 @media(max-width:700px){
   .scroll-course .full-hero{height:640px!important;max-height:640px!important;min-height:640px!important}
 }
+
+/* ===== logo-transparent 移除暗影 ===== */
+.scroll-course .model-action-sticker[src*="logo-transparent"]{filter:none!important;box-shadow:none!important}
