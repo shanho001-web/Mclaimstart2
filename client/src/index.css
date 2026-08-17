@@ -675,9 +675,9 @@ body{background:#fff}
 }
 
 /* ===== 課1 對話框位置：左移兩個大字＋下移一行 ===== */
-.scroll-course .hero-speech{left:calc(50% - 140px)!important;top:calc(9% + 84px)!important}
+.scroll-course .hero-speech{left:calc(50% - 140px)!important;top:calc(9% + 84px + 54px)!important}
 @media(max-width:700px){
-  .scroll-course .hero-speech{left:calc(50% - 70px)!important;top:calc(28px + 42px)!important}
+  .scroll-course .hero-speech{left:calc(50% - 70px)!important;top:calc(28px + 42px + 54px)!important}
 }
 
 /* ===== 手機 code 卡溢出修復：pre 限寬容器內捲動（課2-5） ===== */
