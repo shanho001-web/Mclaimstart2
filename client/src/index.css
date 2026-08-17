@@ -770,3 +770,9 @@ body{background:#fff}
   .scroll-course .part-break h2{font-size:30px!important}
   .scroll-course .part-break img{width:min(70vw,240px)!important;max-height:220px!important}
 }
+
+/* ===== 課1 hero 高度覆蓋（v2）：蓋過 height:calc(100vh-76px) ===== */
+.scroll-course .full-hero{height:720px!important;max-height:720px!important;min-height:720px!important}
+@media(max-width:700px){
+  .scroll-course .full-hero{height:640px!important;max-height:640px!important;min-height:640px!important}
+}
