@@ -469,3 +469,25 @@ body{background:#fff}
 .tool-intro-card .tool-intro-trick{border-left:4px solid #f4a340;background:#fff9ec}
 .tool-intro-card .tool-intro-trick b{background:#f4a340;color:#5a3500}
 @media(max-width:700px){.tool-intro-card{grid-template-columns:1fr;gap:10px}.tool-intro-card>div{padding:13px 14px}}
+
+/* ===== 第 5 課 UI 統一（以第 2-4 課 tool-title 為標準）===== */
+/* 移除 section 左側的 PART 編號方塊與虛線 */
+.kit-section:before{display:none!important}
+.kit-section:after{display:none!important}
+/* 移除 section-tab 後的 ASSEMBLY 小標 */
+.kit-section .section-tab:after{content:""!important}
+/* 第 5 課頂部大標題（對應第 2-4 課 .tool-title） */
+.claim-page-title{display:flex;gap:15px;align-items:flex-start;margin:0 0 22px;padding:0 0 20px;border-bottom:1px dashed #b8d0e3}
+.claim-page-title>span{display:grid;place-items:center;flex:none;width:48px;height:48px;background:#f4a340;color:#5a3500;border-radius:7px 14px 7px 14px;font:900 17px "JetBrains Mono",monospace;box-shadow:5px 5px 0 #e79b20}
+.claim-page-title p{margin:0;color:#2e73c8;font:800 10px "JetBrains Mono",monospace;letter-spacing:.1em}
+.claim-page-title h2{font-size:clamp(26px,3.5vw,45px);letter-spacing:-.06em;line-height:1.17;margin:5px 0}
+.claim-page-title span.small{width:auto;height:auto;background:transparent!important;color:#f09b27!important;box-shadow:none!important;border-radius:0!important;font-size:30px!important;line-height:1!important;padding-top:2px!important}
+@media(max-width:700px){.claim-page-title{gap:12px}.claim-page-title>span{width:40px;height:40px;font-size:14px}}
+
+/* 第 5 課：三個檔案角色列表（取代擠在一起的長段） */
+.file-role-list{display:grid;gap:10px;margin:16px 0 18px;max-width:760px}
+.file-role-list>div{display:grid;grid-template-columns:150px 1fr;gap:12px;align-items:center;padding:12px 16px;background:#fff;border:1px solid #d9e6ee;border-left:4px solid #2e73c8;border-radius:0 10px 0 10px}
+.file-role-list b{font:800 13px "JetBrains Mono",monospace;color:#173a5b}
+.file-role-list span{color:#315876;font-size:13px;line-height:1.65}
+.file-role-list em{display:block;color:#2e73c8;font-style:normal;font-weight:800;font-size:12px;margin-top:3px}
+@media(max-width:700px){.file-role-list>div{grid-template-columns:1fr;gap:5px}.file-role-list b{font-size:12px}}
