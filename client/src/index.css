@@ -366,3 +366,25 @@ body{background:#fff}
 .code-tab.tone-firestore.active{background:#2e73c8;color:#fff}
 .code-tab.tone-storage{border-color:#19824c;color:#187243;background:#eef9f2}
 .code-tab.tone-storage.active{background:#19824c;color:#fff}
+
+/* 第 5 課：Firebase Console 樹狀路徑排版 */
+.firebase-tree{list-style:none!important;margin:0!important;padding:0!important;font-family:"JetBrains Mono",monospace}
+.firebase-tree ol{list-style:none!important;margin:0!important;padding:0 0 0 22px!important;border-left:1px dashed #9fc2df}
+.firebase-tree li{position:relative;margin:6px 0!important;padding-left:8px!important}
+.firebase-tree li:before{content:"├";position:absolute;left:-20px;color:#9fc2df;font-weight:700}
+.firebase-tree li:last-child:before{content:"└"}
+.tree-dir{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;background:#102a43;color:#dcecff;border-radius:5px 9px 5px 9px;font-size:12px;font-weight:800;letter-spacing:.03em}
+.tree-dir:before{content:"▸";color:#f4a340;font-size:10px}
+.firebase-tree li.tree-field{background:#fff9ec;border:1px dashed #f4a340;border-radius:0 8px 0 8px;padding:6px 10px!important;margin:4px 0!important}
+.firebase-tree li.tree-field:before{color:#f4a340}
+.firebase-tree li.tree-field span{color:#6d4a0e;font-size:12px;font-weight:800;font-family:"Noto Sans TC",sans-serif}
+@media(max-width:700px){.firebase-tree ol{padding-left:16px!important}.tree-dir{font-size:11px;padding:3px 8px}}
+
+/* 第 4 課：官方確認的安全重點（fact-check 簡化） */
+.firebase-factcheck{margin:22px auto 6px;max-width:820px;padding:16px 18px;background:#eef9f2;border:1px dashed #7dc79b;border-radius:0 14px 0 14px}
+.firebase-factcheck-label{display:inline-block;margin:0 0 10px;padding:4px 10px;background:#19824c;color:#fff;font-weight:900;font-size:12px;border-radius:6px}
+.firebase-factcheck ol{margin:0;padding-left:22px;display:grid;gap:8px}
+.firebase-factcheck li{color:#2c5d42;font-size:13px;line-height:1.7}
+.firebase-factcheck li b{color:#187243}
+.firebase-factcheck code{padding:1px 5px;background:#fff;border:1px solid #b7ddc6;border-radius:4px;font:800 11px "JetBrains Mono",monospace;color:#187243}
+@media(max-width:700px){.firebase-factcheck{padding:14px}.firebase-factcheck li{font-size:12px}}

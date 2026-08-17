@@ -101,6 +101,7 @@ export function FirebaseSecurityPrimer() {
       <div className="security-zone protected-zone"><small>受保護區</small><b>管理員、Claims、收據</b><p>Firebase 會按 Authentication 和 Rules 判斷是否准許存取。</p></div>
     </div>
     <div className="security-principle-grid">{firebaseSecurityPrinciples.map((item, index) => <article key={item.name}><span>0{index + 1}</span><div><b>{item.name}</b><p>{item.summary}</p></div></article>)}</div>
+    <div className="firebase-factcheck" aria-label="官方確認的安全重點"><p className="firebase-factcheck-label">✓ 這些不是廣告，是 Google 官方文件確認的</p><ol><li><b>每個請求都會被規則擋下</b>：Firestore 官方文件寫明「每一個來自 Web 的請求，在讀寫任何資料前都會先經 Security Rules 評估」。</li><li><b>檔按 UID 分開</b>：Storage 規則可用 <code>request.auth.uid</code> 確保每個人只能碰自己的收據。</li><li><b>登入憑證可驗證</b>：登入 token 有官方簽章，伺服器可驗證真偽，冒名頂替會被拒。</li><li><b>App Check 擋機器人</b>：官方提供的 App Check 可驗證請求來自合法 app／瀏覽器，拒絕自動化腳本。</li></ol></div>
     <p className="security-flow-bridge"><b>第 5 課再實作：</b>建立 Firebase Project 和 Web app、啟用登入、建立唯一管理員，再把 Firestore 和 Storage 的 Rules 發佈。前端畫面被修改並不會取代 Firebase 伺服器端規則。</p>
   </section></section>;
 }
