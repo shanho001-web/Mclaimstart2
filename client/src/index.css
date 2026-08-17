@@ -560,3 +560,15 @@ body{background:#fff}
 
 /* ③ 副標題行距貼近標題 */
 .tool-title-big p,.claim-page-title p{margin-top:4px!important;line-height:1.4!important}
+
+/* ===== 認識 X 標題：深藍漸變藍 ===== */
+.tools-page .tool-title-big h2,.claim-page-title h2{
+  background:linear-gradient(135deg,#102a43 0%,#2e73c8 55%,#4a9ee8 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  color:transparent!important;
+  padding-bottom:.05em!important;
+}
+/* 確保漸層在 Safari/Chrome 都生效 */
+.tools-page .tool-title-big h2,.claim-page-title h2{color:transparent!important}
