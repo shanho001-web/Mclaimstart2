@@ -740,3 +740,18 @@ body{background:#fff}
 @media(max-width:700px){
   .kit-footer a{min-height:44px!important;display:inline-flex!important;align-items:center!important;padding:8px 10px!important}
 }
+
+/* ===== 課1 UI 審核修正（無效留白，4 項） ===== */
+/* ① part-break 緊湊化：548px → 340px */
+.scroll-course .part-break{min-height:340px!important;padding:36px 7vw!important}
+.scroll-course .part-break img{height:clamp(220px,28vh,280px)!important;max-height:280px!important;width:auto!important}
+/* ② 開場白與 hero 分離：加 24px 間距 */
+.course-opening-note{margin-top:24px!important}
+/* ③ part1 頂部留白 96px → 64px */
+.scroll-course .course-part{padding-top:64px!important}
+/* ④ hero 縮高：824px → 720px */
+.scroll-course .full-hero{min-height:720px!important}
+@media(max-width:700px){
+  .scroll-course .part-break{min-height:400px!important;padding:28px 22px!important}
+  .scroll-course .part-break img{height:250px!important;max-height:250px!important}
+}
