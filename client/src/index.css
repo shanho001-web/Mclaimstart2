@@ -820,3 +820,8 @@ body{background:#fff}
 .live-replay:hover{background:#255fa8!important}
 @media(max-width:800px){.header-course-links .header-jump.live-replay{display:inline-flex!important;align-items:center!important}}
 @media(max-width:480px){.header-course-links .header-jump.live-replay{font-size:10px!important;padding:5px 8px!important}}
+
+/* ===== 課5 路徑文字手機折行（長英文字串處理） ===== */
+@media(max-width:700px){
+  .kit-section .admin-setup-quick h3{font-size:16px!important;word-break:break-all!important;overflow-wrap:anywhere!important;line-height:1.55!important}
+}
