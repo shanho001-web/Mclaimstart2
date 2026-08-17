@@ -724,3 +724,14 @@ body{background:#fff}
   .course-opening-note{margin:0 0 14px;padding:13px 15px}
   .claim-hero-caption{font-size:13px}
 }
+
+/* ===== 手機空間除錯 v1：課2-5 觸控目標加大（M5） ===== */
+@media(max-width:700px){
+  /* code 標籤按鈕 17px → 44px 觸控 */
+  .code-tab{min-height:44px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:11px 14px!important}
+  /* header 導覽連結加大 */
+  .kit-header nav a{min-height:44px!important;display:inline-flex!important;align-items:center!important}
+  .kit-brand{min-height:44px!important;display:flex!important;align-items:center!important}
+  /* 課4「前往第 5 課」按鈕 */
+  .firebase-next-preview a{min-height:44px!important;display:inline-flex!important;align-items:center!important}
+}
