@@ -563,7 +563,7 @@ body{background:#fff}
 
 /* ===== 認識 X 標題：深藍漸變藍 ===== */
 .tools-page .tool-title-big h2,.claim-page-title h2{
-  background:linear-gradient(135deg,#102a43 0%,#2e73c8 55%,#4a9ee8 100%)!important;
+  background:linear-gradient(135deg,#102a43 0%,#2e73c8 62%,#3683d8 100%)!important;
   -webkit-background-clip:text!important;
   background-clip:text!important;
   -webkit-text-fill-color:transparent!important;
@@ -658,7 +658,7 @@ body{background:#fff}
 .scroll-course .hero-speech{text-align:left!important}
 .scroll-course .hero-speech span{
   display:block!important;
-  background:linear-gradient(135deg,#102a43 0%,#2e73c8 55%,#4a9ee8 100%)!important;
+  background:linear-gradient(135deg,#102a43 0%,#2e73c8 62%,#3683d8 100%)!important;
   -webkit-background-clip:text!important;
   background-clip:text!important;
   -webkit-text-fill-color:transparent!important;
@@ -678,4 +678,11 @@ body{background:#fff}
 .scroll-course .hero-speech{left:calc(50% - 140px)!important;top:calc(9% + 84px)!important}
 @media(max-width:700px){
   .scroll-course .hero-speech{left:calc(50% - 70px)!important;top:calc(28px + 42px)!important}
+}
+
+/* ===== 手機 code 卡溢出修復：pre 限寬容器內捲動（課2-5） ===== */
+.tools-page .code-shell,.scroll-course .code-shell,.kit-section .code-shell{max-width:100%!important;overflow:hidden!important}
+.tools-page .code-shell pre,.scroll-course .code-shell pre,.kit-section .code-shell pre{max-width:100%!important;box-sizing:border-box!important;overflow-x:auto!important}
+@media(max-width:700px){
+  .tools-page .code-shell,.scroll-course .code-shell,.kit-section .code-shell{margin-left:0!important;margin-right:0!important}
 }
