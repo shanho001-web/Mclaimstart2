@@ -653,3 +653,20 @@ body{background:#fff}
   .task-unit-head h3,.code-pack-copy h3,.firebase-next-preview h3{font-size:22px!important}
   .kit-section .console-steps h3,.kit-section .admin-setup-quick h3{font-size:19px!important}
 }
+
+/* ===== 課1 hero-speech 對齊課2「認識 X」標題：漸層藍＋字級放大 ===== */
+.scroll-course .hero-speech span{
+  background:linear-gradient(135deg,#102a43 0%,#2e73c8 55%,#4a9ee8 100%)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  color:transparent!important;
+  font-size:clamp(52px,7vw,96px)!important;
+  letter-spacing:-.09em!important;
+  line-height:1.05!important;
+}
+.scroll-course .hero-speech b{color:#5a7185!important}
+@media(max-width:700px){
+  .scroll-course .hero-speech span{font-size:34px!important}
+  .scroll-course .hero-speech b{font-size:16px!important}
+}
