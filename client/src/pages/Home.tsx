@@ -1,4 +1,5 @@
 /** Design philosophy: Friendly model workbench — clear route-first action cards with pop-out guardian stickers. */
+import { useEffect, useState } from "react";
 import { CheckCircle2, ExternalLink } from "lucide-react";
 import { CodeBlock } from "@/components/CodeBlock";
 import { CourseNav, LessonPager } from "@/components/KitHeader";
@@ -37,7 +38,15 @@ function ActionCard({ guide, sequence }: { guide: Guide; sequence: number }) {
 }
 
 export default function Home() {
+  const [showLive, setShowLive] = useState(true);
   return <div className="app-shell scroll-course">
+    {showLive && <div className="live-popup" onClick={() => setShowLive(false)}>
+      <div className="live-popup-card" onClick={(e) => e.stopPropagation()}>
+        <button className="live-popup-close" onClick={() => setShowLive(false)} aria-label="關閉影片">✕</button>
+        <video src="/images/home-live.mp4" autoPlay muted loop controls playsInline />
+        <p>HOME LIVE · 小守護員歡迎你</p>
+      </div>
+    </div>}
     <header className="site-header"><a href="#top" className="brand"><img src={logoUrl} alt="網站模型設計圖圖標"/><span><b>網站模型設計圖</b><small>5 LESSON COURSE</small></span></a><div className="header-course-links"><a className="header-jump" href="#part-01">第 1 課：首次發布 ↓</a><a className="header-jump roadmap-download" href="/images/Gemini_Generated_Image_n26u4on26u4on26u.jpeg" target="_blank" rel="noreferrer">⬇ 路線圖</a><a className="header-next-kit" href="/member-guide">管理員指南 →</a></div></header>
     <CourseNav active={1} firstHref="#part-01"/>
     <div className="assembly-progress" aria-label="第一模型盒組裝進度"><span>模型進度</span><b>1</b><i/><b>2</b><i/><b>3</b><i/><b>4</b><i/><b>5</b><small>由 Folder 到網址</small></div>

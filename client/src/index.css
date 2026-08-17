@@ -800,3 +800,17 @@ body{background:#fff}
 
 /* ===== 課1 頂圖移除動畫 ===== */
 .scroll-course .full-hero-art,.scroll-course .hero-guardian{animation:none!important}
+
+/* ===== HOME LIVE POP UP（進入網站跳出） ===== */
+.live-popup{position:fixed;inset:0;z-index:1000;background:#102a43cc;backdrop-filter:blur(3px);display:grid;place-items:center;padding:20px}
+.live-popup-card{position:relative;max-width:660px;width:100%;background:#fff;border-radius:0 20px 0 20px;padding:14px;box-shadow:0 26px 60px #0009;animation:live-pop-in .32s cubic-bezier(.23,1,.32,1)}
+@keyframes live-pop-in{from{transform:scale(.92) translateY(14px);opacity:0}to{transform:none;opacity:1}}
+.live-popup-card video{width:100%;display:block;border-radius:0 13px 0 13px;background:#000}
+.live-popup-close{position:absolute;top:-16px;right:-16px;width:42px;height:42px;border-radius:50%;background:#f4a340;color:#5a3500;border:0;font-size:17px;font-weight:900;cursor:pointer;box-shadow:0 5px 12px #0006;display:grid;place-items:center}
+.live-popup-close:hover{background:#e79b20}
+.live-popup-card p{margin:11px 0 2px;text-align:center;color:#315876;font-weight:800;font-size:13px;letter-spacing:.05em}
+@media(max-width:700px){
+  .live-popup{padding:12px}
+  .live-popup-card{padding:10px}
+  .live-popup-close{top:-12px;right:-12px;width:38px;height:38px}
+}
