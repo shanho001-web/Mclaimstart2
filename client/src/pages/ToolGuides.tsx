@@ -44,6 +44,7 @@ type ToolGuide = {
   steps: TaskStep[];
   mascot: { src: string; alt: string };
   finishArt?: { src: string; alt: string };
+  toolIntro?: { name: string; what: string; trick: string };
   completion?: string;
 };
 
@@ -94,7 +95,7 @@ export function FirebaseProcessFlow() {
 
 export function FirebaseSecurityPrimer() {
   return <section className="firebase-opening" aria-labelledby="firebase-welcome-title"><div className="firebase-welcome-copy"><p><Lock size={16}/>{firebaseWelcomeMessage.eyebrow}</p><h1 id="firebase-welcome-title">{firebaseWelcomeMessage.title}<em>{firebaseWelcomeMessage.emphasis}</em></h1><span>請朋友到家吃飯，客廳可以讓大家自在進出；但收據、管理員帳戶和資料權限，就像重要物品，應該鎖進房間。</span></div><aside className="firebase-danger-warning" aria-label="不設防的危險警告"><p className="firebase-danger-label">⚠ 先看危險：不設定後端的後果</p><ol><li><b>任何人都能讀取所有 Claim 和收據</b>：Firebase 預設測試模式開放讀寫，知道網址的人就能拉走整份資料。</li><li><b>任何人都能竄改或刪除資料</b>：不只偷看，還能改金額、刪記錄、上載假收據。</li><li><b>管理員帳戶形同虛設</b>：登入畫面可以造假，沒有伺服器規則把關，會員自稱管理員也攔不住。</li></ol><p className="firebase-danger-why">所以這課不是「加分題」：Firebase 的 Authentication、Firestore Rules、Storage Rules 三道防線，是讓「只有你」能碰資料的必要設定，不是可選的美化。</p></aside><section className="firebase-security-brief" aria-labelledby="firebase-security-title">
-    <div className="firebase-security-heading"><span><ShieldCheck size={16}/> 第 4 課先看安全概念</span><h2 id="firebase-security-title">公開網站，<em>不等於公開資料。</em></h2><p>畫面和網站程式碼可以公開；每次需要登入、讀取 Claim 或接觸收據時，Firebase 才根據身分和 Rules 判斷是否准許。第 5 課會帶你逐步完成實作。</p></div>
+    <div className="firebase-security-heading"><span><ShieldCheck size={16}/> 第 4 課先看安全概念</span><h2 id="firebase-security-title">公開網站，<em>不等於公開資料。</em></h2><p>畫面和網站程式碼可以公開；每次需要登入、讀取不公開資料時，Firebase 才根據身分和 Rules 判斷是否准許。記住：成功建立網址，就等於屋企家門打開 — 所以記得鎖好貴重物品（管理員帳戶、Claims、收據）。第 5 課會帶你逐步完成實作。</p></div>
     <div className="security-boundary" aria-label="公開畫面與受保護資料的分界">
       <div className="security-zone public-zone"><small>公開區</small><b>歡迎頁、登入畫面</b><p>任何人都可以看見畫面與網站程式碼。</p></div>
       <div className="security-divider"><span>登入後的每次請求</span><ShieldCheck size={20}/></div>
@@ -149,6 +150,7 @@ export const guides: ToolGuide[] = [
       transition: "GitHub 只負責保存程式碼和版本。Vercel 發出網址會在下一課處理；現在先由下列三步把本機檔案安全保存起來。",
     },
     view: <GithubProcessFlow />,
+    toolIntro: { name: "GitHub", what: "GitHub 是一個放程式碼的雲端倉庫：把檔案存上去，就能保存每個版本、隨時回到舊版，也能和別人協作。", trick: "絕招：每次改動都有「時間機」— 改壞了可以回到任何之前的版本，不用怕弄壞。" },
     steps: [
       {
         title: "登入 GitHub",
@@ -170,12 +172,12 @@ export const guides: ToolGuide[] = [
         actions: ["按下方 code 卡的「複製 code」", "先開一個文字檔改好再貼：VS Code 上方 File → New File（或按 Ctrl/Cmd + N）開新檔，把 code 貼進去，再把三處 YOUR_ 改成自己的資料：YOUR NAME 填你的名字、YOUR_EMAIL 填你的電郵、網址裡的 YOUR_GITHUB_NAME 填你的 GitHub 帳戶名（就是 github.com/你的帳戶名/welcome-site 中間那段）", "改好後整段複製，回 VS Code → welcome-site → 下方黑色 Terminal 貼上，再按 Enter 執行；第一次若開瀏覽器登入 GitHub，跟畫面完成登入"],
         code: codeTemplates.gitPush,
         result: "回 GitHub 重新整理後，會看到 index.html、style.css、script.js 和最新 commit。",
-        tip: "GitHub 密碼只在 GitHub 的登入畫面輸入；不要貼進 Terminal 或公開筆記。如果出現 repository not found，代表網址裡的 YOUR_GITHUB_NAME 未改成自己的帳戶名；改好後重新貼一次。",
+        tip: "Terminal 每行成功會出現綠色剔號或亮燈（如 ✓、main、->），代表該指令通過；若出現紅色 error 或叉號，代表該行有問題，把錯誤貼回給人檢查。commit -m \"第一個小守護員主頁\" 的引號內是「這個版本的儲存名」，可自行改成任何名字（例如「歡迎頁完成」），它只是方便你日後認得這個版本。GitHub 密碼只在 GitHub 的登入畫面輸入；不要貼進 Terminal 或公開筆記。如果出現 repository not found，代表網址裡的 YOUR_GITHUB_NAME 未改成自己的帳戶名；改好後重新貼一次。",
       },
     ],
     mascot: { src: githubMascotUrl, alt: "小守護員正在把網站檔案收進 GitHub repository" },
     finishArt: { src: "/images/guardian-folder-open.webp", alt: "小守護員完成檔案上載" },
-    completion: "好喇，已經成功擺上雲端，你已係半個程式開發員。",
+    completion: "好喇，已經成功擺上雲端，你已經識流行的專業上載手法。",
   },
   {
     id: "firebase",
@@ -194,6 +196,7 @@ export const guides: ToolGuide[] = [
     intro: <FirebaseSecurityPrimer />,
     overview: <FirebaseLessonPreview />,
     view: <FirebaseProcessFlow />,
+    toolIntro: { name: "Firebase", what: "Firebase 是 Google 的雲端服務：負責管理誰能登入、儲存報帳資料和收據，並用規則決定誰可以碰甚麼。", trick: "絕招：所有檢查都在 Google 伺服器端執行 — 就算有人改瀏覽器畫面，也騙不過伺服器規則。" },
     steps: [
       {
         title: "認識公開與受保護的分界",
@@ -232,6 +235,7 @@ export const guides: ToolGuide[] = [
       transition: "這課不再上載檔案。只要 GitHub 的 welcome-site 已完成上一課，Vercel 就能讀取它；現在照四個畫面按即可。",
     },
     view: <VercelProcessFlow />,
+    toolIntro: { name: "Vercel", what: "Vercel 是把網站變成網址的發布服務：連上 GitHub 後，每次更新都會自動部署，給你一條可分享的 HTTPS 網址。", trick: "絕招：改完自動上線，還有 Preview 測試網址 — 先試玩確認沒問題，才更新正式網址。" },
     steps: [
       {
         title: "登入 Vercel",
@@ -287,7 +291,7 @@ export function ToolLessonOpening({ tool }: { tool: string }) {
 function ToolLesson({ id }: { id: ToolGuide["id"] }) {
   const guide = guides.find((item) => item.id === id)!;
   const copyGuide: LessonCopyGuideData = { subtitle: guide.article.subtitle, title: guide.article.heading, goal: guide.article.goal, flow: guide.article.flow, standard: guide.article.standard, transition: guide.article.transition };
-  return <div className="kit-page tools-page tool-lesson-page"><KitHeader active={guide.lesson} /><main className="tools-main"><LessonCopyGuide data={copyGuide}/>{guide.intro}<section className="tool-guide standalone-tool-guide" id={guide.id}><div className="tool-title"><span>0{guide.lesson}</span><div><p>{guide.tool} · 由上到下照順序做</p><h2>{guide.id === "firebase" ? "先記住這張安全地圖；第 5 課才開始按。" : "下面每張卡只做一件事。"}</h2></div></div><div className="tool-guide-hero"><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt} /></div><div className="tool-image">{guide.view}</div>{guide.overview}{guide.id !== "firebase" && <div className="task-unit-list">{guide.steps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div>}<div className="tool-result"><CheckCircle2 /><div><b>本課完成</b><p>{guide.completion || guide.article.standard}</p></div><ToolMascot src={(guide.finishArt || guide.mascot).src} alt={(guide.finishArt || guide.mascot).alt} /></div></section><LessonPager current={guide.lesson} /></main><KitFooter /></div>;
+  return <div className="kit-page tools-page tool-lesson-page"><KitHeader active={guide.lesson} /><main className="tools-main"><LessonCopyGuide data={copyGuide}/>{guide.intro}<section className="tool-guide standalone-tool-guide" id={guide.id}><div className="tool-title"><span>0{guide.lesson}</span><div><p>{guide.tool} · 由上到下照順序做</p><h2>{guide.id === "firebase" ? "先記住這張安全地圖；第 5 課才開始按。" : "下面每張卡只做一件事。"}</h2></div></div>{guide.toolIntro && <div className="tool-intro-card"><div><b>{guide.toolIntro.name} 是甚麼</b><p>{guide.toolIntro.what}</p></div><div className="tool-intro-trick"><b>☆ 絕招</b><p>{guide.toolIntro.trick}</p></div></div>}<div className="tool-guide-hero"><ToolMascot src={guide.mascot.src} alt={guide.mascot.alt} /></div><div className="tool-image">{guide.view}</div>{guide.overview}{guide.id !== "firebase" && <div className="task-unit-list">{guide.steps.map((step, index) => <TaskUnit key={step.title} step={step} number={index + 1} />)}</div>}<div className="tool-result"><CheckCircle2 /><div><b>本課完成</b><p>{guide.completion || guide.article.standard}</p></div><ToolMascot src={(guide.finishArt || guide.mascot).src} alt={(guide.finishArt || guide.mascot).alt} /></div></section><LessonPager current={guide.lesson} /></main><KitFooter /></div>;
 }
 
 export function GithubLesson() { return <ToolLesson id="github" />; }

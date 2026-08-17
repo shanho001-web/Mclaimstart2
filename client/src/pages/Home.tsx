@@ -1,7 +1,7 @@
 /** Design philosophy: Friendly model workbench — clear route-first action cards with pop-out guardian stickers. */
-import { ArrowRight, Bot, CheckCircle2, ExternalLink, TerminalSquare } from "lucide-react";
+import { CheckCircle2, ExternalLink } from "lucide-react";
 import { CodeBlock } from "@/components/CodeBlock";
-import { CourseNav } from "@/components/KitHeader";
+import { CourseNav, LessonPager } from "@/components/KitHeader";
 import { LessonCopyGuide } from "@/components/LessonCopyGuide";
 import { codeTemplates, homeLessonArticle, steps, type Guide } from "../data/course";
 
@@ -53,7 +53,7 @@ export default function Home() {
             </div></article>)}</div>
           </section>{partIndex < steps.length - 1 && <section className={`part-break part-break-${partIndex + 1}`}><img src={partBreaks[partIndex].art} alt={partBreaks[partIndex].title}/><div>{partBreaks[partIndex].label && <p>{partBreaks[partIndex].label}</p>}<h2>{partBreaks[partIndex].title}</h2>{partBreaks[partIndex].note && <span>{partBreaks[partIndex].note}</span>}{partBreaks[partIndex].parts && <ul className="part-parts">{partBreaks[partIndex].parts.map(p => <li key={p}><b>{p.split(".")[0]}</b><code>{p}</code></li>)}</ul>}<p className="part-break-transition">現在，輪到把它們變成真正的主頁。</p></div></section>}</div>})}
       </div>
-      <a href="/lesson-2-github" className="next-kit next-kit-simple"><div><p>下一課 · LESSON 02</p><h2>GitHub</h2><span>下一課，把你的守護員網站安全擺上雲端。</span></div><div className="next-kit-stamp">NEXT<br/>LESSON<br/><b>02</b></div><ArrowRight className="next-kit-arrow"/></a>
+      <LessonPager current={1}/>
     </main>
     <footer>第一課 · 守護員歡迎頁完成後，按上方 GitHub 入口繼續下一課。</footer>
   </div>;
