@@ -15,7 +15,7 @@ export const codeTemplates: Record<CodeKey, string> = {
   <main class="stage">
     <section class="welcome-copy">
       <p class="label">MY FIRST WEBSITE / 由 0 開始</p>
-      <h1>先讓小可愛<br><strong>歡迎你。</strong></h1>
+      <h1>小守護員，歡迎你。<br><strong>三個檔案，開網站。</strong></h1>
       <p id="message">由 Folder 開始，做到第一個守護員歡迎頁。</p>
       <button id="celebrate">按一下，開始砌網站</button>
     </section>
