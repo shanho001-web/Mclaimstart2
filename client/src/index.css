@@ -518,3 +518,31 @@ body{background:#fff}
 .claim-page-title h2{font-size:clamp(44px,6vw,78px)!important;line-height:1.06!important;letter-spacing:-.08em!important;margin:0!important;color:#102a43!important}
 .claim-page-title p{margin:10px 0 0!important;color:#5a7185!important;font:500 15px "Noto Sans TC",sans-serif!important}
 @media(max-width:700px){.claim-page-title{padding:26px 0 22px}.claim-page-title h2{font-size:40px!important}.claim-page-title span.small{font-size:24px!important}}
+
+/* ===== UI 微調 v2 ===== */
+/* ① 認識 X 標題放大（約 3 倍） */
+.tool-title-big h2{font-size:clamp(88px,16vw,200px)!important;letter-spacing:-.1em!important}
+.claim-page-title h2{font-size:clamp(88px,16vw,200px)!important;letter-spacing:-.1em!important}
+.tool-title-big>span,.claim-page-title span.small{font-size:56px!important}
+@media(max-width:700px){.tool-title-big h2,.claim-page-title h2{font-size:64px!important}.tool-title-big>span,.claim-page-title span.small{font-size:32px!important}}
+
+/* ⑤ 全部副標題縮小 */
+.tool-title-big p,.claim-page-title p{font-size:12px!important;font-weight:500!important;color:#7a8fa3!important;margin-top:8px!important}
+.lesson-copy-guide summary em{font-size:.7rem!important}
+
+/* ② 第 1 課：移除左邊 FLOW 線 */
+.scroll-course .guide-stack{border-left:0!important;padding-left:0!important;margin-left:0!important}
+
+/* ② 卡片：白底、無黑框、圓角（同 2-4 課 task-unit 風格） */
+.scroll-course .part-intro{border:1px solid #e4edf4!important;border-radius:16px!important;box-shadow:0 2px 12px rgba(16,42,67,.06)!important}
+.scroll-course .four-beat{border:1px solid #e4edf4!important;border-radius:16px!important;box-shadow:0 2px 12px rgba(16,42,67,.06)!important;background:#fff!important}
+.guide-unit{background:#fff!important;box-shadow:0 2px 12px rgba(16,42,67,.06)!important;border:1px solid #e4edf4!important;border-radius:16px!important;padding:18px!important}
+.guide-stack .guide-unit{padding:20px!important}
+
+/* ③ hero 圖桌面置中 */
+.scroll-course .full-hero{display:flex!important;justify-content:center!important;align-items:center!important}
+.scroll-course .hero-image-stage{width:100%!important;max-width:900px!important}
+.scroll-course .full-hero-art{object-fit:contain!important;object-position:center!important}
+
+/* ④ 課 1 底部 LessonPager 置中 */
+.scroll-course .lesson-pager{max-width:860px;margin-left:auto!important;margin-right:auto!important}
