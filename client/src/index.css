@@ -605,3 +605,51 @@ body{background:#fff}
 /* 課5 頂圖退地（最終覆寫：確保 minifier 保留） */
 .kit-page .claim-hero-image{background:transparent!important;border:none!important;border-radius:0!important;box-shadow:none!important;overflow:visible!important}
 .kit-page .claim-hero-image img{filter:drop-shadow(0 14px 14px #173f6c22)!important}
+
+/* ============================================================
+   文字層級統一 v1（text-format-audit 實測結果）
+   六層級標準：
+   L1 標題      「認識 X」/ hero 主標    170px 漸層藍  fw900
+   L2 章節標題   每課 major section       44px #102a43  fw700
+   L3 小副標題   task/unit/卡標題         24px #173a5b  fw700
+   L4 小提示     提示框文字               13px fw700（語意色）
+   L5 內文       步驟/說明                14px #587186
+   L6 分段       到哪裡/做甚麼 等標籤     11px fw800（藍/橙）
+   ============================================================ */
+
+/* L1：課5「認識 Firebase」字重 400 → 900，與課2-4 完全一致 */
+.claim-page-title h2{font-weight:900!important}
+
+/* L2：章節標題統一 44px fw700（課1 42px／課4 43px／課5 48px → 44px） */
+.scroll-course .part-intro h2,
+.kit-section h2,
+.firebase-security-heading h2{font-size:clamp(28px,3vw,44px)!important;font-weight:700!important;line-height:1.22!important;letter-spacing:-.055em!important;color:#102a43!important}
+
+/* L3：小副標題統一 24px fw700（課2-4 25px／課4 22px／課5 15px → 24px） */
+.task-unit-head h3,
+.code-pack-copy h3,
+.firebase-next-preview h3,
+.kit-section .console-steps h3,
+.kit-section .admin-setup-quick h3{font-size:24px!important;font-weight:700!important;color:#173a5b!important;line-height:1.3!important;letter-spacing:-.02em!important}
+
+/* L4：小提示統一 13px（課1 12px → 13px；課4 保持 13px） */
+.scroll-course .guardian-tip p,
+.scroll-course .action-hint p{font-size:13px!important}
+.firebase-danger-warning li,
+.firebase-factcheck li{font-size:13px!important}
+
+/* L5：內文步驟統一 14px（課1/課5 human-steps 12px → 14px） */
+.scroll-course .human-steps li,
+.tools-page .tool-actions .human-steps li,
+.kit-section .human-steps li{font-size:14px!important;font-weight:500!important}
+
+/* L6：分段標籤 10px → 11px（課1 到哪裡／做甚麼） */
+.scroll-course .action-card .beat b,
+.scroll-course .action-card .beat-where b{font-size:11px!important;letter-spacing:.04em!important}
+
+@media(max-width:700px){
+  .kit-section h2{font-size:30px!important}
+  .scroll-course .part-intro h2{font-size:30px!important}
+  .task-unit-head h3,.code-pack-copy h3,.firebase-next-preview h3{font-size:22px!important}
+  .kit-section .console-steps h3,.kit-section .admin-setup-quick h3{font-size:19px!important}
+}
