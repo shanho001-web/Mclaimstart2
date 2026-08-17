@@ -42,7 +42,7 @@ export default function Home() {
   const [liveIndex, setLiveIndex] = useState(0);
   const [soundOn, setSoundOn] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const liveVideos = ["/images/home-live.mp4", "/images/HOME LIVE B.mp4"];
+  const liveVideos = ["/images/home-live.mp4", "/images/home-live-b.mp4"];
   const openLive = () => { setLiveIndex(0); setSoundOn(false); setShowLive(true); };
   const enableSound = () => { const v = videoRef.current; if (v) { v.muted = false; v.play(); setSoundOn(true); } };
   return <div className="app-shell scroll-course">
