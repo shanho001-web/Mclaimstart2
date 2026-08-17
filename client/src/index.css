@@ -429,3 +429,21 @@ body{background:#fff}
   .scroll-course .guide-unit{padding-bottom:48px!important}
   .task-unit-list{gap:24px!important}
 }
+
+/* 極簡主義修正（MUJI 間 Ma）：留白對稱、元素不重疊 */
+/* ① hero：transition 句移到插畫下方，不再與 speech 重疊 */
+.hero-transition-line{top:auto!important;bottom:10%!important;left:50%!important;transform:translateX(-50%)!important}
+@media(max-width:700px){.hero-transition-line{bottom:18%!important;top:auto!important}}
+
+/* ② part-break：消除上方 609px 空洞 — grid 左右排，文字左圖右，留白對稱 */
+@media(min-width:701px){
+  .scroll-course .part-break{min-height:auto!important;height:auto!important;padding:64px 6vw 64px!important;display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:48px!important;align-items:center!important;place-items:center!important}
+  .scroll-course .part-break>div{position:relative!important;left:auto!important;top:auto!important;transform:none!important;margin:0!important;width:100%!important;max-width:440px!important;z-index:2;justify-self:end}
+  .scroll-course .part-break img{position:relative!important;right:auto!important;left:auto!important;top:auto!important;margin:0!important;width:min(420px,38vw)!important;height:auto!important;max-height:440px!important;justify-self:start}
+}
+@media(max-width:700px){
+  .scroll-course .part-break{padding-top:44px!important;padding-bottom:36px!important;display:flex!important;flex-direction:column;align-items:center}
+  .scroll-course .part-break img{position:relative!important;top:auto!important;right:auto!important;left:auto!important;transform:none!important;width:min(78vw,300px)!important;height:auto!important;max-height:320px!important;margin:0 0 10px!important}
+  .scroll-course .part-break>div{position:relative!important;top:auto!important;left:auto!important;transform:none!important;margin:0!important;width:100%!important;text-align:center}
+  .part-parts{justify-content:center!important}
+}
