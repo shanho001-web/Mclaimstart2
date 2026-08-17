@@ -701,9 +701,9 @@ body{background:#fff}
 .lesson-copy-guide summary em{color:#d99a1f!important;font-weight:800!important}
 
 /* 課1 開場白（圖1下方） */
-.course-opening-note{max-width:1020px;margin:0 auto 20px;padding:15px 20px;background:#fff9ed;border:1px dashed #e6b653;border-radius:0 14px 0 14px;color:#6e5938}
-.course-opening-note b{display:block;margin-bottom:4px;color:#a66000;font-size:13px}
-.course-opening-note p{margin:0;font-size:14px;line-height:1.8}
+.course-opening-note{max-width:900px;margin:26px auto 30px;padding:34px 44px;background:#fff9ed;border:1px dashed #e6b653;border-radius:0 22px 0 22px;color:#6e5938;text-align:center;box-shadow:6px 7px 0 #f4a3401a}
+.course-opening-note b{display:block;margin-bottom:14px;color:#a66000;font-size:22px;letter-spacing:.04em}
+.course-opening-note p{margin:0;font-size:28px;line-height:1.85;font-weight:500}
 
 /* 課3 tip / fill 分行 */
 .result-note,.task-fill p{white-space:pre-line!important}
@@ -721,6 +721,8 @@ body{background:#fff}
 .ai-hint{margin:16px 0 0;padding:13px 16px;background:#fff7e8;border:1px dashed #e6b653;border-radius:0 14px 0 14px;color:#8a570d;font-size:14px;font-weight:700;line-height:1.7}
 
 @media(max-width:700px){
-  .course-opening-note{margin:0 0 14px;padding:13px 15px}
+  .course-opening-note{margin:16px 0 20px;padding:22px 20px}
+  .course-opening-note b{font-size:17px}
+  .course-opening-note p{font-size:20px;line-height:1.75}
   .claim-hero-caption{font-size:13px}
 }
