@@ -577,10 +577,7 @@ body{background:#fff}
 /* ① 課1 頂圖移除暗影 */
 .scroll-course .hero-guardian{filter:none!important;box-shadow:none!important}
 
-/* ② 「先讓小可愛 歡迎你」放大 20%＋深藍漸變藍（同認識X效果） */
-.scroll-course .hero-speech span{font-size:36px!important;background:linear-gradient(135deg,#102a43,#2e73c8 55%,#4a9ee8)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
-.scroll-course .hero-speech b{font-size:14px!important;color:#5a7185!important}
-@media(max-width:700px){.scroll-course .hero-speech span{font-size:44px!important}}
+/* 課1 hero-speech 式樣與課2一致（Noto Serif TC、深藍、負字距） */
 
 /* ③ 移除 PART 01 標記＋調整空間 */
 .course-part:before{content:""!important;display:none!important}
@@ -590,3 +587,8 @@ body{background:#fff}
 .scroll-course .full-hero{background:#fff!important}
 .scroll-course .hero-image-stage{background:#fff!important}
 .scroll-course .full-hero:after{background:linear-gradient(90deg,#fff 0%,#ffffffd9 38%,#ffffff00 68%)!important}
+
+/* ===== UI 微調 v6 ===== */
+/* 課5 頂圖改 inspector（正方形）→ contain 完整顯示 */
+.claim-hero-image{max-width:560px!important;background:#fff!important}
+.claim-hero-image img{max-height:420px!important;object-fit:contain!important}

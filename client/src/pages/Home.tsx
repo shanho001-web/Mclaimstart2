@@ -14,7 +14,7 @@ const modelCodeUrl = "/images/guardian-code-fit.webp";
 const modelIdeaUrl = "/images/guardian-idea.png";
 const modelLaunchUrl = "/images/guardian-launch.webp";
 const codeNames = { macFiles:"VS Code 下方的黑色 Terminal（macOS）", windowsFiles:"VS Code 下方的黑色 Terminal（Windows）", indexHtml:"VS Code 左側的 index.html", styleCss:"VS Code 左側的 style.css", scriptJs:"VS Code 左側的 script.js", gitPush:"VS Code 下方的黑色 Terminal", gitUpdate:"VS Code 下方的黑色 Terminal" };
-const actionArt = [modelDownloadUrl, modelFolderOpenUrl, modelIdeaUrl, modelCodeUrl, modelCodeUrl, modelFolderOpenUrl, modelLaunchUrl, modelLaunchUrl];
+const actionArt = [modelDownloadUrl, modelFolderOpenUrl, logoUrl, modelCodeUrl, modelCodeUrl, modelFolderOpenUrl, modelLaunchUrl, modelLaunchUrl];
 const partBreaks = [
   { art: modelIdeaUrl, label:"", title:"把三個網站零件砌進主頁", note:"", parts:["index.html","style.css","script.js"] },
 ];
