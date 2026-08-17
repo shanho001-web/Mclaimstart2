@@ -686,3 +686,8 @@ body{background:#fff}
 @media(max-width:700px){
   .tools-page .code-shell,.scroll-course .code-shell,.kit-section .code-shell{margin-left:0!important;margin-right:0!important}
 }
+
+/* ===== 手機 code 溢出根治：grid 鏈 min-width:0 斷開（課2-5） ===== */
+.tool-lesson-page .task-unit-list>*,
+.tool-lesson-page .task-unit-body>*{min-width:0!important}
+.tool-lesson-page .task-unit-body{min-width:0!important}
