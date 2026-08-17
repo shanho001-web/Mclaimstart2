@@ -447,3 +447,10 @@ body{background:#fff}
   .scroll-course .part-break>div{position:relative!important;top:auto!important;left:auto!important;transform:none!important;margin:0!important;width:100%!important;text-align:center}
   .part-parts{justify-content:center!important}
 }
+
+/* 極簡修正③：hero 高度收斂到一屏，消除下方 1238px 空洞（MUJI：留白對稱、不堆空） */
+.scroll-course .full-hero{height:calc(100vh - 76px)!important;min-height:0!important;max-height:920px!important}
+.scroll-course .hero-image-stage{height:100%!important;min-height:0!important}
+.scroll-course .full-hero-art{height:100%!important;object-fit:cover!important}
+.scroll-course .hero-speech{top:12%!important}
+.scroll-course .hero-transition-line{bottom:8%!important}
