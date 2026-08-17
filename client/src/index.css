@@ -673,3 +673,9 @@ body{background:#fff}
   .scroll-course .hero-speech span{font-size:38px!important}
   .scroll-course .hero-speech b{font-size:16px!important}
 }
+
+/* ===== 課1 對話框位置：左移兩個大字＋下移一行 ===== */
+.scroll-course .hero-speech{left:calc(50% - 140px)!important;top:calc(9% + 84px)!important}
+@media(max-width:700px){
+  .scroll-course .hero-speech{left:calc(50% - 70px)!important;top:calc(28px + 42px)!important}
+}
