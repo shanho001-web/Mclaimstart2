@@ -546,3 +546,17 @@ body{background:#fff}
 
 /* ④ 課 1 底部 LessonPager 置中 */
 .scroll-course .lesson-pager{max-width:860px;margin-left:auto!important;margin-right:auto!important}
+
+/* ===== UI 微調 v3 ===== */
+/* ① Firebase 頂位 living room 圖 */
+.firebase-living-room{display:block;width:100%;max-width:900px;margin:0 auto 22px;border-radius:0 22px 0 22px;border:1px solid #e4edf4;box-shadow:0 4px 18px rgba(16,42,67,.08)}
+
+/* ② 認識 X 標題縮小 15%（200px → 170px，手機 64→54px）＋行距收緊 */
+.tools-page .tool-title-big h2{font-size:clamp(76px,13.6vw,170px)!important;line-height:1!important;letter-spacing:-.09em!important}
+.claim-page-title h2{font-size:clamp(76px,13.6vw,170px)!important;line-height:1!important;letter-spacing:-.09em!important}
+.tools-page .tool-title-big>span,.claim-page-title span.small{font-size:48px!important}
+.tool-title-big,.claim-page-title{padding-bottom:26px!important;margin-bottom:20px!important}
+@media(max-width:700px){.tools-page .tool-title-big h2,.claim-page-title h2{font-size:54px!important}.tools-page .tool-title-big>span,.claim-page-title span.small{font-size:26px!important}}
+
+/* ③ 副標題行距貼近標題 */
+.tool-title-big p,.claim-page-title p{margin-top:4px!important;line-height:1.4!important}
