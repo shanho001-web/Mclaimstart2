@@ -388,3 +388,44 @@ body{background:#fff}
 .firebase-factcheck li b{color:#187243}
 .firebase-factcheck code{padding:1px 5px;background:#fff;border:1px solid #b7ddc6;border-radius:4px;font:800 11px "JetBrains Mono",monospace;color:#187243}
 @media(max-width:700px){.firebase-factcheck{padding:14px}.firebase-factcheck li{font-size:12px}}
+
+/* ===== 留白空間修訂（ui-aesthetic-review：macro/micro whitespace + 8px 間距系統 + Gestalt 50% 規則）===== */
+
+/* Macro：章節間呼吸 64–96px（理論：SaaS/教學頁 section gap 64–96px） */
+.scroll-course .course-part{margin-top:96px!important}
+.scroll-course .course-part:first-child{margin-top:0!important}
+.scroll-course .part-break{margin-top:64px!important;margin-bottom:64px!important}
+.scroll-course .next-kit{margin-top:96px!important}
+.guide-stack{margin-top:52px!important;padding-top:12px!important}
+
+/* 卡片組間距（between distinct components）32px；內部相關係件 16–24px（內部 ≤50% 外部） */
+.guide-stack .guide-unit{margin-bottom:40px!important}
+.task-unit-list{gap:32px!important}
+.scroll-course .guide-unit{padding-bottom:64px!important}
+.code-pack{margin-bottom:40px!important}
+
+/* 內部 micro 間距：標題與內容、icon 與文字 */
+.part-intro{padding-bottom:28px!important;margin-bottom:8px}
+.guide-content .beat{padding:20px 18px!important}
+.code-pack-copy{margin-bottom:20px!important}
+.human-steps{gap:8px!important}
+.task-unit-head{padding:20px 22px 16px!important}
+.task-location,.task-instructions,.task-fill,.task-result{padding:18px 22px!important}
+
+/* 分離層級：以留白/底色取代過多邊框（理論：whitespace > bg shift > borders） */
+.guide-unit,.task-unit,.admin-setup-quick{border-width:1px!important;box-shadow:0 1px 6px rgba(16,42,67,.04)!important}
+.scroll-course .part-intro{box-shadow:0 1px 8px rgba(16,42,67,.05)!important}
+
+/* 內容留白比例：主要容器 padding 加大（避免 edge-to-edge cramming） */
+.tools-main{padding-top:64px!important}
+.kit-main{padding-top:64px!important}
+.course-stream{padding-top:48px!important;padding-bottom:40px!important}
+
+/* 手機版：微調保持呼吸但不失控 */
+@media(max-width:700px){
+  .scroll-course .course-part{margin-top:64px!important}
+  .scroll-course .part-break{margin-top:40px!important;margin-bottom:40px!important}
+  .guide-stack .guide-unit{margin-bottom:32px!important}
+  .scroll-course .guide-unit{padding-bottom:48px!important}
+  .task-unit-list{gap:24px!important}
+}
