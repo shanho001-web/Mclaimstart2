@@ -655,18 +655,21 @@ body{background:#fff}
 }
 
 /* ===== 課1 hero-speech 對齊課2「認識 X」標題：漸層藍＋字級放大 ===== */
+.scroll-course .hero-speech{text-align:left!important}
 .scroll-course .hero-speech span{
+  display:block!important;
   background:linear-gradient(135deg,#102a43 0%,#2e73c8 55%,#4a9ee8 100%)!important;
   -webkit-background-clip:text!important;
   background-clip:text!important;
   -webkit-text-fill-color:transparent!important;
   color:transparent!important;
-  font-size:clamp(52px,7vw,96px)!important;
+  font-size:clamp(76px,13.6vw,170px)!important;
   letter-spacing:-.09em!important;
   line-height:1.05!important;
 }
 .scroll-course .hero-speech b{color:#5a7185!important}
+@media(max-width:1000px){.scroll-course .hero-speech span{font-size:clamp(44px,8vw,76px)!important}}
 @media(max-width:700px){
-  .scroll-course .hero-speech span{font-size:34px!important}
+  .scroll-course .hero-speech span{font-size:56px!important}
   .scroll-course .hero-speech b{font-size:16px!important}
 }
