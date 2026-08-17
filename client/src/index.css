@@ -491,3 +491,30 @@ body{background:#fff}
 .file-role-list span{color:#315876;font-size:13px;line-height:1.65}
 .file-role-list em{display:block;color:#2e73c8;font-style:normal;font-weight:800;font-size:12px;margin-top:3px}
 @media(max-width:700px){.file-role-list>div{grid-template-columns:1fr;gap:5px}.file-role-list b{font-size:12px}}
+
+/* ===== 第 1 課 UI 統一（以第 2-5 課清爽白底為標準）===== */
+/* 移除 ASSEMBLY FLOW 豎排文字 */
+.guide-stack:before{content:""!important;display:none!important}
+/* 移除 part-intro 黑框、硬陰影、格子背景 → 白底細框（同 tool-guide） */
+.scroll-course .part-intro{border:1px solid #d9e6ee!important;border-radius:0 16px 0 16px!important;background-color:#fff!important;background-image:none!important;box-shadow:0 2px 10px rgba(16,42,67,.05)!important}
+.scroll-course .part-intro:before{content:""!important}
+/* 移除 guide-stack 左側粗虛線 → 細虛線（同 task-unit 風格） */
+.scroll-course .guide-stack{border-left:1px dashed #b8d0e3!important}
+/* 移除 MISSION/ACTION CARD 等英文角標 */
+.part-intro:after,.four-beat:before,.guide-unit:after,.next-kit:before{content:""!important;display:none!important}
+/* 操作卡四格 → 白底細框（同 task-unit） */
+.scroll-course .four-beat{border:1px solid #d9e6ee!important;border-radius:0 16px 0 16px!important;box-shadow:0 2px 10px rgba(16,42,67,.05)!important;background:#fff!important;background-image:none!important}
+
+/* 認識 X 大排版（仿第 4 課客廳開場：clamp 大字＋大留白＋分隔線） */
+.tool-title-big{padding:40px 0 34px;border-bottom:1px dashed #b8d2e5;margin-bottom:26px;max-width:820px}
+.tool-title-big>span{font-size:34px!important}
+.tool-title-big h2{font-size:clamp(44px,6vw,78px)!important;line-height:1.06!important;letter-spacing:-.08em!important;margin:0!important;color:#102a43!important}
+.tool-title-big p{margin:10px 0 0!important;color:#5a7185!important;font:500 15px "Noto Sans TC",sans-serif!important;letter-spacing:.01em!important}
+@media(max-width:700px){.tool-title-big{padding:26px 0 22px}.tool-title-big h2{font-size:40px!important}.tool-title-big>span{font-size:24px!important}}
+
+/* 第 5 課 claim-page-title 統一成大排版（與 tool-title-big 同款） */
+.claim-page-title{padding:40px 0 34px!important;border-bottom:1px dashed #b8d2e5!important;margin-bottom:26px!important;max-width:820px}
+.claim-page-title span.small{font-size:34px!important}
+.claim-page-title h2{font-size:clamp(44px,6vw,78px)!important;line-height:1.06!important;letter-spacing:-.08em!important;margin:0!important;color:#102a43!important}
+.claim-page-title p{margin:10px 0 0!important;color:#5a7185!important;font:500 15px "Noto Sans TC",sans-serif!important}
+@media(max-width:700px){.claim-page-title{padding:26px 0 22px}.claim-page-title h2{font-size:40px!important}.claim-page-title span.small{font-size:24px!important}}
