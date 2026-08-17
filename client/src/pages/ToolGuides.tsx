@@ -99,7 +99,7 @@ export function FirebaseSecurityPrimer() {
     <div className="security-boundary" aria-label="公開畫面與受保護資料的分界">
       <div className="security-zone public-zone"><small>公開區</small><b>歡迎頁、登入畫面</b><p>任何人都可以看見畫面與網站程式碼。</p></div>
       <div className="security-divider"><span>登入後的每次請求</span><ShieldCheck size={20}/></div>
-      <div className="security-zone protected-zone"><small>受保護區</small><b>管理員、Claims、收據</b><p>Firebase 會按 Authentication 和 Rules 判斷是否准許存取。</p></div>
+      <div className="security-zone protected-zone"><small>受保護區</small><b>3大鎖匙</b><p>Firebase 會按 Authentication 和 Rules 判斷是否准許存取。</p></div>
     </div>
     <div className="security-principle-grid">{firebaseSecurityPrinciples.map((item, index) => <article key={item.name}><span>0{index + 1}</span><div><b>{item.name}</b><p>{item.summary}</p></div></article>)}</div>
     <div className="firebase-factcheck" aria-label="官方確認的安全重點"><p className="firebase-factcheck-label">✓ 這些不是廣告，是 Google 官方文件確認的</p><ol><li><b>每個請求都會被規則擋下</b>：Firestore 官方文件寫明「每一個來自 Web 的請求，在讀寫任何資料前都會先經 Security Rules 評估」。</li><li><b>檔按 UID 分開</b>：Storage 規則可用 <code>request.auth.uid</code> 確保每個人只能碰自己的收據。</li><li><b>登入憑證可驗證</b>：登入 token 有官方簽章，伺服器可驗證真偽，冒名頂替會被拒。</li><li><b>App Check 擋機器人</b>：官方提供的 App Check 可驗證請求來自合法 app／瀏覽器，拒絕自動化腳本。</li></ol></div>

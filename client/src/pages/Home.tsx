@@ -6,6 +6,7 @@ import { LessonCopyGuide } from "@/components/LessonCopyGuide";
 import { codeTemplates, homeLessonArticle, steps, type Guide } from "../data/course";
 
 const logoUrl = "/images/logo.webp";
+const logoTransparentUrl = "/images/logo-transparent.png";
 const heroUrl = "/images/guardian-welcome-desktop.png";
 const mobileHeroUrl = "/images/guardian-welcome-mobile.png";
 const modelDownloadUrl = "/images/guardian-download.webp";
@@ -14,9 +15,9 @@ const modelCodeUrl = "/images/guardian-code-fit.webp";
 const modelIdeaUrl = "/images/guardian-idea.png";
 const modelLaunchUrl = "/images/guardian-launch.webp";
 const codeNames = { macFiles:"VS Code 下方的黑色 Terminal（macOS）", windowsFiles:"VS Code 下方的黑色 Terminal（Windows）", indexHtml:"VS Code 左側的 index.html", styleCss:"VS Code 左側的 style.css", scriptJs:"VS Code 左側的 script.js", gitPush:"VS Code 下方的黑色 Terminal", gitUpdate:"VS Code 下方的黑色 Terminal" };
-const actionArt = [modelDownloadUrl, modelFolderOpenUrl, logoUrl, modelCodeUrl, modelCodeUrl, modelFolderOpenUrl, modelLaunchUrl, modelLaunchUrl];
+const actionArt = [modelDownloadUrl, modelFolderOpenUrl, logoUrl, modelCodeUrl, modelCodeUrl, modelFolderOpenUrl, modelLaunchUrl, logoTransparentUrl];
 const partBreaks = [
-  { art: modelIdeaUrl, label:"", title:"把三個網站零件砌進主頁", note:"", parts:["index.html","style.css","script.js"] },
+  { art: "/images/orange-three-stacked-file-blocks.png", label:"", title:"把三個網站零件砌進主頁", note:"", parts:["index.html","style.css","script.js"] },
 ];
 
 function Visual({ guide, index }: { guide: Guide; index: number }) {
