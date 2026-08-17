@@ -521,10 +521,10 @@ body{background:#fff}
 
 /* ===== UI 微調 v2 ===== */
 /* ① 認識 X 標題放大（約 3 倍） */
-.tool-title-big h2{font-size:clamp(88px,16vw,200px)!important;letter-spacing:-.1em!important}
+.tools-page .tool-title-big h2{font-size:clamp(88px,16vw,200px)!important;letter-spacing:-.1em!important}
 .claim-page-title h2{font-size:clamp(88px,16vw,200px)!important;letter-spacing:-.1em!important}
-.tool-title-big>span,.claim-page-title span.small{font-size:56px!important}
-@media(max-width:700px){.tool-title-big h2,.claim-page-title h2{font-size:64px!important}.tool-title-big>span,.claim-page-title span.small{font-size:32px!important}}
+.tools-page .tool-title-big>span,.claim-page-title span.small{font-size:56px!important}
+@media(max-width:700px){.tools-page .tool-title-big h2,.claim-page-title h2{font-size:64px!important}.tools-page .tool-title-big>span,.claim-page-title span.small{font-size:32px!important}}
 
 /* ⑤ 全部副標題縮小 */
 .tool-title-big p,.claim-page-title p{font-size:12px!important;font-weight:500!important;color:#7a8fa3!important;margin-top:8px!important}
