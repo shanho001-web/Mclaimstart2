@@ -455,19 +455,11 @@ body{background:#fff}
 .scroll-course .hero-speech{top:12%!important}
 .scroll-course .hero-transition-line{bottom:8%!important}
 
-/* 修訂：「按 V 查看本課說明」轉橙色更明顯 */
-.lesson-copy-guide summary em{color:#e07b00!important;font-weight:900!important;background:#fff3e0!important;padding:4px 10px!important;border-radius:999px!important;border:1px dashed #f4a340!important}
-
 /* 強化：確保 firebase-tree 不被 admin-setup-quick ol 樣式覆蓋 */
 .admin-setup-quick ol.firebase-tree{color:#315876!important}
 .admin-setup-quick ol.firebase-tree li{color:#496b82!important}
 .admin-setup-quick ol.firebase-tree .tree-field{margin:4px 0!important}
 
-/* 修訂：全站關鍵字鮮藍色高亮（VS Code、Terminal、code、檔名等） */
-.kit-page code, .tools-page code, .guide-page code{color:#1d5fd0!important;background:#e8f1ff!important;font-weight:800!important;padding:2px 6px!important;border-radius:4px!important;border:1px solid #bcd6f7!important;font-size:.92em!important}
-.task-instructions li b, .task-location p b, .section-lead b, .guide-answers code, .admin-setup-quick b{color:#1d5fd0!important}
-.code-copy-direction b, .code-pack-item>p b{color:#1d5fd0!important;background:#e8f1ff!important;padding:1px 5px!important;border-radius:4px!important}
-.human-steps li, .action-card .beat p b{color:#1d5fd0!important}
 
 /* 工具介紹卡（GitHub/Vercel/Firebase 開頭：是甚麼＋絕招） */
 .tool-intro-card{max-width:760px;margin:0 auto 22px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
