@@ -735,3 +735,8 @@ body{background:#fff}
   /* 課4「前往第 5 課」按鈕 */
   .firebase-next-preview a{min-height:44px!important;display:inline-flex!important;align-items:center!important}
 }
+
+/* ===== 手機空間除錯 v2：footer 官方連結加大 ===== */
+@media(max-width:700px){
+  .kit-footer a{min-height:44px!important;display:inline-flex!important;align-items:center!important;padding:8px 10px!important}
+}
