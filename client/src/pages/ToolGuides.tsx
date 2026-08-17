@@ -93,7 +93,7 @@ export function FirebaseProcessFlow() {
 }
 
 export function FirebaseSecurityPrimer() {
-  return <section className="firebase-opening" aria-labelledby="firebase-welcome-title"><div className="firebase-welcome-copy"><p><Lock size={16}/>{firebaseWelcomeMessage.eyebrow}</p><h1 id="firebase-welcome-title">{firebaseWelcomeMessage.title}<em>{firebaseWelcomeMessage.emphasis}</em></h1><span>請朋友到家吃飯，客廳可以讓大家自在進出；但收據、管理員帳戶和資料權限，就像重要物品，應該鎖進房間。</span></div><section className="firebase-security-brief" aria-labelledby="firebase-security-title">
+  return <section className="firebase-opening" aria-labelledby="firebase-welcome-title"><div className="firebase-welcome-copy"><p><Lock size={16}/>{firebaseWelcomeMessage.eyebrow}</p><h1 id="firebase-welcome-title">{firebaseWelcomeMessage.title}<em>{firebaseWelcomeMessage.emphasis}</em></h1><span>請朋友到家吃飯，客廳可以讓大家自在進出；但收據、管理員帳戶和資料權限，就像重要物品，應該鎖進房間。</span></div><aside className="firebase-danger-warning" aria-label="不設防的危險警告"><p className="firebase-danger-label">⚠ 先看危險：不設定後端的後果</p><ol><li><b>任何人都能讀取所有 Claim 和收據</b>：Firebase 預設測試模式開放讀寫，知道網址的人就能拉走整份資料。</li><li><b>任何人都能竄改或刪除資料</b>：不只偷看，還能改金額、刪記錄、上載假收據。</li><li><b>管理員帳戶形同虛設</b>：登入畫面可以造假，沒有伺服器規則把關，會員自稱管理員也攔不住。</li></ol><p className="firebase-danger-why">所以這課不是「加分題」：Firebase 的 Authentication、Firestore Rules、Storage Rules 三道防線，是讓「只有你」能碰資料的必要設定，不是可選的美化。</p></aside><section className="firebase-security-brief" aria-labelledby="firebase-security-title">
     <div className="firebase-security-heading"><span><ShieldCheck size={16}/> 第 4 課先看安全概念</span><h2 id="firebase-security-title">公開網站，<em>不等於公開資料。</em></h2><p>畫面和網站程式碼可以公開；每次需要登入、讀取 Claim 或接觸收據時，Firebase 才根據身分和 Rules 判斷是否准許。第 5 課會帶你逐步完成實作。</p></div>
     <div className="security-boundary" aria-label="公開畫面與受保護資料的分界">
       <div className="security-zone public-zone"><small>公開區</small><b>歡迎頁、登入畫面</b><p>任何人都可以看見畫面與網站程式碼。</p></div>
@@ -243,7 +243,7 @@ export const guides: ToolGuide[] = [
         where: "Vercel Dashboard → 右上角 Add New → Project → Import Git Repository",
         actions: ["按 Add New → Project，等 Import Git Repository 清單出現", "在清單找 welcome-site；看見就按同一行 Import", "畫面進入 Configure Project 後，代表已成功 Import"],
         result: "Vercel Import Git Repository 清單出現 welcome-site；按 Import 後畫面進入 Configure Project。",
-        tip: "清單沒有 welcome-site？不要重新建立 repository；保持這頁開著，另開 GitHub → 右上角頭像 → Settings → Applications → Vercel application → Configure，在 Repository access 選 Only select repositories，展開清單後選 welcome-site → Save／Update，再回剛才的 Vercel New Project 頁重新整理；welcome-site 出現後按 Import。若 GitHub 畫面把 Vercel 放在 Installed GitHub Apps，進入後同樣按 Configure。只授權 welcome-site 已足夠，毋須讓 Vercel 讀取所有 repositories。",
+        tip: "清單沒有 welcome-site？不要重新建立 repository，照下面 1-5 步授權即可：① 保持這頁開著，另開一個分頁去 github.com；② 右上角頭像 → Settings；③ 左邊選單按 Applications → 找 Vercel → 按 Configure；④ 在 Repository access 選 Only select repositories → 展開清單勾選 welcome-site → 按 Save／Update；⑤ 回剛才的 Vercel New Project 頁重新整理，welcome-site 出現後按 Import。若 GitHub 把 Vercel 放在 Installed GitHub Apps，同樣按 Configure。只授權 welcome-site 已足夠。",
       },
       {
         title: "設定並 Deploy",

@@ -16,7 +16,7 @@ const modelLaunchUrl = "/images/guardian-launch.webp";
 const codeNames = { macFiles:"VS Code 下方的黑色 Terminal（macOS）", windowsFiles:"VS Code 下方的黑色 Terminal（Windows）", indexHtml:"VS Code 左側的 index.html", styleCss:"VS Code 左側的 style.css", scriptJs:"VS Code 左側的 script.js", gitPush:"VS Code 下方的黑色 Terminal", gitUpdate:"VS Code 下方的黑色 Terminal" };
 const actionArt = [modelDownloadUrl, modelFolderOpenUrl, modelFolderOpenUrl, modelCodeUrl, modelCodeUrl, modelFolderOpenUrl, modelCodeUrl, modelLaunchUrl];
 const partBreaks = [
-  { art: modelIdeaUrl, label:"", title:"把三張網站零件砌進主頁", note:"" },
+  { art: modelIdeaUrl, label:"", title:"把三個網站零件砌進主頁", note:"", parts:["index.html","style.css","script.js"] },
 ];
 
 function Visual({ guide, index }: { guide: Guide; index: number }) {
@@ -51,7 +51,7 @@ export default function Home() {
               {guide.choices ? <><p className="code-copy-direction">選自己的 Mac 或 Windows 卡 → 按「複製 code」→ 回 VS Code 下方黑色 Terminal 貼上 → 按 Enter。</p><div className="code-alternatives">{guide.choices.map((code) => <CodeBlock key={code} code={codeTemplates[code]} fileName={codeNames[code]} tone={code === "macFiles" ? "mac" : "windows"} />)}</div></> : guide.code && <><p className="code-copy-direction">按這張卡的「複製 code」→ 回 <b>{codeNames[guide.code]}</b> 貼上 → 儲存或按 Enter。</p><CodeBlock code={codeTemplates[guide.code]} fileName={codeNames[guide.code]} /></>}
               <aside className="guardian-tip"><b>小守護員提示</b><p>{guide.tip || "完成這格後，直接向下滑到下一個動作。"}</p></aside>
             </div></article>)}</div>
-          </section>{partIndex < steps.length - 1 && <section className={`part-break part-break-${partIndex + 1}`}><img src={partBreaks[partIndex].art} alt={partBreaks[partIndex].title}/><div>{partBreaks[partIndex].label && <p>{partBreaks[partIndex].label}</p>}<h2>{partBreaks[partIndex].title}</h2>{partBreaks[partIndex].note && <span>{partBreaks[partIndex].note}</span>}<p className="part-break-transition">現在，輪到把它們變成真正的主頁。</p></div></section>}</div>})}
+          </section>{partIndex < steps.length - 1 && <section className={`part-break part-break-${partIndex + 1}`}><img src={partBreaks[partIndex].art} alt={partBreaks[partIndex].title}/><div>{partBreaks[partIndex].label && <p>{partBreaks[partIndex].label}</p>}<h2>{partBreaks[partIndex].title}</h2>{partBreaks[partIndex].note && <span>{partBreaks[partIndex].note}</span>}{partBreaks[partIndex].parts && <ul className="part-parts">{partBreaks[partIndex].parts.map(p => <li key={p}><b>{p.split(".")[0]}</b><code>{p}</code></li>)}</ul>}<p className="part-break-transition">現在，輪到把它們變成真正的主頁。</p></div></section>}</div>})}
       </div>
       <a href="/lesson-2-github" className="next-kit next-kit-simple"><div><p>下一課 · LESSON 02</p><h2>GitHub</h2><span>下一課，把你的守護員網站安全擺上雲端。</span></div><div className="next-kit-stamp">NEXT<br/>LESSON<br/><b>02</b></div><ArrowRight className="next-kit-arrow"/></a>
     </main>

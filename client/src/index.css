@@ -341,3 +341,28 @@ body{background:#fff}
 .part-break-transition{display:block;margin:14px 0 0!important;color:#8ec5ff!important;font-size:14px!important;font-weight:700!important;line-height:1.7!important}
 .scroll-course .part-break-1 .part-break-transition{color:#2e73c8!important}
 @media(max-width:700px){.hero-transition-line{top:10%;font-size:12px;white-space:nowrap}.part-break-transition{font-size:13px!important}}
+
+/* 過場零件 chips（第 1 課三個網站零件 highlight + icon） */
+.part-parts{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;padding:0;list-style:none}
+.part-parts li{display:flex;align-items:center;gap:7px;padding:8px 12px;background:#eaf3ff;border:2px solid #2e73c8;border-radius:8px 14px 8px 14px;box-shadow:0 4px 0 #2e73c820}
+.part-parts li b{display:grid;place-items:center;width:24px;height:24px;flex:none;background:#2e73c8;color:#fff;border-radius:6px;font:900 10px "JetBrains Mono",monospace}
+.part-parts li code{color:#173a5b;font:800 12px "JetBrains Mono",monospace}
+.part-break-1 .part-parts li{background:#fff9ee;border-color:#f4a340;box-shadow:0 4px 0 #f4a34030}
+.part-break-1 .part-parts li b{background:#f4a340;color:#5a3500}
+.part-break-1 .part-parts li code{color:#6d4a0e}
+@media(max-width:700px){.part-parts{gap:6px}.part-parts li{padding:6px 9px}.part-parts li code{font-size:11px}}
+
+/* 第 4 課：不設防危險警告 */
+.firebase-danger-warning{margin:22px auto 26px;max-width:820px;padding:18px 20px;background:#fff5f2;border:2px solid #d9534f;border-left:6px solid #c0392b;border-radius:0 14px 0 14px}
+.firebase-danger-label{display:inline-block;margin:0 0 10px;padding:5px 10px;background:#c0392b;color:#fff;font-weight:900;font-size:13px;border-radius:6px}
+.firebase-danger-warning ol{margin:0;padding-left:22px;display:grid;gap:8px}
+.firebase-danger-warning li{color:#7a2a25;font-size:13px;line-height:1.7}
+.firebase-danger-warning li b{color:#c0392b}
+.firebase-danger-why{margin:12px 0 0;padding-top:12px;border-top:1px dashed #e5a19c;color:#8a3a34;font-size:13px;line-height:1.7;font-weight:700}
+@media(max-width:700px){.firebase-danger-warning{padding:15px 14px}.firebase-danger-warning li{font-size:12px}}
+
+/* 第 5 課：兩份 Rules 標籤不同顏色 */
+.code-tab.tone-firestore{border-color:#2e73c8;color:#2e73c8;background:#eef6ff}
+.code-tab.tone-firestore.active{background:#2e73c8;color:#fff}
+.code-tab.tone-storage{border-color:#19824c;color:#187243;background:#eef9f2}
+.code-tab.tone-storage.active{background:#19824c;color:#fff}
