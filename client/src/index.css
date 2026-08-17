@@ -797,3 +797,6 @@ body{background:#fff}
   .header-course-links .header-next-kit{display:none!important}
   .header-course-links .header-jump.roadmap-download{font-size:10px!important;padding:5px 8px!important}
 }
+
+/* ===== 課1 頂圖移除動畫 ===== */
+.scroll-course .full-hero-art,.scroll-course .hero-guardian{animation:none!important}
