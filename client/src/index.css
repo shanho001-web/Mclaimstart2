@@ -695,3 +695,32 @@ body{background:#fff}
 /* ===== 課5 PART 01 頂圖 ===== */
 .part-hero-image{display:block;width:min(560px,100%);margin:14px auto 6px;border-radius:0 16px 0 16px}
 @media(max-width:700px){.part-hero-image{width:100%;margin:10px auto 4px}}
+
+/* ===== 文字教學批次修改（第 N 輪） ===== */
+/* 「按 V 查看本課說明」轉黃色 */
+.lesson-copy-guide summary em{color:#d99a1f!important;font-weight:800!important}
+
+/* 課1 開場白（圖1下方） */
+.course-opening-note{max-width:1020px;margin:0 auto 20px;padding:15px 20px;background:#fff9ed;border:1px dashed #e6b653;border-radius:0 14px 0 14px;color:#6e5938}
+.course-opening-note b{display:block;margin-bottom:4px;color:#a66000;font-size:13px}
+.course-opening-note p{margin:0;font-size:14px;line-height:1.8}
+
+/* 課3 tip / fill 分行 */
+.result-note,.task-fill p{white-space:pre-line!important}
+
+/* 課4 firebaseConfig AI 提示 */
+.config-ai-hint{margin:14px auto 0;max-width:820px;padding:12px 14px;background:#eef4ff;border-left:4px solid #2e73c8;color:#315876;font-size:13px;font-weight:700;line-height:1.7;border-radius:0 10px 10px 0}
+
+/* 課5 頂圖下方一句 */
+.claim-hero-caption{margin:-2px 0 0;text-align:center;color:#2e73c8;font:900 15px "Noto Sans TC",sans-serif;letter-spacing:.06em}
+
+/* 課5 PART 01 小標題（3個檔copy） */
+.code-tab-lead{margin:26px 0 10px;color:#173a5b;font-size:16px;font-weight:700}
+
+/* 課5 PART 02 AI 提示 */
+.ai-hint{margin:16px 0 0;padding:13px 16px;background:#fff7e8;border:1px dashed #e6b653;border-radius:0 14px 0 14px;color:#8a570d;font-size:14px;font-weight:700;line-height:1.7}
+
+@media(max-width:700px){
+  .course-opening-note{margin:0 0 14px;padding:13px 15px}
+  .claim-hero-caption{font-size:13px}
+}

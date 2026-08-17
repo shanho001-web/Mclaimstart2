@@ -70,7 +70,7 @@ export const firebaseConfigLines = [
 ] as const;
 
 export function FirebaseConfigBreakdown() {
-  return <section className="firebase-config-breakdown" aria-labelledby="firebase-config-card-title"><header><span><FileCode2 size={16}/> firebaseConfig · 逐行核對</span><h4 id="firebase-config-card-title">把 Firebase Console ID 留著，要手動更改入以下的 CODE。</h4><p>先在 Firebase Console 完整複製 `firebaseConfig`，再對照下列卡片。每個 Project 的值不同，所以示範中的 `YOUR_...` 只用來找位置。<strong>每一行改完，記得 Ctrl/Cmd + S 儲存（SAVE）。</strong></p></header><div className="config-destinations"><FileCode2 size={22}/><div><b>同一份設定放進兩個檔案</b><p><code>index.html</code> 與 <code>dashboard.html</code> 內原有的 <code>const firebaseConfig = &#123; ... &#125;</code> 區塊。</p></div></div><div className="config-code-card"><div className="config-line config-declaration"><code>const firebaseConfig = &#123;</code><span>不要改這一行</span></div>{firebaseConfigLines.map((line, index) => <div className="config-line" key={line.key}><code><b>{line.key}</b>: <mark>"{line.value}"</mark>{index < firebaseConfigLines.length - 1 ? "," : ""}</code><p><span>0{index + 1}</span>{line.meaning}</p></div>)}<div className="config-line config-declaration"><code>&#125;;</code><span>保留結尾的分號</span></div></div><aside className="config-security-note"><ShieldCheck size={20}/><div><b>網站設定，不是管理員密碼。</b><p>`firebaseConfig` 會隨網站交付，真正的資料存取仍由 Authentication 和 Firestore／Storage Rules 決定。<strong>不可</strong>把 Service Account JSON、`private_key`、Admin SDK 或管理員密碼貼進 `index.html`、`dashboard.html` 或公開 repository。</p></div></aside></section>;
+  return <section className="firebase-config-breakdown" aria-labelledby="firebase-config-card-title"><header><span><FileCode2 size={16}/> firebaseConfig · 逐行核對</span><h4 id="firebase-config-card-title">把 Firebase Console ID 留著，要手動更改入以下的 CODE。</h4><p>先在 Firebase Console 完整複製 `firebaseConfig`，再對照下列卡片。每個 Project 的值不同，所以示範中的 `YOUR_...` 只用來找位置。<strong>每一行改完，記得 Ctrl/Cmd + S 儲存（SAVE）。</strong></p></header><div className="config-destinations"><FileCode2 size={22}/><div><b>同一份設定放進兩個檔案</b><p><code>index.html</code> 與 <code>dashboard.html</code> 內原有的 <code>const firebaseConfig = &#123; ... &#125;</code> 區塊。</p></div></div><div className="config-code-card"><div className="config-line config-declaration"><code>const firebaseConfig = &#123;</code><span>不要改這一行</span></div>{firebaseConfigLines.map((line, index) => <div className="config-line" key={line.key}><code><b>{line.key}</b>: <mark>"{line.value}"</mark>{index < firebaseConfigLines.length - 1 ? "," : ""}</code><p><span>0{index + 1}</span>{line.meaning}</p></div>)}<div className="config-line config-declaration"><code>&#125;;</code><span>保留結尾的分號</span></div></div><aside className="config-security-note"><ShieldCheck size={20}/><div><b>網站設定，不是管理員密碼。</b><p>`firebaseConfig` 會隨網站交付，真正的資料存取仍由 Authentication 和 Firestore／Storage Rules 決定。<strong>不可</strong>把 Service Account JSON、`private_key`、Admin SDK 或管理員密碼貼進 `index.html`、`dashboard.html` 或公開 repository。</p></div></aside><p className="config-ai-hint">💡 這部分比較複雜：不明白就去問問 AI。</p></section>;
 }
 
 function ProcessArrow({ label }: { label: string }) {
@@ -169,10 +169,10 @@ export const guides: ToolGuide[] = [
       {
         title: "回到 VS Code 上載三個檔案",
         where: "VS Code → welcome-site → 下方黑色 Terminal",
-        actions: ["按下方 code 卡的「複製 code」", "先開一個文字檔改好再貼：VS Code 上方 File → New File（或按 Ctrl/Cmd + N）開新檔，把 code 貼進去，再把三處 YOUR_ 改成自己的資料：YOUR NAME 填你的名字、YOUR_EMAIL 填你的電郵、網址裡的 YOUR_GITHUB_NAME 填你的 GitHub 帳戶名（就是 github.com/你的帳戶名/welcome-site 中間那段）", "改好後整段複製，回 VS Code → welcome-site → 下方黑色 Terminal 貼上，再按 Enter 執行；第一次若開瀏覽器登入 GitHub，跟畫面完成登入"],
+        actions: ["首先，先在記事本／Word（Page）把下方的 code 複製，再手動更改「YOUR_...」的資料 — 這是你在 GitHub 的發貨點（網址中間那段就是 github.com/你的帳戶名/welcome-site）；改好後複製，回到 VS Code → welcome-site → 下方黑色 Terminal，一行一行貼上按 Enter。如出現 error，可問問 AI。"],
         code: codeTemplates.gitPush,
         result: "回 GitHub 重新整理後，會看到 index.html、style.css、script.js 和最新 commit。",
-        tip: "Terminal 每行成功會出現綠色剔號或亮燈（如 ✓、main、->），代表該指令通過；若出現紅色 error 或叉號，代表該行有問題，把錯誤貼回給人檢查。commit -m \"第一個小守護員主頁\" 的引號內是「這個版本的儲存名」，可自行改成任何名字（例如「歡迎頁完成」），它只是方便你日後認得這個版本。GitHub 密碼只在 GitHub 的登入畫面輸入；不要貼進 Terminal 或公開筆記。如果出現 repository not found，代表網址裡的 YOUR_GITHUB_NAME 未改成自己的帳戶名；改好後重新貼一次。",
+        tip: "好喇，成功上載！可返回 GitHub 看看你的雲端檔案（Commits／Files）。本課完成。",
       },
     ],
     mascot: { src: githubMascotUrl, alt: "小守護員正在把網站檔案收進 GitHub repository" },
@@ -248,13 +248,13 @@ export const guides: ToolGuide[] = [
         where: "Vercel Dashboard → 右上角 Add New → Project → Import Git Repository",
         actions: ["按 Add New → Project，等 Import Git Repository 清單出現", "在清單找 welcome-site；看見就按同一行 Import", "畫面進入 Configure Project 後，代表已成功 Import"],
         result: "Vercel Import Git Repository 清單出現 welcome-site；按 Import 後畫面進入 Configure Project。",
-        tip: "清單沒有 welcome-site？不要重新建立 repository，照下面 1-5 步授權即可：① 保持這頁開著，另開一個分頁去 github.com；② 右上角頭像 → Settings；③ 左邊選單按 Applications → 找 Vercel → 按 Configure；④ 在 Repository access 選 Only select repositories → 展開清單勾選 welcome-site → 按 Save／Update；⑤ 回剛才的 Vercel New Project 頁重新整理，welcome-site 出現後按 Import。若 GitHub 把 Vercel 放在 Installed GitHub Apps，同樣按 Configure。只授權 welcome-site 已足夠。",
+        tip: "清單沒有 welcome-site？不要重新建立 repository，照下面 1-5 步授權即可：\n① 保持這頁開著，另開一個分頁去 github.com\n② 右上角頭像 → Settings\n③ 左邊選單按 Applications → 找 Vercel → 按 Configure\n④ 在 Repository access 選 Only select repositories → 展開清單勾選 welcome-site → 按 Save／Update\n⑤ 回剛才的 Vercel New Project 頁重新整理，welcome-site 出現後按 Import。若 GitHub 把 Vercel 放在 Installed GitHub Apps，同樣按 Configure。只授權 welcome-site 已足夠。",
       },
       {
         title: "設定並 Deploy",
         where: "Configure Project",
         actions: ["Project Name 保留 welcome-site", "Framework Preset 選 Other", "Build Command 留空", "按 Deploy"],
-        fill: "Project Name：welcome-site；Framework Preset：Other；Build Command：留空",
+        fill: "Project Name：welcome-site\nFramework Preset：Other\nBuild Command：留空",
         result: "部署畫面先顯示 Building，完成後會變 Ready。",
       },
       {

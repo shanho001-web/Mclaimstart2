@@ -72,8 +72,9 @@ describe("short connected operation titles", () => {
     expect(guides.find((guide) => guide.id === "github")!.steps.map((step) => step.title)).toEqual([
       "登入 GitHub", "建立 Private repository", "回到 VS Code 上載三個檔案",
     ]);
-    expect(guides.find((guide) => guide.id === "github")!.steps[2].actions[0]).toContain("下方 code 卡的「複製 code」");
-    expect(guides.find((guide) => guide.id === "github")!.steps[2].actions[2]).toContain("下方黑色 Terminal");
+    expect(guides.find((guide) => guide.id === "github")!.steps[2].actions[0]).toContain("記事本／Word");
+    expect(guides.find((guide) => guide.id === "github")!.steps[2].actions[0]).toContain("YOUR_");
+    expect(guides.find((guide) => guide.id === "github")!.steps[2].actions[0]).toContain("下方黑色 Terminal");
   });
 });
 

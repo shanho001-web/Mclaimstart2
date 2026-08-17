@@ -43,6 +43,7 @@ export default function Home() {
     <div className="assembly-progress" aria-label="第一模型盒組裝進度"><span>模型進度</span><b>1</b><i/><b>2</b><i/><b>3</b><i/><b>4</b><i/><b>5</b><small>由 Folder 到網址</small></div>
     <main id="top">
       <section className="full-hero"><div className="hero-image-stage"><div className="hero-speech"><b>小守護員，歡迎你。</b><span>三個檔案，<br/>開網站。</span></div><p className="hero-transition-line">很好，你已經決定開始了。</p><picture><source media="(max-width: 700px)" srcSet={mobileHeroUrl}/><img className="full-hero-art hero-guardian" src={heroUrl} alt="小守護員正在砌網站模型"/></picture></div></section>
+      <aside className="course-opening-note"><b>這頁給誰看</b><p>這頁志在讓零基礎、不知如何入手的人，學習到基礎操作。透過過程中的疑問，一步一步加深與 AI 的溝通方法……展開新的開端（版本有異，有問題找 AI）。</p></aside>
       <LessonCopyGuide data={homeLessonArticle}/>
       <div className="course-stream">
         {steps.map((step, partIndex) => { const offset = steps.slice(0, partIndex).reduce((total, previous) => total + previous.guides.length, 0); return <div className="part-block" key={step.id}><section className="course-part" id={`part-${step.number}`}>
