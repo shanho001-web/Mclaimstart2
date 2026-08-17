@@ -585,3 +585,8 @@ body{background:#fff}
 /* ③ 移除 PART 01 標記＋調整空間 */
 .course-part:before{content:""!important;display:none!important}
 .scroll-course .course-part{padding-top:96px!important}
+
+/* ===== UI 微調 v5：課1 頂圖移除米色底 ===== */
+.scroll-course .full-hero{background:#fff!important}
+.scroll-course .hero-image-stage{background:#fff!important}
+.scroll-course .full-hero:after{background:linear-gradient(90deg,#fff 0%,#ffffffd9 38%,#ffffff00 68%)!important}
