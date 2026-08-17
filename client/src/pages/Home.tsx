@@ -1,5 +1,5 @@
 /** Design philosophy: Friendly model workbench — clear route-first action cards with pop-out guardian stickers. */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CheckCircle2, ExternalLink } from "lucide-react";
 import { CodeBlock } from "@/components/CodeBlock";
 import { CourseNav, LessonPager } from "@/components/KitHeader";
@@ -40,13 +40,17 @@ function ActionCard({ guide, sequence }: { guide: Guide; sequence: number }) {
 export default function Home() {
   const [showLive, setShowLive] = useState(true);
   const [liveIndex, setLiveIndex] = useState(0);
+  const [soundOn, setSoundOn] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const liveVideos = ["/images/home-live.mp4", "/images/HOME LIVE B.mp4"];
-  const openLive = () => { setLiveIndex(0); setShowLive(true); };
+  const openLive = () => { setLiveIndex(0); setSoundOn(false); setShowLive(true); };
+  const enableSound = () => { const v = videoRef.current; if (v) { v.muted = false; v.play(); setSoundOn(true); } };
   return <div className="app-shell scroll-course">
     {showLive && <div className="live-popup" onClick={() => setShowLive(false)}>
       <div className="live-popup-card" onClick={(e) => e.stopPropagation()}>
         <button className="live-popup-close" onClick={() => setShowLive(false)} aria-label="關閉影片">✕</button>
-        <video key={liveIndex} src={liveVideos[liveIndex]} autoPlay muted loop={false} controls playsInline onEnded={() => setLiveIndex((i) => (i + 1) % liveVideos.length)} />
+        <video ref={videoRef} key={liveIndex} src={liveVideos[liveIndex]} autoPlay muted loop={false} controls playsInline onEnded={() => setLiveIndex((i) => (i + 1) % liveVideos.length)} />
+        {!soundOn && <button className="live-popup-sound" onClick={enableSound}>🔊 開啟聲音</button>}
         <p>HOME LIVE {liveIndex === 0 ? "A" : "B"} · 小守護員歡迎你</p>
       </div>
     </div>}

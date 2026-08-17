@@ -825,3 +825,8 @@ body{background:#fff}
 @media(max-width:700px){
   .kit-section .admin-setup-quick h3{font-size:16px!important;word-break:break-all!important;overflow-wrap:anywhere!important;line-height:1.55!important}
 }
+
+/* ===== 開啟聲音按鈕 ===== */
+.live-popup-sound{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#f4a340;color:#5a3500;border:0;border-radius:10px 16px 10px 16px;padding:13px 22px;font-size:15px;font-weight:900;cursor:pointer;box-shadow:0 8px 20px #0006;z-index:2;white-space:nowrap}
+.live-popup-sound:hover{background:#e79b20}
+@media(max-width:700px){.live-popup-sound{font-size:13px;padding:11px 16px}}
