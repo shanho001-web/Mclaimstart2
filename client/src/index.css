@@ -572,3 +572,16 @@ body{background:#fff}
 }
 /* 確保漸層在 Safari/Chrome 都生效 */
 .tools-page .tool-title-big h2,.claim-page-title h2{color:transparent!important}
+
+/* ===== UI 微調 v4 ===== */
+/* ① 課1 頂圖移除暗影 */
+.scroll-course .hero-guardian{filter:none!important;box-shadow:none!important}
+
+/* ② 「先讓小可愛 歡迎你」放大 20%＋深藍漸變藍（同認識X效果） */
+.scroll-course .hero-speech span{font-size:36px!important;background:linear-gradient(135deg,#102a43,#2e73c8 55%,#4a9ee8)!important;-webkit-background-clip:text!important;background-clip:text!important;-webkit-text-fill-color:transparent!important;color:transparent!important}
+.scroll-course .hero-speech b{font-size:14px!important;color:#5a7185!important}
+@media(max-width:700px){.scroll-course .hero-speech span{font-size:44px!important}}
+
+/* ③ 移除 PART 01 標記＋調整空間 */
+.course-part:before{content:""!important;display:none!important}
+.scroll-course .course-part{padding-top:96px!important}
